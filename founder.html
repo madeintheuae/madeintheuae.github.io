@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MENAFactory — Publish your factory campaign</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#2d6361; --primary-2:#3f7f7c; --ink:#0d1b1a; --muted:#4f6664; --line:rgba(45,99,97,0.18); --panel:#fff; --glow:0 24px 64px rgba(45,99,97,0.14); }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{margin:0;font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 15% 15%,rgba(45,99,97,0.12) 0,transparent 30%),#eef2f1;color:var(--ink);padding:28px;min-height:100vh;display:flex;flex-direction:column;}
+    .shell{max-width:1200px;margin:0 auto;flex:1;width:100%;}
+    a.back{color:var(--primary);font-weight:700;text-decoration:none;} a.back:hover{text-decoration:underline;}
+    .hero{padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f4745,#2d6361);color:#fff;box-shadow:var(--glow);position:relative;overflow:hidden;margin:10px 0 16px;}
+    .lang-switch{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.14);padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.24);}
+    .lang-switch label{font-weight:600;font-size:13px;color:#e9f1ef;}
+    .lang-switch select{border:none;border-radius:10px;padding:8px 10px;background:rgba(255,255,255,0.92);color:#1f4745;font-weight:700;outline:none;}
+    h1{margin:6px 0 4px;letter-spacing:-0.3px;}
+    .lead{margin:0;color:rgba(255,255,255,0.85);max-width:880px;}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;align-items:start;}
+    @media(max-width:960px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--glow);}
+    label{display:grid;gap:6px;font-weight:700;color:var(--ink);font-size:14px;margin-bottom:8px;}
+    input, select, textarea{padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:#f5f7f6;font-family:inherit;}
+    textarea{min-height:110px;resize:vertical;}
+    .muted { color: var(--muted); font-size: 13px; }
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;background:var(--primary);color:#fff;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(45,99,97,0.18);}
+    .btn.ghost{background:#f5f7f6;color:var(--primary);border:1px solid var(--line);box-shadow:none;}
+    .pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(45,99,97,0.12);color:var(--primary-2);font-weight:700;font-size:12px;border:1px solid rgba(45,99,97,0.2);}
+    .helper{font-size:12px;color:var(--muted);margin-top:-4px;margin-bottom:6px;}
+    .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;align-items:center;}
+    .upload-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#f5f7f6;border:1px dashed var(--line);cursor:pointer;font-weight:700;}
+    .error{color:#a62323;font-weight:700;font-size:12px;margin-top:-2px;margin-bottom:8px;}
+    .success{background:#f0fbf7;border:1px solid rgba(45,99,97,0.3);color:#0c3f32;padding:10px 12px;border-radius:12px;font-weight:700;margin-top:8px;}
+    .learning{border:1px dashed var(--line);border-radius:14px;padding:14px;background:#f7faf9;margin-bottom:14px;}
+    .list{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
+    .stack{display:grid;gap:12px;}
+    .card.list{padding:16px;}
+    .prompt{background:#f5f7f6;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13px;color:var(--muted);}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:18px;z-index:40;}
+    .modal{max-width:620px;width:100%;background:#fff;border-radius:16px;padding:18px;border:1px solid var(--line);box-shadow:var(--glow);position:relative;}
+    .close-btn{position:absolute;top:10px;right:10px;background:#f3f6f5;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer;}
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .panel,.theme-dark .hero{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="shell">
+    <a class="back" href="crowdfunding.html">← Back to capital hub</a>
+    <section class="hero">
+      <div class="lang-switch">
+        <label>Language</label>
+        <select id="langSelect">
+          <option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="ru">Русский</option>
+        </select>
+      </div>
+      <div class="pill">For Founders</div>
+      <h1>Publish your factory campaign</h1>
+      <p class="lead">Share your factory focus, ROI highlights, decks, and capital needs. Get guidance and sample decks to craft a winning raise.</p>
+    </section>
+
+    <div class="learning">
+      <h3>New to fundraising for factories?</h3>
+      <p class="muted">Visit the Founders Learning Center to learn how to prepare business plans, structure your pitch decks, and choose between equity, shares, and convertibles for a successful crowdfunding campaign.</p>
+      <button class="btn inline" id="openLearning">Go to founders learning center</button>
+      <span class="info-link" id="openGlossaryLink" style="margin-left:10px;cursor:pointer;color:var(--primary);text-decoration:underline;font-weight:700;">Glossary: shares vs equity vs convertible</span>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <form id="campaignForm" class="list">
+          <label>Factory / project name
+            <input id="fName" type="text" placeholder="e.g. Sohar Green Steel Line" required />
+          </label>
+          <div class="error" data-err="fName" style="display:none;"></div>
+
+          <label>Country
+            <select id="fCountry" required>
+              <option value="">Select a country</option>
+              <option>UAE</option><option>Saudi Arabia</option><option>Oman</option><option>Bahrain</option><option>Kuwait</option><option>Qatar</option><option>Egypt</option><option>Jordan</option>
+            </select>
+          </label>
+          <div class="error" data-err="fCountry" style="display:none;"></div>
+
+          <label>Production focus
+            <input id="fFocus" type="text" placeholder="Example: Low-carbon steel billets, aseptic beverages, advanced packaging" required />
+          </label>
+          <div class="error" data-err="fFocus" style="display:none;"></div>
+
+          <label>Business plan / ROI highlights
+            <textarea id="fPlan" placeholder="Summarize your plan, expected ROI, timelines, and certifications."></textarea>
+            <div class="helper">Key market, capacity, pricing, CAPEX/OPEX, and 3–5 year ROI assumptions.</div>
+            <div class="row">
+              <label class="upload-btn">Upload business plan (PDF)
+                <input id="fPlanFile" type="file" accept=".pdf,.pptx,.docx" style="display:none;">
+              </label>
+            </div>
+          </label>
+          <div class="error" data-err="fPlan" style="display:none;"></div>
+
+          <label>Pitch deck / data room link
+            <input id="fDeck" type="url" placeholder="https://drive.google.com/your-deck" />
+            <div class="row">
+              <label class="upload-btn">Upload pitch deck (PDF/PPTX)
+                <input id="fDeckFile" type="file" accept=".pdf,.pptx" style="display:none;">
+              </label>
+            </div>
+          </label>
+          <div class="error" data-err="fDeck" style="display:none;"></div>
+
+          <label>Capital sought (USD) <span class="info-link" id="capitalInfo" style="font-size:12px;color:var(--primary);cursor:pointer;">What does this mean?</span>
+            <div class="row" style="grid-template-columns:120px 1fr;">
+              <div class="btn ghost" style="justify-content:center;pointer-events:none;">USD</div>
+              <input id="fCapital" type="number" min="1" placeholder="e.g. 2500000" required />
+            </div>
+            <div class="helper">Total amount you want to raise in this campaign.</div>
+          </label>
+          <div class="error" data-err="fCapital" style="display:none;"></div>
+
+          <label>Website (optional)
+            <input id="fSite" type="url" placeholder="https://yourfactory.com" />
+          </label>
+
+          <button class="btn" type="submit">Publish my campaign</button>
+          <div class="success" id="formSuccess" style="display:none;">Campaign submitted for review. Our team will contact you within 2–3 business days.</div>
+        </form>
+      </section>
+
+      <aside class="card stack">
+        <div>
+          <div class="pill">Founders learning center</div>
+          <h3 style="margin:6px 0 4px;">Guides to prepare your raise</h3>
+          <p class="muted" style="margin:0 0 8px;">Quick reads on business plans, pitch decks, and choosing equity vs convertible structures.</p>
+          <button class="btn inline ghost" id="openLearningSecondary" style="margin-top:4px;">Open learning center</button>
+        </div>
+
+        <div>
+          <div class="pill">Samples</div>
+          <h3 style="margin:6px 0 4px;">Pitch decks & business plans</h3>
+          <ul class="list" style="padding:0;margin:8px 0 0;">
+            <li><a href="#" class="back">Download sample: Green steel deck</a></li>
+            <li><a href="#" class="back">Download sample: Foodtech plan</a></li>
+            <li><a href="#" class="back">Download sample: Packaging ROI brief</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="pill">Need a prompt?</div>
+          <h3 style="margin:6px 0 4px;">Ask an LLM to draft your plan</h3>
+          <div class="prompt">Write a business plan for a [sector] factory in [country]. Include market size, customers, production capacity, certifications, CAPEX/OPEX, 3-year ROI, and hiring plan. Output a 10-slide outline with metrics.</div>
+        </div>
+
+        <div class="card" style="padding:14px;">
+          <div class="pill">Let an AI assistant draft your documents</div>
+          <h3 style="margin:6px 0 4px;">Agent-powered drafting</h3>
+          <p class="muted" style="margin:0 0 8px;">Use an AI-powered assistant to generate a first draft of your business plan, ROI brief, or pitch deck based on your factory details.</p>
+          <label>Document type
+            <select id="docType">
+              <option>Business plan</option>
+              <option>Pitch deck outline</option>
+              <option>ROI highlights brief</option>
+            </select>
+          </label>
+          <label>Describe your factory and project
+            <textarea id="docDesc" placeholder="Include sector, location, capacity, CAPEX/OPEX, target customers, and capital sought."></textarea>
+          </label>
+          <button class="btn inline" id="genDraft">Generate draft</button>
+          <div class="helper">We will use an LLM agent to draft content you can refine before uploading.</div>
+          <div id="draftResult" class="prompt" style="margin-top:8px;display:none;"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="glossaryModal">
+    <div class="modal">
+      <button class="close-btn" data-close="glossary">✕</button>
+      <h3>Glossary: shares, equity, convertible</h3>
+      <ul class="list">
+        <li><strong>Shares</strong><div class="muted">Units of ownership in a company. Represent a portion of the company’s capital.</div></li>
+        <li><strong>Equity</strong><div class="muted">Ownership interest in the company. Equity investors benefit from value growth and dividends.</div></li>
+        <li><strong>Convertible</strong><div class="muted">A hybrid instrument that starts as debt/SAFEnote and converts into equity later, usually with a discount or valuation cap.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="learningModal">
+    <div class="modal">
+      <button class="close-btn" data-close="learning">✕</button>
+      <h3>Founders learning center</h3>
+      <div class="list">
+        <div class="card" style="padding:12px;">
+          <strong>How to write a compelling manufacturing business plan</strong>
+          <p class="muted" style="margin:6px 0;">Structure market sizing, capacity assumptions, pricing, and ROI in 10 slides.</p>
+          <a class="btn inline ghost" href="/founders-learning-center">Read more</a>
+        </div>
+        <div class="card" style="padding:12px;">
+          <strong>How to structure a factory pitch deck</strong>
+          <p class="muted" style="margin:6px 0;">Cover traction, offtake, certifications, unit economics, and capital use.</p>
+          <a class="btn inline ghost" href="/founders-learning-center">Open guide</a>
+        </div>
+        <div class="card" style="padding:12px;">
+          <strong>Understanding shares, equity, and convertible instruments</strong>
+          <p class="muted" style="margin:6px 0;">Pick the right instrument for your raise and investor expectations.</p>
+          <a class="btn inline ghost" href="/founders-learning-center">Read more</a>
+        </div>
+        <div class="card" style="padding:12px;">
+          <strong>How to choose the right structure for your crowdfunding campaign</strong>
+          <p class="muted" style="margin:6px 0;">Balance dilution, control, and speed of fundraising.</p>
+          <a class="btn inline ghost" href="/founders-learning-center">Open guide</a>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="pill">Glossary</div>
+        <ul class="list" style="margin-top:6px;">
+          <li><strong>Shares</strong> — Units of ownership in a company. Represent a portion of the company’s capital.</li>
+          <li><strong>Equity</strong> — Ownership interest; equity investors benefit from value growth and dividends.</li>
+          <li><strong>Convertible</strong> — Hybrid instrument that converts into equity later, usually with a discount or cap.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("campaignForm");
+    const successMsg = document.getElementById("formSuccess");
+
+    function showError(key, msg){
+      const el = document.querySelector(`[data-err='${key}']`);
+      if(!el) return;
+      el.textContent = msg || "This field is required.";
+      el.style.display = "block";
+    }
+    function clearErrors(){
+      document.querySelectorAll(".error").forEach(e=>{e.style.display="none";});
+    }
+
+    form.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      clearErrors();
+      successMsg.style.display = "none";
+      const name = document.getElementById("fName").value.trim();
+      const country = document.getElementById("fCountry").value.trim();
+      const focus = document.getElementById("fFocus").value.trim();
+      const plan = document.getElementById("fPlan").value.trim();
+      const planFile = document.getElementById("fPlanFile").files.length;
+      const deck = document.getElementById("fDeck").value.trim();
+      const deckFile = document.getElementById("fDeckFile").files.length;
+      const capital = document.getElementById("fCapital").value.trim();
+      let valid = true;
+      if(!name){showError("fName","Please enter a project name."); valid=false;}
+      if(!country){showError("fCountry","Select a country."); valid=false;}
+      if(!focus){showError("fFocus","Enter production focus."); valid=false;}
+      if(!capital){showError("fCapital","Enter capital sought."); valid=false;}
+      if(!plan && !planFile){showError("fPlan","Add plan text or upload a file."); valid=false;}
+      if(!deck && !deckFile){showError("fDeck","Add a deck link or upload a file."); valid=false;}
+      if(!valid) return;
+      successMsg.style.display = "block";
+      form.reset();
+    });
+
+    // Glossary modal
+    const glossaryModal = document.getElementById("glossaryModal");
+    function openGlossary(){ glossaryModal.style.display = "flex"; }
+    function closeGlossary(){ glossaryModal.style.display = "none"; }
+    document.getElementById("openGlossaryLink").addEventListener("click", openGlossary);
+    document.getElementById("capitalInfo").addEventListener("click", openGlossary);
+    document.querySelectorAll("[data-close='glossary']").forEach(btn=>btn.addEventListener("click", closeGlossary));
+    glossaryModal.addEventListener("click", (e)=>{ if(e.target===glossaryModal) closeGlossary(); });
+
+    // Learning modal
+    const learningModal = document.getElementById("learningModal");
+    function openLearning(){ learningModal.style.display = "flex"; }
+    function closeLearning(){ learningModal.style.display = "none"; }
+    document.getElementById("openLearning").addEventListener("click", openLearning);
+    document.getElementById("openLearningSecondary").addEventListener("click", openLearning);
+    document.querySelectorAll("[data-close='learning']").forEach(btn=>btn.addEventListener("click", closeLearning));
+    learningModal.addEventListener("click", (e)=>{ if(e.target===learningModal) closeLearning(); });
+
+    // AI assistant generator
+    const genBtn = document.getElementById("genDraft");
+    const draftResult = document.getElementById("draftResult");
+    genBtn.addEventListener("click", ()=>{
+      draftResult.style.display = "block";
+      draftResult.textContent = "Generating draft...";
+      const type = document.getElementById("docType").value;
+      const desc = document.getElementById("docDesc").value.trim() || "Factory description not provided.";
+      setTimeout(()=>{
+        draftResult.textContent = `${type} draft:\n\n1) Summary: ${desc}\n2) Market & customers: outline TAM/SAM/SOM and target buyers.\n3) Capacity & operations: line throughput, utilization plan, QC/certs.\n4) Financials: CAPEX/OPEX, gross margin, ROI timeline.\n5) Raise ask: capital sought, use of funds, milestones.\n\nRefine and replace with your own details before uploading.`;
+      }, 600);
+    });
+
+    // Language toggle placeholder (no translations loaded yet)
+    const langSelect=document.getElementById("langSelect");
+    langSelect.addEventListener("change",()=>{ document.documentElement.lang = langSelect.value; document.documentElement.dir = ["ar","ur"].includes(langSelect.value)?"rtl":"ltr"; });
+
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+  </script>
+</body>
+</html>

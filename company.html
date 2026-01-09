@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Factory Detail — ProdLink Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0e1c1b;
+      --muted: #516461;
+      --panel: #f7f9f8;
+      --line: rgba(45, 99, 97, 0.2);
+      --primary: #2d6361;
+      --primary-strong: #1f4745;
+      --primary-soft: #3f7f7c;
+      --accent: #ffb454;
+      --glow: 0 25px 80px rgba(45, 99, 97, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', 'Noto Sans', system-ui, sans-serif;
+      background: radial-gradient(circle at 12% 20%, rgba(45, 99, 97, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(63, 127, 124, 0.18) 0, transparent 32%), #eef2f1;
+      color: var(--ink);
+      padding: 32px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .page { max-width: 1200px; margin: 0 auto 48px; flex:1; width:100%; }
+    .top-nav { display:flex; justify-content: space-between; align-items:center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .top-nav a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .top-nav a:hover { text-decoration: underline; }
+    .hero {
+      background: linear-gradient(135deg, #1f4745, #2d6361 40%, #1f4745);
+      color: #fff;
+      border-radius: 18px;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow);
+    }
+    .hero::after, .hero::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 62%);
+      top: -40px; right: -60px;
+      filter: blur(12px);
+    }
+    .hero::before {
+      bottom: -60px; left: -80px; top: auto;
+      background: radial-gradient(circle, rgba(63,127,124,0.22), transparent 62%);
+    }
+    h1 { margin: 6px 0 10px; font-size: 32px; letter-spacing: -0.5px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      font-weight: 700; letter-spacing: 0.2px; font-size: 13px;
+    }
+    .lead { margin: 0; max-width: 840px; color: rgba(255,255,255,0.82); line-height: 1.6; }
+    .tagline { display:flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .tag {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px;
+      padding: 6px 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .grid { display: grid; gap: 14px; grid-template-columns: 2fr 1fr; margin-top: 16px; align-items: start; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--glow);
+      backdrop-filter: blur(10px);
+    }
+    .panel h2 { margin: 0 0 8px; font-size: 20px; letter-spacing: -0.2px; }
+    .panel p { margin: 0; color: var(--muted); }
+    .product-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 16px;
+      box-shadow: inset 0 0 0 1px rgba(12,26,56,0.02);
+      display: grid;
+      gap: 8px;
+    }
+    .product-head { display:flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .product-head h3 { margin: 0; font-size: 18px; }
+    .badge { padding: 6px 10px; border-radius: 10px; background: rgba(45,99,97,0.12); color: var(--primary-strong); font-weight: 700; font-size: 13px; }
+    .specs { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 8px; }
+    .price-pill {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #f9fbfb;
+      font-weight: 700;
+    }
+    .price-pill span { display:block; color: var(--muted); font-size: 13px; font-weight: 600; }
+    .cta-row { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      transition: transform 0.08s ease, box-shadow 0.1s ease;
+      box-shadow: 0 10px 30px rgba(45,99,97,0.25);
+    }
+    .btn.ghost { background: #fff; color: var(--primary-strong); border: 1px solid var(--line); box-shadow: none; }
+    .btn:active { transform: translateY(1px); box-shadow: none; }
+    form label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; color: #0f172a; font-size: 14px; }
+    input, select, textarea {
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #f5f8f7;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.18); }
+    textarea { resize: vertical; min-height: 90px; }
+    .form-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+    .cart { margin-top: 12px; display: grid; gap: 8px; }
+    .cart-item { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; }
+    .cart-empty { padding: 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); text-align: center; }
+    .chat-bar {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 140px;
+      align-items: center;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .chat-log { max-height: 160px; overflow: auto; display: grid; gap: 6px; margin-top: 8px; }
+    .chat-msg { background: #eef5f4; padding: 8px 10px; border-radius: 10px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 12px; background: rgba(45,99,97,0.12); font-weight: 700; color: var(--primary-strong); }
+    .lineup {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .lineup h3 { margin: 0 0 8px; }
+    .lineup-controls {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      margin: 10px 0;
+    }
+    .lineup-controls label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 13px;
+    }
+    .lineup-controls input, .lineup-controls select {
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #f5f8f7;
+      font-size: 14px;
+      outline: none;
+    }
+    .lineup-controls input:focus, .lineup-controls select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.14); }
+    .lineup-table-wrap { overflow: auto; }
+    .lineup table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    .lineup th, .lineup td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+    .lineup th { background: #eef5f4; color: #0f172a; position: sticky; top: 0; z-index: 1; }
+    .lineup tbody tr:hover td { background: #f6f9f9; }
+    .lineup .muted { color: var(--muted); font-weight: 600; }
+    @media (max-width: 900px) {
+      body { padding: 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .chat-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="page">
+    <div class="top-nav">
+      <a href="catalogue.html">← Back to catalogue</a>
+      <div class="pill" id="locationPill">—</div>
+    </div>
+    <section class="hero">
+      <div class="eyebrow">Factory profile</div>
+      <h1 id="companyName">Loading company…</h1>
+      <p class="lead" id="companyDesc"></p>
+      <div class="tagline" id="tagline"></div>
+    </section>
+
+    <div class="grid">
+      <div class="panel" id="productsPanel">
+        <h2>Production catalogue</h2>
+        <p>Technical specs, pricing tiers, and production lead-times.</p>
+        <div id="products" style="display:grid; gap:12px; margin-top:12px;"></div>
+      </div>
+
+      <div style="display:grid; gap:12px;">
+        <div class="panel">
+          <h2>Place an order</h2>
+          <p style="margin-bottom:10px;">Select product, quantities, payment, delivery details.</p>
+          <form id="orderForm" style="display:grid; gap:10px;">
+            <label>
+              Product
+              <select id="orderProduct"></select>
+            </label>
+            <div class="form-grid">
+              <label>Quantity (pcs)
+                <input id="orderQty" type="number" min="1" value="1000" />
+              </label>
+              <label>Payment method
+                <select id="orderPayment">
+                  <option>Wire transfer</option>
+                  <option>Card on delivery</option>
+                  <option>Escrow (release on delivery)</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-grid">
+              <label>Preferred delivery date
+                <input id="orderDate" type="date" />
+              </label>
+              <label>Preferred time window
+                <input id="orderTime" type="time" />
+              </label>
+            </div>
+            <label>Delivery address / drop-off point
+              <textarea id="orderAddress" placeholder="City, warehouse, contact person, phone"></textarea>
+            </label>
+            <div class="cta-row">
+              <button class="btn" type="submit">Add to cart</button>
+              <button class="btn ghost" type="button" id="checkoutBtn">Checkout (demo)</button>
+            </div>
+            <small style="color:var(--muted);">Demo only: payment will not be processed.</small>
+          </form>
+          <div class="cart" id="cart"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Chat with the factory</h2>
+          <p style="margin-bottom:12px;">Message production managers to clarify specs or delivery.</p>
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-bar">
+            <input id="chatInput" type="text" placeholder="Ask about lead-times, certificates, packaging…" />
+            <button class="btn" id="chatSend" type="button">Send</button>
+          </div>
+          <small style="color:var(--muted);">Demo chat: messages stay in this page only.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function slugify(str) {
+      return (str || "")
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    const COMPANIES = {
+      "falcon-metal-hooks": {
+        name: "Falcon Metal Hooks",
+        location: "Dubai, UAE",
+        description: "Specialized in cold-forged, corrosion-resistant hooks for marine and construction supply chains across the Gulf.",
+        tags: ["Metal fabrication", "ISO 9001", "Marine-grade steel"],
+        lineup: [
+          { name: "M6 Snap Hook", material: "Carbon steel", finish: "Galvanized", load: "80 kg", moq: "2,000 pcs", lead: "5 days", notes: "Basic utility" },
+          { name: "M8 Safety Hook", material: "Carbon steel", finish: "Hot-dip galvanized", load: "120 kg", moq: "1,000 pcs", lead: "5–7 days", notes: "Latch included" },
+          { name: "M10 Swivel Hook", material: "Carbon steel", finish: "Zinc-nickel", load: "180 kg", moq: "1,000 pcs", lead: "6 days", notes: "360° swivel" },
+          { name: "M12 Anchor Hook", material: "Carbon steel", finish: "Zinc-nickel", load: "450 kg", moq: "500 pcs", lead: "7–10 days", notes: "Heavy-duty" },
+          { name: "M14 Rebar Coupler Hook", material: "Alloy steel", finish: "Heat-treated", load: "520 kg", moq: "500 pcs", lead: "8 days", notes: "Site rigging" },
+          { name: "M16 Crane Eye Hook", material: "Alloy steel", finish: "Painted", load: "750 kg", moq: "300 pcs", lead: "10 days", notes: "Crane lifting" },
+          { name: "Forged Clevis Hook", material: "Alloy steel", finish: "Galvanized", load: "600 kg", moq: "1,000 pcs", lead: "7 days", notes: "Pin secured" },
+          { name: "Turnbuckle Hook", material: "Carbon steel", finish: "Galvanized", load: "200 kg", moq: "2,000 pcs", lead: "5 days", notes: "Assembly" },
+          { name: "Stainless 304 Hook", material: "Stainless 304", finish: "Bright", load: "150 kg", moq: "800 pcs", lead: "6 days", notes: "Food-grade" },
+          { name: "Stainless 316 Hook", material: "Stainless 316", finish: "Polished", load: "150 kg", moq: "800 pcs", lead: "6 days", notes: "Marine" },
+          { name: "Powder-coated Hook", material: "Carbon steel", finish: "Powder coat", load: "120 kg", moq: "1,500 pcs", lead: "7 days", notes: "Color-coded" },
+          { name: "Plastic-coated Hook", material: "Carbon steel", finish: "PVC dip", load: "100 kg", moq: "1,500 pcs", lead: "7 days", notes: "Anti-scratch" },
+          { name: "Heat-treated Alloy Hook", material: "Alloy steel", finish: "Heat-treated", load: "500 kg", moq: "500 pcs", lead: "8 days", notes: "High tensile" },
+          { name: "Rigging Hook HT", material: "Alloy steel", finish: "Zinc-nickel", load: "650 kg", moq: "400 pcs", lead: "9 days", notes: "Rigging" },
+          { name: "Safety Latch Kit", material: "Carbon steel", finish: "Zinc", load: "Accessory", moq: "1,000 pcs", lead: "5 days", notes: "Replacement" },
+          { name: "Quick-link Oval Hook", material: "Carbon steel", finish: "Galvanized", load: "110 kg", moq: "2,000 pcs", lead: "5 days", notes: "Utility link" },
+          { name: "Locking Carabiner", material: "Alloy steel", finish: "Anodized", load: "160 kg", moq: "1,000 pcs", lead: "6 days", notes: "Twist lock" },
+          { name: "Wire-rope Thimble Hook", material: "Carbon steel", finish: "Galvanized", load: "140 kg", moq: "1,500 pcs", lead: "6 days", notes: "Cable ready" },
+          { name: "Thick Gauge Hook", material: "Alloy steel", finish: "Heat-treated", load: "900 kg", moq: "300 pcs", lead: "10 days", notes: "Heavy load" },
+          { name: "Custom OEM Hook", material: "Per drawing", finish: "Per spec", load: "Per spec", moq: "As agreed", lead: "Quoted", notes: "OEM program" }
+        ],
+        products: [
+          {
+            name: "Galvanized M8 Safety Hook",
+            summary: "Hot-dip galvanized hook with safety latch for suspended loads and rigging.",
+            specs: ["Load rating: 120 kg", "Material: AISI 304 / 316", "QC: Salt-spray tested 500h"],
+            pricing: [
+              { tier: "1,000 pcs", price: "10 AED / pc" },
+              { tier: "10,000 pcs", price: "9.4 AED / pc" },
+              { tier: "100,000+ pcs", price: "8.3 AED / pc" }
+            ],
+            leadTime: "5–7 days"
+          },
+          {
+            name: "Heavy-Duty M12 Anchor Hook",
+            summary: "Zinc-nickel plated hook for scaffolding and precast anchors.",
+            specs: ["Load rating: 450 kg", "Finish: ZnNi, 12 μm", "Batch traceability + test certs"],
+            pricing: [
+              { tier: "500 pcs", price: "24 AED / pc" },
+              { tier: "5,000 pcs", price: "21.8 AED / pc" },
+              { tier: "10,000+ pcs", price: "19.5 AED / pc" }
+            ],
+            leadTime: "7–10 days"
+          }
+        ]
+      },
+      "gulfchem-petrochemicals": {
+        name: "GulfChem Petrochemicals",
+        location: "Jubail, Saudi Arabia",
+        description: "Petrochemical producer supplying polypropylene grades, ethyl butane intermediates, and industrial acids for converters.",
+        tags: ["Chemicals", "REACH-ready", "Bulk & IBC"],
+        products: [
+          {
+            name: "PP Homo-polymer (MFI 3.2)",
+            summary: "Injection-grade PP pellets for consumer goods and packaging.",
+            specs: ["MFI: 3.2 g/10min (230°C/2.16kg)", "Density: 0.905 g/cm³", "Palletized, 25 kg bags"],
+            pricing: [
+              { tier: "1 MT (≈40 bags)", price: "4,800 AED / MT" },
+              { tier: "10 MT+", price: "4,550 AED / MT" },
+              { tier: "Container (25 MT)", price: "4,380 AED / MT" }
+            ],
+            leadTime: "3–5 days ex-works"
+          },
+          {
+            name: "Industrial Sulfuric Acid 98%",
+            summary: "Bulk acid for metal treatment, battery and fertilizer lines.",
+            specs: ["Purity: 98%", "Packaging: IBC 1,000L or bulk tanker", "Safety docs: SDS + CoA per batch"],
+            pricing: [
+              { tier: "1,000 L IBC", price: "1,150 AED / IBC" },
+              { tier: "5,000 L", price: "1,050 AED / 1,000L" },
+              { tier: "Bulk tanker 20,000 L", price: "980 AED / 1,000L" }
+            ],
+            leadTime: "48 hours"
+          }
+        ]
+      },
+      "desertbox-packaging": {
+        name: "DesertBox Packaging",
+        location: "Muscat, Oman",
+        description: "Corrugated cardboard producer offering standard SKUs and custom die-cuts for e-commerce and food distributors.",
+        tags: ["Corrugated", "Custom sizes", "Food-safe inks"],
+        products: [
+          {
+            name: "RSC 30x30x30 CM (3-ply)",
+            summary: "Universal shipper with crush resistance for e-commerce fulfillment.",
+            specs: ["ECT: 32", "Finish: Kraft, single color flexo", "Min order: 500 units"],
+            pricing: [
+              { tier: "1,000 pcs", price: "2.4 AED / pc" },
+              { tier: "10,000 pcs", price: "2.1 AED / pc" },
+              { tier: "50,000 pcs", price: "1.9 AED / pc" }
+            ],
+            leadTime: "4–6 days"
+          },
+          {
+            name: "Custom die-cut mailer",
+            summary: "White outside/inside mailer with your dieline and branding.",
+            specs: ["Board: 250–350 gsm liner", "Print: Up to 3 colors", "Tooling in 48h"],
+            pricing: [
+              { tier: "500 pcs", price: "3.9 AED / pc" },
+              { tier: "5,000 pcs", price: "3.4 AED / pc" },
+              { tier: "10,000+ pcs", price: "3.0 AED / pc" }
+            ],
+            leadTime: "6–8 days incl. tooling"
+          }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = params.get("id");
+    const stored = (() => {
+      try { return JSON.parse(sessionStorage.getItem("selectedCompany") || "null"); }
+      catch (_) { return null; }
+    })();
+
+    function buildFromRow(row) {
+      if (!row) return null;
+      const location = [row.city, row.country].filter(Boolean).join(", ") || "Location on request";
+      const productName = row.products || "Custom production";
+      const desc = row.additional || `Production line for ${productName || "this factory"}.`;
+      const specs = (row.additional || "").split("•").map(s => s.trim()).filter(Boolean).slice(0, 3);
+      return {
+        name: row.name || "Factory",
+        location,
+        description: desc,
+        tags: ["From catalogue", productName || "Multi-product"],
+        products: [
+          {
+            name: productName,
+            summary: desc,
+            specs: specs.length ? specs : ["Request full technical sheet from manager."],
+            pricing: [
+              { tier: "1,000 pcs", price: "10 AED / unit (sample tier)" },
+              { tier: "10,000 pcs", price: "9.4 AED / unit (volume tier)" },
+              { tier: "100,000+ pcs", price: "8.3 AED / unit (bulk tier)" }
+            ],
+            leadTime: "Quoted on confirmation"
+          }
+        ]
+      };
+    }
+
+    const company =
+      COMPANIES[requestedId] ||
+      (stored && stored.slug === requestedId ? buildFromRow(stored) : null) ||
+      Object.values(COMPANIES)[0];
+
+    const companyNameEl = document.getElementById("companyName");
+    const companyDescEl = document.getElementById("companyDesc");
+    const taglineEl = document.getElementById("tagline");
+    const productsEl = document.getElementById("products");
+    const productsPanelEl = document.getElementById("productsPanel");
+    const orderProductEl = document.getElementById("orderProduct");
+    const orderForm = document.getElementById("orderForm");
+    const cartEl = document.getElementById("cart");
+    const chatLogEl = document.getElementById("chatLog");
+    const chatInput = document.getElementById("chatInput");
+    const locationPill = document.getElementById("locationPill");
+
+    companyNameEl.textContent = company.name;
+    companyDescEl.textContent = company.description;
+    locationPill.textContent = company.location;
+    taglineEl.innerHTML = company.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+
+    // Populate products UI
+    productsEl.innerHTML = company.products.map(prod => `
+      <div class="product-card">
+        <div class="product-head">
+          <h3>${prod.name}</h3>
+          <span class="badge">Lead time: ${prod.leadTime}</span>
+        </div>
+        <p style="margin:0; color:var(--muted);">${prod.summary}</p>
+        <ul class="specs">
+          ${prod.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+        <div class="price-grid">
+          ${prod.pricing.map(t => `<div class="price-pill"><span>${t.tier}</span>${t.price}</div>`).join("")}
+        </div>
+      </div>
+    `).join("");
+
+    if (company.lineup && company.lineup.length) {
+      const lineup = document.createElement("div");
+      lineup.className = "lineup";
+      lineup.innerHTML = `
+        <h3>Full production lineup (${company.lineup.length} SKUs)</h3>
+        <div class="lineup-controls">
+          <label>Search
+            <input type="text" id="lineupSearch" placeholder="Search name or notes">
+          </label>
+          <label>Material
+            <select id="lineupMaterial"></select>
+          </label>
+          <label>Finish
+            <select id="lineupFinish"></select>
+          </label>
+        </div>
+        <div class="lineup-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Material</th>
+                <th>Finish</th>
+                <th>Load rating</th>
+                <th>MOQ</th>
+                <th>Lead time</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="lineupBody"></tbody>
+          </table>
+        </div>
+      `;
+      productsPanelEl.appendChild(lineup);
+
+      const lineupBody = lineup.querySelector("#lineupBody");
+      const searchEl = lineup.querySelector("#lineupSearch");
+      const materialEl = lineup.querySelector("#lineupMaterial");
+      const finishEl = lineup.querySelector("#lineupFinish");
+
+      function rebuildOptions(selectEl, items) {
+        const current = selectEl.value;
+        selectEl.innerHTML = "";
+        const base = document.createElement("option");
+        base.value = "";
+        base.textContent = "All";
+        selectEl.appendChild(base);
+        Array.from(items).filter(Boolean).sort().forEach(val => {
+          const opt = document.createElement("option");
+          opt.value = val;
+          opt.textContent = val;
+          selectEl.appendChild(opt);
+        });
+        if (Array.from(items).includes(current)) selectEl.value = current;
+      }
+
+      function renderLineup() {
+        const query = searchEl.value.trim().toLowerCase();
+        const mat = materialEl.value;
+        const fin = finishEl.value;
+        const filtered = company.lineup.filter(item => {
+          if (mat && item.material !== mat) return false;
+          if (fin && item.finish !== fin) return false;
+          if (query) {
+            const hay = [item.name, item.notes, item.finish, item.material].join(" ").toLowerCase();
+            if (!hay.includes(query)) return false;
+          }
+          return true;
+        });
+        lineupBody.innerHTML = filtered.map(item => `
+          <tr>
+            <td><strong>${item.name}</strong></td>
+            <td>${item.material}</td>
+            <td>${item.finish}</td>
+            <td>${item.load}</td>
+            <td>${item.moq}</td>
+            <td>${item.lead}</td>
+            <td class="muted">${item.notes}</td>
+          </tr>
+        `).join("") || `<tr><td colspan="7" class="muted">No items match these filters.</td></tr>`;
+      }
+
+      const materials = new Set(company.lineup.map(i => i.material));
+      const finishes = new Set(company.lineup.map(i => i.finish));
+      rebuildOptions(materialEl, materials);
+      rebuildOptions(finishEl, finishes);
+      renderLineup();
+
+      searchEl.addEventListener("input", renderLineup);
+      materialEl.addEventListener("change", renderLineup);
+      finishEl.addEventListener("change", renderLineup);
+    }
+
+    orderProductEl.innerHTML = company.products.map(p => `<option value="${p.name}">${p.name}</option>`).join("");
+
+    const cart = [];
+
+    function renderCart() {
+      if (!cart.length) {
+        cartEl.innerHTML = `<div class="cart-empty">Your cart is empty. Add a product with quantity and delivery preferences.</div>`;
+        return;
+      }
+      cartEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <strong>${item.product}</strong>
+          <div style="color:var(--muted);">${item.qty} pcs · ${item.payment}</div>
+          <div style="color:var(--muted);">Delivery: ${item.date || "—"} ${item.time || ""}</div>
+          <div style="color:var(--muted);">Address: ${item.address || "—"}</div>
+        </div>
+      `).join("");
+    }
+
+    orderForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const item = {
+        product: orderProductEl.value,
+        qty: parseInt(document.getElementById("orderQty").value, 10) || 0,
+        payment: document.getElementById("orderPayment").value,
+        date: document.getElementById("orderDate").value,
+        time: document.getElementById("orderTime").value,
+        address: document.getElementById("orderAddress").value.trim()
+      };
+      cart.push(item);
+      renderCart();
+      orderForm.reset();
+      orderProductEl.selectedIndex = 0;
+    });
+
+    document.getElementById("checkoutBtn").addEventListener("click", () => {
+      alert("Demo checkout: cart retained locally. Integrate your payment provider to process.");
+    });
+
+    // Simple local chat log
+    document.getElementById("chatSend").addEventListener("click", sendChat);
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendChat();
+      }
+    });
+
+    function sendChat() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      const msg = document.createElement("div");
+      msg.className = "chat-msg";
+      msg.textContent = text;
+      chatLogEl.appendChild(msg);
+      chatInput.value = "";
+      chatLogEl.scrollTop = chatLogEl.scrollHeight;
+    }
+
+    renderCart();
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .panel,.theme-dark .hero{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdLink Atlas — GCC & MENA Manufacturers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    :root {
+      --ink: #0e1c1b;
+      --muted: #4f6664;
+      --panel: rgba(255, 255, 255, 0.82);
+      --line: rgba(45, 99, 97, 0.18);
+      --primary: #2d6361;
+      --primary-strong: #1f4745;
+      --primary-soft: #3f7f7c;
+      --glow: 0 25px 80px rgba(45, 99, 97, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', 'Noto Sans Arabic', 'Noto Sans', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 12% 20%, rgba(45, 99, 97, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(63, 127, 124, 0.18) 0, transparent 32%), #eef2f1;
+      color: var(--ink);
+      padding: 32px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .page {
+      max-width: 1220px;
+      margin: 0 auto 48px auto;
+      position: relative;
+      flex: 1;
+      width: 100%;
+    }
+    .hero {
+      background: linear-gradient(140deg, #1f4745, #2d6361 35%, #1f4745 70%);
+      color: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow);
+    }
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .orb, .wave {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(25px);
+      opacity: 0.55;
+      animation: float 12s ease-in-out infinite;
+    }
+    .orb {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 60%);
+    }
+    .orb.one { top: -60px; right: -80px; animation-delay: 0s; }
+    .orb.two { bottom: -40px; left: -60px; background: radial-gradient(circle, rgba(255,255,255,0.16), transparent 60%); animation-delay: 2s; }
+    .wave {
+      width: 160%;
+      height: 140%;
+      top: -20%;
+      left: -30%;
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 45%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.08), transparent 45%);
+      animation: drift 18s linear infinite;
+      opacity: 0.35;
+      border-radius: 30%;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); opacity: 0.55; }
+      50% { transform: translateY(-18px) scale(1.05); opacity: 0.8; }
+    }
+    @keyframes drift {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(8deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+    .hero::after, .hero::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(63,127,124,0.28), transparent 60%);
+      top: -40px;
+      right: -60px;
+      filter: blur(10px);
+    }
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(45,99,97,0.32), transparent 70%);
+      top: auto;
+      bottom: -60px;
+      left: -80px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 12px 0 8px;
+      font-size: 34px;
+      letter-spacing: -0.5px;
+    }
+    .lead {
+      margin: 0;
+      color: rgba(255,255,255,0.8);
+      max-width: 760px;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    .top-nav { display:flex; justify-content: space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap; }
+    .top-nav a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .top-nav a:hover { text-decoration: underline; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+    .lang-switch label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #e9f1ef;
+    }
+    .lang-switch select {
+      border: none;
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.92);
+      color: var(--primary-strong);
+      font-weight: 700;
+      outline: none;
+    }
+    .pill {
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill.soft { background: rgba(63,127,124,0.16); border-color: rgba(63,127,124,0.35); }
+    .pill.orange { background: rgba(45,99,97,0.2); border-color: rgba(45,99,97,0.4); }
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--glow);
+      backdrop-filter: blur(10px);
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .panel h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    .panel .hint { margin: 6px 0 0; color: var(--muted); }
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    label.field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-weight: 600;
+      color: #13172b;
+      font-size: 14px;
+    }
+    input[type="text"], select, input[type="file"] {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #f3f6f5;
+      font-size: 15px;
+      font-weight: 500;
+      color: #0b1021;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.22); }
+    .upload {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .source-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      display: grid;
+      gap: 6px;
+      box-shadow: inset 0 0 0 1px rgba(12,26,56,0.02);
+    }
+    .source-title { font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 6px; }
+    .source-status { font-size: 13px; color: var(--muted); }
+    .source-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .btn.ghost { background: #f3f6f5; color: var(--primary-strong); border: 1px solid var(--line); }
+    .btn:active { transform: translateY(1px); box-shadow: none; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .stat {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(12,26,56,0.02);
+    }
+    .stat span { display: block; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+    .stat strong { font-size: 22px; letter-spacing: -0.2px; }
+    .table-shell {
+      margin-top: 14px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--glow);
+    }
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      background: linear-gradient(120deg, rgba(31,71,69,0.95), rgba(45,99,97,0.7));
+      color: #fff;
+    }
+    .table-header .subtitle { color: rgba(255,255,255,0.76); margin: 4px 0 0; font-size: 13px; }
+    .table-wrap { overflow: auto; max-height: 68vh; }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { position: sticky; top: 0; z-index: 2; background: var(--primary-strong); color: #fff; }
+    tbody tr:hover td { background: #f3f5ff; }
+    a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .company-link { color: var(--primary-strong); text-decoration: none; }
+    .company-link:hover { text-decoration: underline; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .empty { padding: 28px; text-align: center; color: var(--muted); font-weight: 600; }
+    @media (max-width: 720px) {
+      body { padding: 18px; }
+      h1 { font-size: 28px; }
+      .hero { padding: 24px; }
+      .panel { padding: 16px; }
+      .table-wrap { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="page">
+    <div class="top-nav">
+      <a href="index.html">← Back to main hub</a>
+    </div>
+    <section class="hero">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="wave"></div>
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+      </div>
+      <div class="lang-switch">
+        <label data-i18n="languageLabel">Language</label>
+        <select id="langSelect">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="ur">اردو</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+      </div>
+      <div class="eyebrow" data-i18n="heroEyebrow">GCC + MENA manufacturing intelligence</div>
+      <h1 data-i18n="heroTitle">Find manufacturers of MENA.</h1>
+      <p class="lead" data-i18n="heroLead">MENA, GCC, Saudi, Oman, and more). Search instantly, filter by country or city, or upload a fresh file.</p>
+      <div class="hero-actions">
+        <div class="pill orange" data-i18n="pillAuto">Auto-merging local data sources</div>
+        <div class="pill soft" id="loadedStatus">Initializing…</div>
+        <div class="pill" data-i18n="pillLive">Filters update in real-time</div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" style="color:#0f172a;background:rgba(45,99,97,0.12);border-color:rgba(45,99,97,0.24);" data-i18n="searchFilters">Search & filters</p>
+            <h2 data-i18n="filtersTitle">Zero in on the right factory</h2>
+            <p class="hint"><span data-i18n="scopePrefix">Scope:</span> <span id="scopeLabel">All available sources</span></p>
+          </div>
+        </div>
+        <div class="filters-grid">
+          <label class="field">
+            <span data-i18n="searchLabel">Search everything</span>
+            <input type="text" id="search" placeholder="Company, city, product, note…" data-i18n="searchPlaceholder" data-i18n-target="placeholder" />
+          </label>
+          <label class="field">
+            <span data-i18n="productLabel">Type of production</span>
+            <input type="text" id="productFilter" placeholder="e.g. plastics, metals, food..." data-i18n="productPlaceholder" data-i18n-target="placeholder" />
+          </label>
+          <label class="field">
+            <span data-i18n="countryLabel">Country</span>
+            <select id="countryFilter">
+              <option value="" data-i18n="countryAll">All countries</option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="cityLabel">City / Location</span>
+            <select id="cityFilter">
+              <option value="" data-i18n="cityAll">All cities</option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="uploadLabel">Upload a file</span>
+            <div class="upload">
+              <input type="file" id="upload" accept=".csv" />
+              <button class="btn ghost" id="resetScope" type="button" data-i18n="resetButton">Reset to all sources</button>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="table-shell">
+        <div class="table-header">
+          <div>
+            <div style="font-weight:700;" data-i18n="tableTitle">Manufacturers table</div>
+            <div class="subtitle" id="status">Loading data sources…</div>
+          </div>
+          <div class="subtitle" id="scopePill">All sources</div>
+        </div>
+        <div class="table-wrap">
+          <table id="table" style="display:none;">
+            <thead>
+              <tr>
+                <th data-i18n="colCompany">Company Name</th>
+                <th data-i18n="colCountry">Country</th>
+                <th data-i18n="colCity">City / Location</th>
+                <th data-i18n="colWebsite">Website</th>
+                <th data-i18n="colProducts">Types of Products</th>
+                <th data-i18n="colAdditional">Additional Information</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <div class="empty" id="empty" data-i18n="emptyWaiting">Waiting for data…</div>
+        </div>
+      </section>
+
+      <section class="stats" aria-live="polite">
+        <div class="stat">
+          <span data-i18n="statsManufacturersTitle">Manufacturers shown</span>
+          <strong id="statCount">—</strong>
+        </div>
+        <div class="stat">
+          <span data-i18n="statsCountriesTitle">Countries represented</span>
+          <strong id="statCountries">—</strong>
+        </div>
+        <div class="stat">
+          <span data-i18n="statsCitiesTitle">Cities represented</span>
+          <strong id="statCities">—</strong>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" style="color:#0f172a;background:rgba(63,127,124,0.12);border-color:rgba(63,127,124,0.24);" data-i18n="dataSourcesEyebrow">Data sources</p>
+            <h2 data-i18n="dataSourcesTitle">Auto-loaded files</h2>
+            <p class="hint" data-i18n="dataSourcesHint">Click “View” to focus on a single file or stay on “All sources” to use the merged dataset.</p>
+          </div>
+          <button class="btn ghost" id="viewAll" type="button" data-i18n="viewAllButton">View: All sources</button>
+        </div>
+        <ul class="source-list" id="sourceList"></ul>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const SOURCE_FILES = [
+      { file: "merged_all.csv", label: "Merged catalog" },
+      { file: "mena_manufacturers.csv", label: "MENA manufacturers" },
+      { file: "gcc_manufacturers.csv", label: "GCC manufacturers" },
+      { file: "arab_manufacturers.csv", label: "Arab manufacturers" },
+      { file: "saudi_factories.csv", label: "Saudi factories" },
+      { file: "oman_local_manufacturers.csv", label: "Oman manufacturers" },
+      { file: "opendata.csv", label: "Open data" },
+      { file: "industries.csv", label: "Industries lookup" },
+    ];
+
+    const translations = {
+      en: {
+        languageLabel: "Language",
+        heroEyebrow: "GCC + MENA manufacturing intelligence",
+        heroTitle: "Find manufacturers across all MENA.",
+        heroLead: "MENA, GCC, Saudi, Oman, and more). Search instantly, filter by country or city.",
+        pillAuto: "Auto-merging online/offline data sources",
+        pillLive: "Update in real-time",
+        searchFilters: "Search & filters",
+        filtersTitle: "Zero in on the right factory",
+        scopePrefix: "Scope:",
+        allSources: "All available sources",
+        searchLabel: "Search everything",
+        searchPlaceholder: "Company, city, product, note…",
+        productLabel: "Type of production",
+        productPlaceholder: "e.g. plastics, metals, food...",
+        countryLabel: "Country",
+        countryAll: "All countries",
+        cityLabel: "City / Location",
+        cityAll: "All cities",
+        uploadLabel: "Upload a file",
+        resetButton: "Reset to all sources",
+        tableTitle: "Manufacturers table",
+        statsManufacturersTitle: "Manufacturers shown",
+        statsCountriesTitle: "Countries represented",
+        statsCitiesTitle: "Cities represented",
+        dataSourcesEyebrow: "Data sources",
+        dataSourcesTitle: "Auto-loaded files",
+        dataSourcesHint: "Click “View” to focus on a single file or stay on “All sources” to use the merged dataset.",
+        sourceLabel: "Source",
+        viewAllButton: "View: All sources",
+        colCompany: "Company Name",
+        colCountry: "Country",
+        colCity: "City / Location",
+        colWebsite: "Website",
+        colProducts: "Types of Products",
+        colAdditional: "Additional Information",
+        emptyWaiting: "Waiting for data…",
+        emptyNoMatch: "No manufacturers match the current filters.",
+        loadingFiles: "Loading data files…",
+        mergedFiles: "Local files merged.",
+        parsingFile: "Parsing {{name}}…",
+        parseError: "Could not parse {{name}}",
+        uploadLoaded: "Loaded {{count}} rows from {{name}}",
+        rowsReady: "{{count}} rows ready",
+        fileEmpty: "File was empty",
+        fileMissing: "File not found",
+        loadedPill: "Loaded",
+        unavailablePill: "Unavailable",
+        viewButton: "View",
+        unknownCompany: "Unknown company",
+        statusShowing: "{{count}} manufacturer{{s}} shown"
+      },
+      ar: {
+        languageLabel: "اللغة",
+        heroEyebrow: "ذكاء صناعي لمنطقة الخليج والشرق الأوسط",
+        heroTitle: "اعثر على المصانع عبر جميع الملفات.",
+        heroLead: "نقوم بتحميل ودمج كل ملفات المصانع في هذا المجلد (merged_all و MENA و GCC والسعودية وعُمان وغيرها). ابحث فورًا وفلتر حسب الدولة أو المدينة أو ارفع ملفًا جديدًا.",
+        pillAuto: "دمج تلقائي للمصادر المحلية",
+        pillLive: "التصفية في الوقت الفعلي",
+        searchFilters: "البحث والفلاتر",
+        filtersTitle: "حدد المصنع المناسب",
+        scopePrefix: "النطاق:",
+        allSources: "كل المصادر المتاحة",
+        searchLabel: "ابحث في كل شيء",
+        searchPlaceholder: "شركة، مدينة، منتج، ملاحظة…",
+        productLabel: "نوع الإنتاج",
+        productPlaceholder: "مثال: بلاستيك، معادن، أغذية...",
+        countryLabel: "الدولة",
+        countryAll: "كل الدول",
+        cityLabel: "المدينة / الموقع",
+        cityAll: "كل المدن",
+        uploadLabel: "تحميل ملف",
+        resetButton: "الرجوع إلى كل المصادر",
+        tableTitle: "جدول المصانع",
+        statsManufacturersTitle: "عدد المصانع المعروضة",
+        statsCountriesTitle: "عدد الدول",
+        statsCitiesTitle: "عدد المدن",
+        dataSourcesEyebrow: "مصادر البيانات",
+        dataSourcesTitle: "الملفات المحمّلة تلقائيًا",
+        dataSourcesHint: "اضغط \"عرض\" للتركيز على ملف واحد أو ابق على \"كل المصادر\" لاستخدام البيانات المدمجة.",
+        sourceLabel: "المصدر",
+        viewAllButton: "عرض: كل المصادر",
+        colCompany: "اسم الشركة",
+        colCountry: "الدولة",
+        colCity: "المدينة / الموقع",
+        colWebsite: "الموقع الإلكتروني",
+        colProducts: "أنواع المنتجات",
+        colAdditional: "معلومات إضافية",
+        emptyWaiting: "بانتظار البيانات…",
+        emptyNoMatch: "لا توجد مصانع مطابقة للفلاتر الحالية.",
+        loadingFiles: "جاري تحميل الملفات…",
+        mergedFiles: "تم دمج الملفات المحلية.",
+        parsingFile: "جاري قراءة {{name}}…",
+        parseError: "تعذر قراءة {{name}}",
+        uploadLoaded: "تم تحميل {{count}} صفًا من {{name}}",
+        rowsReady: "{{count}} صف جاهز",
+        fileEmpty: "الملف فارغ",
+        fileMissing: "الملف غير موجود",
+        loadedPill: "محمل",
+        unavailablePill: "غير متاح",
+        viewButton: "عرض",
+        unknownCompany: "شركة غير معروفة",
+        statusShowing: "عرض {{count}} مصنع"
+      },
+      fr: {
+        languageLabel: "Langue",
+        heroEyebrow: "Veille industrielle CCG + MENA",
+        heroTitle: "Trouvez des fabricants dans tous vos fichiers.",
+        heroLead: "Nous chargeons et fusionnons automatiquement chaque fichier fabricant de ce dossier (merged_all, MENA, GCC, Arabie, Oman…). Recherchez instantanément, filtrez par pays ou ville, ou importez un nouveau fichier.",
+        pillAuto: "Fusion automatique des sources locales",
+        pillLive: "Filtres en temps réel",
+        searchFilters: "Recherche et filtres",
+        filtersTitle: "Ciblez le bon fabricant",
+        scopePrefix: "Portée :",
+        allSources: "Toutes les sources disponibles",
+        searchLabel: "Rechercher partout",
+        searchPlaceholder: "Entreprise, ville, produit, note…",
+        productLabel: "Type de production",
+        productPlaceholder: "ex. plastiques, métaux, agro...",
+        countryLabel: "Pays",
+        countryAll: "Tous les pays",
+        cityLabel: "Ville / Localisation",
+        cityAll: "Toutes les villes",
+        uploadLabel: "Importer un fichier",
+        resetButton: "Revenir à toutes les sources",
+        tableTitle: "Tableau des fabricants",
+        statsManufacturersTitle: "Fabricants affichés",
+        statsCountriesTitle: "Pays représentés",
+        statsCitiesTitle: "Villes représentées",
+        dataSourcesEyebrow: "Sources de données",
+        dataSourcesTitle: "Fichiers chargés automatiquement",
+        dataSourcesHint: "Cliquez sur « Afficher » pour cibler un fichier ou restez sur « Toutes les sources » pour utiliser l'ensemble fusionné.",
+        sourceLabel: "Source",
+        viewAllButton: "Voir : Toutes les sources",
+        colCompany: "Nom de l'entreprise",
+        colCountry: "Pays",
+        colCity: "Ville / Localisation",
+        colWebsite: "Site web",
+        colProducts: "Types de produits",
+        colAdditional: "Informations complémentaires",
+        emptyWaiting: "En attente de données…",
+        emptyNoMatch: "Aucun fabricant ne correspond aux filtres.",
+        loadingFiles: "Chargement des fichiers…",
+        mergedFiles: "Fichiers locaux fusionnés.",
+        parsingFile: "Lecture de {{name}}…",
+        parseError: "Impossible de lire {{name}}",
+        uploadLoaded: "{{count}} lignes chargées depuis {{name}}",
+        rowsReady: "{{count}} lignes prêtes",
+        fileEmpty: "Fichier vide",
+        fileMissing: "Fichier introuvable",
+        loadedPill: "Chargé",
+        unavailablePill: "Indisponible",
+        viewButton: "Afficher",
+        unknownCompany: "Entreprise inconnue",
+        statusShowing: "{{count}} fabricant(s) affiché(s)"
+      },
+      ur: {
+        languageLabel: "زبان",
+        heroEyebrow: "جی سی سی اور مشرق وسطیٰ کی صنعتی معلومات",
+        heroTitle: "اپنی تمام فائلوں میں مینوفیکچررز تلاش کریں۔",
+        heroLead: "ہم اس فولڈر کی تمام مینوفیکچرر فائلیں خودکار طور پر لوڈ اور مرج کرتے ہیں (merged_all، MENA، GCC، سعودی، عمان وغیرہ)۔ فوراً تلاش کریں، ملک یا شہر سے فلٹر کریں، یا نیا فائل اپلوڈ کریں۔",
+        pillAuto: "مقامی ذرائع خودکار طریقے سے ضم",
+        pillLive: "فلٹرز فوری اپڈیٹ ہوتے ہیں",
+        searchFilters: "تلاش اور فلٹرز",
+        filtersTitle: "درست فیکٹری تک پہنچیں",
+        scopePrefix: "دائرہ کار:",
+        allSources: "تمام دستیاب ذرائع",
+        searchLabel: "ہر چیز میں تلاش کریں",
+        searchPlaceholder: "کمپنی، شہر، پروڈکٹ، نوٹ…",
+        productLabel: "پیداوار کی قسم",
+        productPlaceholder: "مثلاً پلاسٹک، دھاتیں، خوراک...",
+        countryLabel: "ملک",
+        countryAll: "تمام ممالک",
+        cityLabel: "شہر / مقام",
+        cityAll: "تمام شہر",
+        uploadLabel: "فائل اپلوڈ کریں",
+        resetButton: "تمام ذرائع پر واپس جائیں",
+        tableTitle: "مینوفیکچررز ٹیبل",
+        statsManufacturersTitle: "ظاہر شدہ مینوفیکچررز",
+        statsCountriesTitle: "ممالک کی تعداد",
+        statsCitiesTitle: "شہروں کی تعداد",
+        dataSourcesEyebrow: "ڈیٹا ذرائع",
+        dataSourcesTitle: "خودکار لوڈ کی گئی فائلیں",
+        dataSourcesHint: "صرف ایک فائل پر توجہ دینے کے لیے \"دیکھیں\" دبائیں یا مرج شدہ ڈیٹا کے لیے \"تمام ذرائع\" پر رہیں۔",
+        sourceLabel: "ماخذ",
+        viewAllButton: "دیکھیں: تمام ذرائع",
+        colCompany: "کمپنی کا نام",
+        colCountry: "ملک",
+        colCity: "شہر / مقام",
+        colWebsite: "ویب سائٹ",
+        colProducts: "پروڈکٹس کی اقسام",
+        colAdditional: "اضافی معلومات",
+        emptyWaiting: "ڈیٹا کا انتظار…",
+        emptyNoMatch: "موجودہ فلٹرز کے لیے کوئی مینوفیکچرر نہیں ملا۔",
+        loadingFiles: "فائلیں لوڈ ہو رہی ہیں…",
+        mergedFiles: "مقامی فائلیں مرج ہو گئیں۔",
+        parsingFile: "{{name}} پڑھا جا رہا ہے…",
+        parseError: "{{name}} نہیں پڑھا جا سکا",
+        uploadLoaded: "{{name}} سے {{count}} قطاریں لوڈ ہوئیں",
+        rowsReady: "{{count}} قطاریں تیار",
+        fileEmpty: "فائل خالی تھی",
+        fileMissing: "فائل نہیں ملی",
+        loadedPill: "لوڈڈ",
+        unavailablePill: "دستیاب نہیں",
+        viewButton: "دیکھیں",
+        unknownCompany: "نامعلوم کمپنی",
+        statusShowing: "{{count}} مینوفیکچررز دکھائے گئے"
+      },
+      hi: {
+        languageLabel: "भाषा",
+        heroEyebrow: "जीसीसी + मिडिल ईस्ट विनिर्माण इंटेलिजेंस",
+        heroTitle: "अपनी सभी फ़ाइलों में निर्माताओं को खोजें।",
+        heroLead: "हम इस फ़ोल्डर की हर निर्माता फ़ाइल (merged_all, MENA, GCC, सऊदी, ओमान आदि) को लोड और मर्ज करते हैं। तुरंत खोजें, देश या शहर से फ़िल्टर करें, या नई फ़ाइल अपलोड करें।",
+        pillAuto: "स्थानीय स्रोत अपने-आप मर्ज",
+        pillLive: "फ़िल्टर तुरंत अपडेट होते हैं",
+        searchFilters: "खोज और फ़िल्टर",
+        filtersTitle: "सही फ़ैक्टरी चुनें",
+        scopePrefix: "स्कोप:",
+        allSources: "सभी उपलब्ध स्रोत",
+        searchLabel: "सबकुछ खोजें",
+        searchPlaceholder: "कंपनी, शहर, उत्पाद, नोट…",
+        productLabel: "उत्पादन का प्रकार",
+        productPlaceholder: "जैसे प्लास्टिक, धातु, खाद्य...",
+        countryLabel: "देश",
+        countryAll: "सभी देश",
+        cityLabel: "शहर / स्थान",
+        cityAll: "सभी शहर",
+        uploadLabel: "फ़ाइल अपलोड करें",
+        resetButton: "सभी स्रोतों पर लौटें",
+        tableTitle: "निर्माताओं की तालिका",
+        statsManufacturersTitle: "दिखाए गए निर्माता",
+        statsCountriesTitle: "शामिल देश",
+        statsCitiesTitle: "शामिल शहर",
+        dataSourcesEyebrow: "डेटा स्रोत",
+        dataSourcesTitle: "स्वतः लोड की गई फ़ाइलें",
+        dataSourcesHint: "\"देखें\" दबाएँ एक फ़ाइल पर फोकस करने के लिए या \"सभी स्रोत\" पर रहें मर्ज डेटा के लिए।",
+        sourceLabel: "स्रोत",
+        viewAllButton: "देखें: सभी स्रोत",
+        colCompany: "कंपनी का नाम",
+        colCountry: "देश",
+        colCity: "शहर / स्थान",
+        colWebsite: "वेबसाइट",
+        colProducts: "उत्पादों के प्रकार",
+        colAdditional: "अतिरिक्त जानकारी",
+        emptyWaiting: "डेटा की प्रतीक्षा…",
+        emptyNoMatch: "वर्तमान फ़िल्टर से कोई निर्माता नहीं मिला।",
+        loadingFiles: "फ़ाइलें लोड हो रही हैं…",
+        mergedFiles: "स्थानीय फ़ाइलें मर्ज हो गईं।",
+        parsingFile: "{{name}} पढ़ा जा रहा है…",
+        parseError: "{{name}} पढ़ा नहीं जा सका",
+        uploadLoaded: "{{name}} से {{count}} पंक्तियाँ लोड हुईं",
+        rowsReady: "{{count}} पंक्तियाँ तैयार",
+        fileEmpty: "फ़ाइल खाली थी",
+        fileMissing: "फ़ाइल नहीं मिली",
+        loadedPill: "लोडेड",
+        unavailablePill: "उपलब्ध नहीं",
+        viewButton: "देखें",
+        unknownCompany: "अज्ञात कंपनी",
+        statusShowing: "{{count}} निर्माता दिखाए गए"
+      }
+    };
+
+    const columns = [
+      "Company Name",
+      "Country",
+      "City/Location",
+      "Website",
+      "Types of Products",
+      "Additional Information"
+    ];
+
+    const state = {
+      sources: [],
+      activeSource: "__all__",
+      filtered: [],
+      allRows: [],
+      lang: "en",
+      loadedStatusKey: "loadingFiles",
+      loadedStatusVars: {}
+    };
+
+    const uploadEl = document.getElementById("upload");
+    const searchEl = document.getElementById("search");
+    const productEl = document.getElementById("productFilter");
+    const countryEl = document.getElementById("countryFilter");
+    const cityEl = document.getElementById("cityFilter");
+    const statusEl = document.getElementById("status");
+    const tableEl = document.getElementById("table");
+    const tbodyEl = document.getElementById("tbody");
+    const emptyEl = document.getElementById("empty");
+    const sourceListEl = document.getElementById("sourceList");
+    const loadedStatusEl = document.getElementById("loadedStatus");
+    const scopeLabelEl = document.getElementById("scopeLabel");
+    const scopePillEl = document.getElementById("scopePill");
+    const statCountEl = document.getElementById("statCount");
+    const statCountriesEl = document.getElementById("statCountries");
+    const statCitiesEl = document.getElementById("statCities");
+    const viewAllBtn = document.getElementById("viewAll");
+    const resetScopeBtn = document.getElementById("resetScope");
+    const langSelect = document.getElementById("langSelect");
+
+    function slugify(str) {
+      return (str || "")
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function t(key, vars = {}) {
+      const str = (translations[state.lang] && translations[state.lang][key]) || translations.en[key] || key;
+      return str.replace(/{{\s*(\w+)\s*}}/g, (_, k) => vars[k] ?? "");
+    }
+
+    function setLoadedStatus(key, vars = {}) {
+      state.loadedStatusKey = key;
+      state.loadedStatusVars = vars;
+      if (loadedStatusEl) loadedStatusEl.textContent = t(key, vars);
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        const target = el.dataset.i18nTarget || "text";
+        const value = t(key);
+        if (target === "placeholder") el.placeholder = value;
+        else el.textContent = value;
+      });
+      scopeLabelEl.textContent = state.activeSource === "__all__" ? t("allSources") : getActiveLabel();
+      scopePillEl.textContent = state.activeSource === "__all__" ? t("allSources") : getActiveLabel();
+      emptyEl.textContent = t("emptyWaiting");
+      updateStatusText();
+      document.documentElement.dir = ["ar", "ur"].includes(state.lang) ? "rtl" : "ltr";
+      document.documentElement.lang = state.lang;
+      setLoadedStatus(state.loadedStatusKey, state.loadedStatusVars);
+      langSelect.value = state.lang;
+    }
+
+    function updateStatusText() {
+      if (!state.sources.length && !state.allRows.length) {
+        statusEl.textContent = t("loadingFiles");
+        return;
+      }
+      statusEl.textContent = t("statusShowing", { count: state.filtered.length, s: state.filtered.length === 1 ? "" : "s" });
+    }
+
+    function updateLoadedStatus() {
+      if (!loadedStatusEl) return;
+      setLoadedStatus(state.sources.length ? "mergedFiles" : "loadingFiles");
+    }
+
+    uploadEl.addEventListener("change", (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      setLoadedStatus("parsingFile", { name: file.name });
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: ({ data }) => addUploadSource(data, file.name),
+        error: () => setLoadedStatus("parseError", { name: file.name })
+      });
+    });
+
+    searchEl.addEventListener("input", applyFilters);
+    productEl.addEventListener("input", applyFilters);
+    countryEl.addEventListener("change", applyFilters);
+    cityEl.addEventListener("change", applyFilters);
+    viewAllBtn.addEventListener("click", () => setScope("__all__"));
+    resetScopeBtn.addEventListener("click", () => setScope("__all__"));
+    langSelect.addEventListener("change", () => setLanguage(langSelect.value));
+
+    function setScope(id) {
+      state.activeSource = id;
+      applyFilters();
+      highlightActiveSource();
+    }
+
+    function setLanguage(lang) {
+      state.lang = translations[lang] ? lang : "en";
+      document.documentElement.lang = state.lang;
+      document.documentElement.dir = ["ar", "ur"].includes(state.lang) ? "rtl" : "ltr";
+      applyTranslations();
+      renderSources();
+      applyFilters();
+    }
+
+    async function loadAllSources() {
+      setLoadedStatus("loadingFiles");
+      for (const def of SOURCE_FILES) {
+        const result = await loadSource(def);
+        state.sources.push(result);
+      }
+      rebuildAllRows();
+      renderSources();
+      applyFilters();
+      updateLoadedStatus();
+    }
+
+    async function loadSource(def) {
+      try {
+        const res = await fetch(def.file, { cache: "no-store" });
+        if (!res.ok) throw new Error("not found");
+        const text = await res.text();
+        if (!text.trim()) return { ...def, id: def.file, status: "empty", rows: [] };
+        const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+        const rows = normalizeRows(parsed.data, def.label);
+        return { ...def, id: def.file, status: "loaded", rows };
+      } catch (e) {
+        return { ...def, id: def.file, status: "missing", rows: [] };
+      }
+    }
+
+    function addUploadSource(data, name) {
+      const rows = normalizeRows(data, name);
+      const id = `upload-${Date.now()}`;
+      state.sources.push({ id, file: name, label: `Upload: ${name}`, status: "loaded", rows });
+      rebuildAllRows();
+      setScope(id);
+      renderSources();
+      applyFilters();
+      setLoadedStatus("uploadLoaded", { count: rows.length, name });
+    }
+
+    function rebuildAllRows() {
+      const merged = [];
+      const seen = new Set();
+      state.sources
+        .filter(src => src.status === "loaded")
+        .forEach(src => {
+          src.rows.forEach(row => {
+            const key = [row["Company Name"], row.Country, row["City/Location"], row.Website].map(s => safe(s).toLowerCase()).join("|");
+            if (seen.has(key)) return;
+            seen.add(key);
+            merged.push(row);
+          });
+        });
+      state.allRows = merged;
+    }
+
+    function normalizeRows(rows, originLabel) {
+      const normalized = [];
+      rows.forEach(raw => {
+        const company = pick(raw, ["Company Name", "Factory Name", "Name", "الأسم", "Factory"]);
+        const country = pick(raw, ["Country", "Nation", "Nationality"]);
+        const city = pick(raw, ["City/Location", "City / Location", "City", "Location", "Region"]);
+        const website = pick(raw, ["Website", "website", "URL", "Link", "Site"]);
+        const products = pick(raw, ["Types of Products", "Product Categories", "Products/Services", "Products", "Industry Type", "Sector"]);
+        const additional = compact([
+          pick(raw, ["Additional Information", "Notes", "Other"]),
+          pick(raw, ["Phone"]),
+          pick(raw, ["Email"]),
+          originLabel ? `${t("sourceLabel")}: ${originLabel}` : ""
+        ]).join(" • ");
+
+        const record = {
+          "Company Name": company || t("unknownCompany"),
+          "Country": country,
+          "City/Location": city,
+          "Website": website,
+          "Types of Products": products,
+          "Additional Information": additional
+        };
+
+        if (Object.values(record).some(v => safe(v))) {
+          normalized.push(record);
+        }
+      });
+      return normalized;
+    }
+
+    function pick(row, keys) {
+      for (const key of keys) {
+        if (key in row && row[key] !== undefined && row[key] !== null) {
+          const val = row[key].toString().trim();
+          if (val) return val;
+        }
+      }
+      return "";
+    }
+
+    function compact(arr) {
+      return arr.filter(Boolean);
+    }
+
+    function getActiveLabel() {
+      return state.activeSource === "__all__"
+        ? t("allSources")
+        : (state.sources.find(s => s.id === state.activeSource)?.label || t("allSources"));
+    }
+
+    function renderSources() {
+      sourceListEl.innerHTML = "";
+      state.sources.forEach(src => {
+        const li = document.createElement("li");
+        li.className = "source-card";
+        const statusText = src.status === "loaded"
+          ? t("rowsReady", { count: src.rows.length })
+          : src.status === "empty"
+            ? t("fileEmpty")
+            : t("fileMissing");
+        li.innerHTML = `
+          <div class="source-title">${src.label}</div>
+          <div class="source-status">${statusText}</div>
+          <div class="source-actions">
+            <span class="pill ${src.status === "loaded" ? "soft" : "orange"}" style="padding:8px 10px;">${src.status === "loaded" ? t("loadedPill") : t("unavailablePill")}</span>
+            <button class="btn ${state.activeSource === src.id ? "" : "ghost"}" data-source="${src.id}" ${src.status !== "loaded" ? "disabled" : ""}>${t("viewButton")}</button>
+          </div>
+        `;
+        sourceListEl.appendChild(li);
+      });
+
+      sourceListEl.querySelectorAll("button[data-source]").forEach(btn => {
+        btn.addEventListener("click", () => setScope(btn.dataset.source));
+      });
+      highlightActiveSource();
+    }
+
+    function getActiveRows() {
+      if (state.activeSource === "__all__") return state.allRows;
+      const src = state.sources.find(s => s.id === state.activeSource && s.status === "loaded");
+      return src ? src.rows : [];
+    }
+
+    function applyFilters() {
+      const query = searchEl.value.trim().toLowerCase();
+      const country = countryEl.value;
+      const city = cityEl.value;
+      const product = productEl.value.trim().toLowerCase();
+      const activeRows = getActiveRows();
+
+      state.filtered = activeRows.filter(row => {
+        if (country && row.Country !== country) return false;
+        if (city && row["City/Location"] !== city) return false;
+        if (product && !(row["Types of Products"] || "").toString().toLowerCase().includes(product)) return false;
+        if (!query) return true;
+        return columns.some(col => {
+          const val = row[col] || "";
+          return val.toString().toLowerCase().includes(query);
+        });
+      });
+
+      populateFilters(activeRows);
+      renderTable();
+      updateStats();
+    }
+
+    function populateFilters(rows) {
+      const countries = new Set();
+      const cities = new Set();
+      rows.forEach(row => {
+        if (row.Country) countries.add(row.Country.trim());
+        if (row["City/Location"]) cities.add(row["City/Location"].trim());
+      });
+      rebuildOptions(countryEl, countries, t("countryAll"));
+      rebuildOptions(cityEl, cities, t("cityAll"));
+    }
+
+    function rebuildOptions(selectEl, items, firstLabel) {
+      const current = selectEl.value;
+      selectEl.innerHTML = "";
+      const base = document.createElement("option");
+      base.value = "";
+      base.textContent = firstLabel;
+      selectEl.appendChild(base);
+      Array.from(items).filter(Boolean).sort().forEach(val => {
+        const opt = document.createElement("option");
+        opt.value = val;
+        opt.textContent = val;
+        selectEl.appendChild(opt);
+      });
+      if (Array.from(items).includes(current)) selectEl.value = current;
+    }
+
+    function renderTable() {
+      tbodyEl.innerHTML = "";
+      const hasRows = state.filtered.length > 0;
+      const waiting = !state.sources.length && !state.allRows.length;
+      tableEl.style.display = hasRows ? "table" : "none";
+      emptyEl.style.display = hasRows ? "none" : "block";
+      emptyEl.textContent = hasRows ? "" : (waiting ? t("emptyWaiting") : t("emptyNoMatch"));
+
+      state.filtered.forEach(row => {
+        const tr = document.createElement("tr");
+        const company = safe(row["Company Name"]);
+        const detailUrl = getCompanyLink(row);
+        const companyCell = detailUrl
+          ? `<a class="company-link" data-slug="${slugify(company)}" href="${detailUrl}">${company}</a>`
+          : `<span class="company-name">${company}</span>`;
+        tr.innerHTML = `
+          <td><strong>${companyCell}</strong></td>
+          <td>${safe(row.Country)}</td>
+          <td>${safe(row["City/Location"])}</td>
+          <td>${linkify(row.Website)}</td>
+          <td>${safe(row["Types of Products"])}</td>
+          <td><span class="muted">${safe(row["Additional Information"])}</span></td>
+        `;
+        tbodyEl.appendChild(tr);
+      });
+      statusEl.textContent = t("statusShowing", { count: state.filtered.length, s: state.filtered.length === 1 ? "" : "s" });
+      attachCompanyLinkHandlers();
+    }
+
+    function updateStats() {
+      const countries = new Set();
+      const cities = new Set();
+      state.filtered.forEach(row => {
+        if (row.Country) countries.add(row.Country);
+        if (row["City/Location"]) cities.add(row["City/Location"]);
+      });
+      statCountEl.textContent = state.filtered.length || "0";
+      statCountriesEl.textContent = countries.size || "0";
+      statCitiesEl.textContent = cities.size || "0";
+    }
+
+    function highlightActiveSource() {
+      const active = getActiveLabel();
+      scopeLabelEl.textContent = active;
+      scopePillEl.textContent = active;
+      sourceListEl.querySelectorAll("button[data-source]").forEach(btn => {
+        btn.classList.toggle("ghost", btn.dataset.source !== state.activeSource);
+      });
+    }
+
+    function safe(val) {
+      return val ? val.toString().trim() : "";
+    }
+
+    function linkify(raw) {
+      const url = safe(raw);
+      if (!url) return "";
+      const normalized = url.startsWith("http") ? url : `https://${url}`;
+      return `<a href="${normalized}" target="_blank" rel="noopener noreferrer">Visit →</a>`;
+    }
+
+    function getCompanyLink(row) {
+      const slug = slugify(row["Company Name"]);
+      if (!slug) return "";
+      return `company.html?id=${encodeURIComponent(slug)}`;
+    }
+
+    function attachCompanyLinkHandlers() {
+      document.querySelectorAll(".company-link").forEach(link => {
+        link.addEventListener("click", () => {
+          const slug = link.dataset.slug;
+          const row = state.filtered.find(r => slugify(r["Company Name"]) === slug);
+          if (row) {
+            sessionStorage.setItem("selectedCompany", JSON.stringify({
+              slug,
+              name: safe(row["Company Name"]),
+              country: safe(row.Country),
+              city: safe(row["City/Location"]),
+              website: safe(row.Website),
+              products: safe(row["Types of Products"]),
+              additional: safe(row["Additional Information"])
+            }));
+          }
+        });
+      });
+    }
+
+    applyTranslations();
+    loadAllSources();
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .panel,.theme-dark .hero,.theme-dark .table-shell{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MENAFactory — Investor Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary:#2d6361; --primary-2:#3f7f7c; --ink:#0d1b1a; --muted:#4f6664;
+      --line:rgba(45,99,97,0.18); --panel:#fff; --glow:0 24px 64px rgba(45,99,97,0.14);
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
+      background:radial-gradient(circle at 15% 15%,rgba(45,99,97,0.12) 0,transparent 30%),#eef2f1;
+      color:var(--ink);padding:28px;min-height:100vh;display:flex;flex-direction:column;
+    }
+    .shell{max-width:1200px;margin:0 auto;flex:1;width:100%;}
+    a.back{color:var(--primary);font-weight:700;text-decoration:none;} a.back:hover{text-decoration:underline;}
+    .hero{padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f4745,#2d6361);color:#fff;box-shadow:var(--glow);position:relative;overflow:hidden;margin:10px 0 16px;}
+    .lang-switch{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.14);padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.24);}
+    .lang-switch label{font-weight:600;font-size:13px;color:#e9f1ef;}
+    .lang-switch select{border:none;border-radius:10px;padding:8px 10px;background:rgba(255,255,255,0.92);color:#1f4745;font-weight:700;outline:none;}
+    h1{margin:6px 0 4px;letter-spacing:-0.3px;}
+    .lead{margin:0;color:rgba(255,255,255,0.85);max-width:880px;}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;align-items:start;}
+    @media(max-width:960px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--glow);}
+    .pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(45,99,97,0.12);color:var(--primary-2);font-weight:700;font-size:12px;border:1px solid rgba(45,99,97,0.2);}
+    .project{display:grid;gap:10px;border-bottom:1px solid var(--line);padding:14px 0;}
+    .project:last-child{border-bottom:none;}
+    .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;}
+    .muted{color:var(--muted);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 12px;border-radius:12px;background:var(--primary);color:#fff;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(45,99,97,0.18);}
+    .btn.ghost{background:#f5f7f6;color:var(--primary);border:1px solid var(--line);box-shadow:none;}
+    .btn.inline{padding:8px 10px;font-size:13px;}
+    .progress-wrap{display:grid;gap:4px;}
+    .progress-bar{width:100%;height:10px;border-radius:999px;background:#f3f6f5;overflow:hidden;border:1px solid var(--line);}
+    .progress-bar span{display:block;height:100%;background:linear-gradient(90deg,#2d6361,#3f7f7c);}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;}
+    label{display:grid;gap:6px;font-weight:700;color:var(--ink);font-size:14px;margin-bottom:8px;}
+    input, select{padding:10px;border-radius:10px;border:1px solid var(--line);background:#f5f7f6;font-family:inherit;}
+    textarea{padding:10px;border-radius:10px;border:1px solid var(--line);background:#f5f7f6;font-family:inherit;min-height:100px;}
+    .learning{margin:10px 0 14px;border:1px dashed var(--line);border-radius:14px;padding:14px;background:#f7faf9;}
+    .learning h3{margin:0 0 6px;}
+    .learning p{margin:0 0 10px;color:var(--muted);}
+    .sidebar{display:grid;gap:12px;}
+    .trend-item{display:grid;gap:4px;padding:8px;border-radius:12px;border:1px solid var(--line);background:#f9fbfb;}
+    .tiny-bar{width:100%;height:6px;border-radius:999px;background:#f1f4f3;overflow:hidden;}
+    .tiny-bar span{display:block;height:100%;background:rgba(45,99,97,0.65);}
+    .info-link{font-size:12px;color:var(--primary);cursor:pointer;text-decoration:underline;}
+    .list{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:18px;z-index:40;}
+    .modal{max-width:520px;width:100%;background:#fff;border-radius:16px;padding:18px;border:1px solid var(--line);box-shadow:var(--glow);position:relative;}
+    .modal h3{margin-top:0;}
+    .close-btn{position:absolute;top:10px;right:10px;background:#f3f6f5;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer;}
+    .glossary-list li{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#f9fbfb;}
+    .success{background:#f0fbf7;border:1px solid rgba(45,99,97,0.3);color:#0c3f32;padding:10px 12px;border-radius:12px;font-weight:700;}
+    .error{color:#a62323;font-weight:700;font-size:13px;margin-top:6px;}
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="shell">
+    <a class="back" href="crowdfunding.html">← Back to capital hub</a>
+    <section class="hero">
+      <div class="lang-switch">
+        <label>Language</label>
+        <select id="langSelect">
+          <option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="ru">Русский</option>
+        </select>
+      </div>
+      <div class="pill">For Investors</div>
+      <h1>Choose a factory project to fund</h1>
+      <p class="lead">Review business plans, ROIs, sectors, locations, required capital, and share structures. Download decks, and request a meeting after registering.</p>
+    </section>
+
+    <div class="learning">
+      <h3>New to industrial investing?</h3>
+      <p>Explore guides and videos on how to evaluate factory projects, understand risk, and choose where to invest.</p>
+      <button class="btn inline" id="openLearning">Go to learning center</button>
+      <span class="info-link" id="openGlossaryLink">Investor glossary</span>
+    </div>
+
+    <div class="grid">
+      <section class="card" id="projectList"></section>
+
+      <aside class="sidebar">
+        <div class="card" id="trendsCard">
+          <h3>Investment trends (last 3 months)</h3>
+          <div class="list" id="trendsList"></div>
+        </div>
+
+        <div class="card" id="registerCard">
+          <h3>Register to unlock contacts</h3>
+          <p class="muted">Get founder contact links, schedule a presentation, and bookmark projects.</p>
+          <form id="registerForm">
+            <label>Full name
+              <input id="regName" type="text" placeholder="e.g. Sarah Khan" required />
+            </label>
+            <label>Email
+              <input id="regEmail" type="email" placeholder="you@company.com" required />
+            </label>
+            <label>Role / firm
+              <input id="regRole" type="text" placeholder="e.g. GP, family office" required />
+            </label>
+            <button class="btn" type="submit">Register & request meeting</button>
+            <div class="error" id="regError" style="display:none;"></div>
+          </form>
+          <ul class="list" style="margin-top:10px;">
+            <li>• Unlock founder contact details</li>
+            <li>• Request a call or plant visit</li>
+            <li>• Receive detailed financial models</li>
+          </ul>
+          <div class="success" id="regSuccess" style="display:none;margin-top:10px;">Thank you — our team will reach out shortly.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="investModal">
+    <div class="modal">
+      <button class="close-btn" data-close="invest">✕</button>
+      <h3 id="investTitle">Invest now</h3>
+      <p class="muted" id="investTerms"></p>
+      <form id="investForm" style="display:grid;gap:8px;">
+        <label>Investment amount (USD)
+          <input type="number" id="investAmount" min="1000" placeholder="25000" required />
+        </label>
+        <label>Payment method
+          <select id="investMethod">
+            <option>Credit / Debit card</option>
+            <option>Wire transfer</option>
+          </select>
+        </label>
+        <div class="row" style="grid-template-columns:1fr 1fr;">
+          <label>Cardholder name
+            <input type="text" id="cardName" placeholder="Name on card" required />
+          </label>
+          <label>Card number
+            <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242" required />
+          </label>
+        </div>
+        <div class="row" style="grid-template-columns:1fr 1fr;">
+          <label>Expiry date
+            <input type="text" id="cardExp" placeholder="MM/YY" required />
+          </label>
+          <label>CVV
+            <input type="text" id="cardCvv" placeholder="123" required />
+          </label>
+        </div>
+        <p class="muted">This is a demo payment flow. Actual transactions are processed via our regulated payment partners.</p>
+        <div class="actions">
+          <button class="btn" type="submit">Confirm investment</button>
+          <button class="btn ghost" type="button" data-close="invest">Cancel</button>
+        </div>
+        <div class="success" id="investSuccess" style="display:none;">Your investment request has been submitted. Our team will contact you to complete KYC and payment.</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="glossaryModal">
+    <div class="modal">
+      <button class="close-btn" data-close="glossary">✕</button>
+      <h3>Investor glossary</h3>
+      <ul class="list glossary-list" id="glossaryList"></ul>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="learningModal">
+    <div class="modal" style="max-width:620px;">
+      <button class="close-btn" data-close="learning">✕</button>
+      <h3>Learning center</h3>
+      <p class="muted">Guides and videos to evaluate factory projects, understand risk, and choose where to invest.</p>
+      <div class="list" id="learningList"></div>
+    </div>
+  </div>
+
+  <script>
+    const copy = {
+      country:"Country", sector:"Sector", roi:"ROI", capital:"Capital needed", shares:"Shares",
+      downloadPlan:"Download business plan", downloadDeck:"Download pitch deck", investNow:"Invest now",
+      raised:"Raised", funded:"funded"
+    };
+
+    const projects = [
+      { tag:"Low-carbon steel", name:"Sohar Green Steel Line", country:"Oman", sector:"Metals", roi:"18–22% / 3 yrs", roiRange:"18–22% over 3 years", capitalNeeded:2500000, capitalRaised:1300000, shareType:"Equity", description:"Electric-arc retrofit cutting emissions 35% with pre-signed offtake for green billets." },
+      { tag:"Foodtech", name:"Sharjah Aseptic Beverage Plant", country:"UAE", sector:"Beverages", roi:"20% / 2 yrs", roiRange:"20% over 2 years", capitalNeeded:1800000, capitalRaised:860000, shareType:"Convertible", description:"AI-driven demand planning with chilled distribution to 12-country network." },
+      { tag:"Advanced packaging", name:"Manama Smart Packaging Fab", country:"Bahrain", sector:"Packaging", roi:"16% / 2.5 yrs", roiRange:"16% over 2.5 years", capitalNeeded:1200000, capitalRaised:640000, shareType:"Revenue share", description:"High-yield line (95%) supplying IoT device makers across GCC and North Africa." },
+      { tag:"Chemicals", name:"Jubail Specialty Chemicals Expansion", country:"Saudi Arabia", sector:"Chemicals", roi:"19–23% / 3 yrs", roiRange:"19–23% over 3 years", capitalNeeded:3000000, capitalRaised:1250000, shareType:"Equity", description:"Polymer additives and solvents line expanding capacity with signed LOIs from converters." },
+      { tag:"Textiles", name:"Alexandria Technical Textiles Park", country:"Egypt", sector:"Textiles", roi:"15–18% / 3 yrs", roiRange:"15–18% over 3 years", capitalNeeded:2100000, capitalRaised:940000, shareType:"Convertible", description:"High-tensile industrial fabrics for filtration and automotive interiors, backed by OEM trials." }
+    ];
+
+    const trends = [
+      { name:"Sohar Green Steel Line", invested:1100000, roi:"18–22%" },
+      { name:"Sharjah Aseptic Beverage Plant", invested:800000, roi:"20% / 2 yrs" },
+      { name:"Manama Smart Packaging Fab", invested:520000, roi:"16% / 2.5 yrs" },
+      { name:"Jubail Specialty Chemicals Expansion", invested:460000, roi:"19–23%" },
+      { name:"Alexandria Technical Textiles Park", invested:390000, roi:"15–18%" }
+    ];
+
+    const glossary = {
+      roi:{ title:"ROI (Return on Investment)", body:"The percentage gain or loss on invested capital over a set period (e.g. 20% over 3 years)." },
+      equity:{ title:"Equity", body:"You receive ownership shares in the factory; returns depend on profits and valuation." },
+      convertible:{ title:"Convertible", body:"An investment that can convert into equity later, often at a discount to the next round." },
+      revenue:{ title:"Revenue share", body:"Investors receive a portion of revenue until a target return is achieved." },
+      capital:{ title:"Capital needed", body:"Total amount the factory must raise to execute the project plan." },
+      shares:{ title:"Shares", body:"Structure of investor participation (Equity / Convertible / Revenue share)." }
+    };
+
+    const learningItems = [
+      { title:"How to read ROI and payback periods", desc:"Compare timelines and risk-adjusted returns across factories.", cta:"Read", href:"#"},
+      { title:"How to assess operational risk", desc:"Check capacity utilization, supply risk, and certification gaps.", cta:"Read", href:"#"},
+      { title:"Case studies of successful factory investments", desc:"Gulf metals, foodtech, and packaging examples with outcomes.", cta:"Read", href:"#"},
+      { title:"Video: How to use MENAFactory to compare projects", desc:"Walkthrough of filters, decks, ROI models, and requests.", cta:"Watch", href:"#"}
+    ];
+
+    const projectListEl = document.getElementById("projectList");
+    const trendsListEl = document.getElementById("trendsList");
+    const investModal = document.getElementById("investModal");
+    const investTitle = document.getElementById("investTitle");
+    const investTerms = document.getElementById("investTerms");
+    const investForm = document.getElementById("investForm");
+    const investSuccess = document.getElementById("investSuccess");
+    const learningModal = document.getElementById("learningModal");
+    const glossaryModal = document.getElementById("glossaryModal");
+    const glossaryList = document.getElementById("glossaryList");
+    const learningList = document.getElementById("learningList");
+
+    function fmtMoney(n){return "$" + (n/1000000>=1 ? (n/1000000).toFixed(1)+"M" : (n/1000).toFixed(0)+"k");}
+
+    function renderProjects(){
+      projectListEl.innerHTML = "";
+      projects.forEach((p, idx)=>{
+        const pct = Math.round((p.capitalRaised / p.capitalNeeded)*100);
+        const card = document.createElement("article");
+        card.className = "project";
+        card.innerHTML = `
+          <div class="pill">${p.tag}</div>
+          <h3>${p.name}</h3>
+          <div class="row muted">
+            <span>${copy.country}: <strong>${p.country}</strong></span>
+            <span>${copy.sector}: <strong>${p.sector}</strong></span>
+            <span>${copy.roi} <span class="info-link" data-term="roi">(what is ROI?)</span>: <strong>${p.roi}</strong></span>
+            <span>${copy.capital} <span class="info-link" data-term="capital">(?)</span>: <strong>${fmtMoney(p.capitalNeeded)}</strong></span>
+            <span>${copy.shares} <span class="info-link" data-term="${p.shareType.toLowerCase().includes("convertible")?"convertible":p.shareType.toLowerCase().includes("revenue")?"revenue":"equity"}">(?)</span>: <strong>${p.shareType}</strong></span>
+          </div>
+          <p class="muted">${p.description}</p>
+          <div class="progress-wrap">
+            <div class="progress-bar"><span style="width:${Math.min(pct,100)}%;"></span></div>
+            <div class="row" style="grid-template-columns:1fr auto;">
+              <span class="muted">${copy.raised}: ${fmtMoney(p.capitalRaised)} of ${fmtMoney(p.capitalNeeded)}</span>
+              <strong>${pct}% ${copy.funded}</strong>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn" data-invest="${idx}">${copy.investNow}</button>
+            <a class="btn ghost" href="#" aria-label="Download plan">${copy.downloadPlan}</a>
+            <a class="btn ghost" href="#" aria-label="Download deck">${copy.downloadDeck}</a>
+          </div>
+          <div class="muted">Contacts and presentations unlock after registration.</div>
+        `;
+        projectListEl.appendChild(card);
+      });
+
+      projectListEl.querySelectorAll("[data-invest]").forEach(btn=>{
+        btn.addEventListener("click", ()=>openInvestModal(projects[btn.dataset.invest]));
+      });
+      projectListEl.querySelectorAll(".info-link").forEach(link=>{
+        link.addEventListener("click", ()=>openGlossary(link.dataset.term));
+      });
+    }
+
+    function renderTrends(){
+      const max = Math.max(...trends.map(t=>t.invested));
+      trendsListEl.innerHTML = trends.map((t,i)=>`
+        <div class="trend-item">
+          <div><strong>${i+1}. ${t.name}</strong></div>
+          <div class="muted">Invested: ${fmtMoney(t.invested)} — ROI ${t.roi}</div>
+          <div class="tiny-bar"><span style="width:${Math.round((t.invested/max)*100)}%;"></span></div>
+        </div>
+      `).join("");
+    }
+
+    function renderGlossary(){
+      glossaryList.innerHTML = Object.values(glossary).map(entry=>`
+        <li>
+          <strong>${entry.title}</strong>
+          <div class="muted">${entry.body}</div>
+        </li>
+      `).join("");
+    }
+
+    function renderLearning(){
+      learningList.innerHTML = learningItems.map(item=>`
+        <div class="card" style="padding:12px;">
+          <strong>${item.title}</strong>
+          <p class="muted" style="margin:4px 0 8px;">${item.desc}</p>
+          <a class="btn inline ghost" href="${item.href}">${item.cta}</a>
+        </div>
+      `).join("");
+    }
+
+    function openInvestModal(project){
+      investTitle.textContent = `Invest in ${project.name}`;
+      investTerms.textContent = `ROI: ${project.roiRange} • Shares: ${project.shareType}`;
+      investSuccess.style.display = "none";
+      investForm.reset();
+      investModal.style.display = "flex";
+    }
+    function closeInvestModal(){ investModal.style.display = "none"; }
+
+    function openGlossary(term){
+      renderGlossary();
+      glossaryModal.style.display = "flex";
+      if (term && glossary[term]) {
+        const entries = glossaryList.querySelectorAll("li");
+        entries.forEach(li=>{
+          const strong = li.querySelector("strong").textContent.toLowerCase();
+          li.style.outline = strong.includes(glossary[term].title.toLowerCase()) ? "2px solid var(--primary)" : "";
+        });
+      }
+    }
+    function closeGlossary(){ glossaryModal.style.display = "none"; }
+    function openLearning(){ renderLearning(); learningModal.style.display = "flex"; }
+    function closeLearning(){ learningModal.style.display = "none"; }
+
+    investForm.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      investSuccess.style.display = "block";
+    });
+
+    document.querySelectorAll("[data-close='invest']").forEach(btn=>btn.addEventListener("click", closeInvestModal));
+    document.querySelectorAll("[data-close='glossary']").forEach(btn=>btn.addEventListener("click", closeGlossary));
+    document.querySelectorAll("[data-close='learning']").forEach(btn=>btn.addEventListener("click", closeLearning));
+    investModal.addEventListener("click", (e)=>{ if(e.target===investModal) closeInvestModal(); });
+    glossaryModal.addEventListener("click", (e)=>{ if(e.target===glossaryModal) closeGlossary(); });
+    learningModal.addEventListener("click", (e)=>{ if(e.target===learningModal) closeLearning(); });
+
+    document.getElementById("openLearning").addEventListener("click", openLearning);
+    document.getElementById("openGlossaryLink").addEventListener("click", ()=>openGlossary());
+
+    // Register form validation
+    const regForm = document.getElementById("registerForm");
+    const regError = document.getElementById("regError");
+    const regSuccess = document.getElementById("regSuccess");
+    regForm.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      regError.style.display = "none";
+      regSuccess.style.display = "none";
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const role = document.getElementById("regRole").value.trim();
+      if(!name || !email || !role){
+        regError.textContent = "Please fill all fields.";
+        regError.style.display = "block";
+        return;
+      }
+      if(!email.includes("@") || !email.includes(".")){
+        regError.textContent = "Enter a valid email address.";
+        regError.style.display = "block";
+        return;
+      }
+      regSuccess.style.display = "block";
+      regForm.reset();
+    });
+
+    renderProjects();
+    renderTrends();
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .panel,.theme-dark .hero{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+</body>
+</html>

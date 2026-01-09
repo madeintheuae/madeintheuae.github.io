@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdLink Capital — Choose Your Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d6361;
+      --primary-2: #3f7f7c;
+      --ink: #0d1b1a;
+      --muted: #4f6664;
+      --line: rgba(45,99,97,0.18);
+      --panel: rgba(255,255,255,0.9);
+      --glow: 0 24px 64px rgba(45,99,97,0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 15% 15%, rgba(45,99,97,0.12) 0, transparent 30%), #eef2f1;
+      color: var(--ink);
+      padding: 28px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .shell { max-width: 1100px; margin: 0 auto; flex:1; width:100%; }
+    .hero {
+      padding: 22px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1f4745, #2d6361);
+      color: #fff;
+      box-shadow: var(--glow);
+      position: relative;
+      overflow: hidden;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.14);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.24);
+    }
+    .lang-switch label { font-weight: 600; font-size: 13px; color: #e9f1ef; }
+    .lang-switch select {
+      border: none;
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.92);
+      color: #1f4745;
+      font-weight: 700;
+      outline: none;
+    }
+    h1 { margin: 6px 0 4px; letter-spacing: -0.3px; }
+    .lead { margin: 0; color: rgba(255,255,255,0.85); max-width: 780px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--glow);
+      display: grid;
+      gap: 10px;
+    }
+    .card h3 { margin: 0; letter-spacing: -0.2px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow);
+    }
+    .btn.ghost { background: #f5f7f6; color: var(--primary); border: 1px solid var(--line); }
+    .tag { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: rgba(45,99,97,0.12); color: var(--primary-2); font-weight: 700; font-size: 12px; border: 1px solid rgba(45,99,97,0.2); }
+    a.back { color: var(--primary); font-weight: 700; text-decoration: none; display:inline-flex; margin-bottom:10px; }
+    a.back:hover { text-decoration: underline; }
+
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .hero{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="shell">
+    <a class="back" href="index.html" data-i18n="back">← Back to main hub</a>
+    <section class="hero">
+      <div class="lang-switch">
+        <label data-i18n="language">Language</label>
+        <select id="langSelect">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="ur">اردو</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+      <div class="tag" data-i18n="eyebrow">Capital & ideas</div>
+      <h1 data-i18n="title">Choose your path to fund or launch a factory.</h1>
+      <p class="lead" data-i18n="lead">Investors can browse vetted factory projects; founders can publish their projects with ROI highlights, decks, and capital needs.</p>
+    </section>
+
+    <section class="grid" aria-label="Capital paths">
+      <article class="card">
+        <span class="tag" data-i18n="invTag">For Investors</span>
+        <h3 data-i18n="invTitle">Discover factory projects</h3>
+        <p data-i18n="invBody">Browse business plans, ROIs, sectors, countries, and required investment. Download decks and request meetings after registering.</p>
+        <a class="btn" href="investor.html" data-i18n="invCta">Go to investor view →</a>
+      </article>
+
+      <article class="card">
+        <span class="tag" data-i18n="fndTag">For Founders</span>
+        <h3 data-i18n="fndTitle">Publish your factory campaign</h3>
+        <p data-i18n="fndBody">Share factory name, focus, ROI highlights, and deck links. Access sample pitch decks and prompts to build your materials.</p>
+        <a class="btn ghost" href="founder.html" data-i18n="fndCta">Go to founder view →</a>
+      </article>
+    </section>
+  </div>
+  <script>
+    const translations = {
+      en: {
+        back: "← Back to main hub",
+        language: "Language",
+        eyebrow: "Capital & ideas",
+        title: "Choose your path to fund or launch a factory.",
+        lead: "Investors can browse vetted factory projects; founders can publish their projects with ROI highlights, decks, and capital needs.",
+        invTag: "For Investors",
+        invTitle: "Discover factory projects",
+        invBody: "Browse business plans, ROIs, sectors, countries, and required investment. Download decks and request meetings after registering.",
+        invCta: "Go to investor view →",
+        fndTag: "For Founders",
+        fndTitle: "Publish your factory campaign",
+        fndBody: "Share factory name, focus, ROI highlights, and deck links. Access sample pitch decks and prompts to build your materials.",
+        fndCta: "Go to founder view →"
+      },
+      ar: {
+        back: "← العودة إلى الصفحة الرئيسية",
+        language: "اللغة",
+        eyebrow: "رأس المال والأفكار",
+        title: "اختر مسارك لتمويل أو إطلاق مصنع.",
+        lead: "يمكن للمستثمرين تصفح مشاريع المصانع؛ يمكن للمؤسسين نشر مشاريعهم مع أبرز العائدات والعروض التقديمية واحتياجات رأس المال.",
+        invTag: "للمستثمرين",
+        invTitle: "اكتشف مشاريع المصانع",
+        invBody: "تصفح خطط الأعمال، العائدات، القطاعات، الدول، والمبالغ المطلوبة. حمّل العروض واطلب اجتماعاً بعد التسجيل.",
+        invCta: "اذهب لواجهة المستثمر →",
+        fndTag: "للمؤسسين",
+        fndTitle: "انشر حملة مصنعك",
+        fndBody: "شارك اسم المصنع، التركيز، أبرز العائدات، وروابط العروض. اطّلع على نماذج عروض ونصائح لبناء موادك.",
+        fndCta: "اذهب لواجهة المؤسس →"
+      },
+      fr: {
+        back: "← Retour au hub principal",
+        language: "Langue",
+        eyebrow: "Capital & idées",
+        title: "Choisissez votre parcours pour financer ou lancer une usine.",
+        lead: "Les investisseurs parcourent des projets d’usines validés ; les fondateurs publient leurs projets avec ROI, decks et besoins en capital.",
+        invTag: "Pour les investisseurs",
+        invTitle: "Découvrir des projets d’usines",
+        invBody: "Parcourez business plans, ROI, secteurs, pays et montants requis. Téléchargez les decks et demandez un rendez-vous après inscription.",
+        invCta: "Aller à l’espace investisseur →",
+        fndTag: "Pour les fondateurs",
+        fndTitle: "Publiez votre campagne d’usine",
+        fndBody: "Partagez nom, focus, ROI et liens de decks. Accédez à des exemples et des prompts pour créer vos supports.",
+        fndCta: "Aller à l’espace fondateur →"
+      },
+      ur: {
+        back: "← مرکزی صفحے پر واپس جائیں",
+        language: "زبان",
+        eyebrow: "سرمایہ اور خیالات",
+        title: "کارخانہ فنڈ یا لانچ کرنے کے لیے اپنا راستہ چنیں۔",
+        lead: "سرمایہ کار تصدیق شدہ فیکٹری منصوبے دیکھ سکتے ہیں؛ بانیان ROI، ڈیکس اور سرمائے کی ضروریات کے ساتھ منصوبے شائع کریں۔",
+        invTag: "سرمایہ کاروں کے لیے",
+        invTitle: "فیکٹری منصوبے دریافت کریں",
+        invBody: "بزنس پلان، ROI، شعبے، ملک، اور مطلوب سرمایہ دیکھیں۔ ڈیک ڈاؤنلوڈ کریں اور رجسٹریشن کے بعد ملاقات کی درخواست دیں۔",
+        invCta: "سرمایہ کار منظر میں جائیں →",
+        fndTag: "بانیوں کے لیے",
+        fndTitle: "اپنی فیکٹری مہم شائع کریں",
+        fndBody: "فیکٹری نام، فوکس، ROI اور ڈیک لنکس شیئر کریں۔ نمونہ ڈیکس اور پرامپٹس تک رسائی حاصل کریں۔",
+        fndCta: "بانی منظر میں جائیں →"
+      },
+      hi: {
+        back: "← मुख्य पेज पर वापस",
+        language: "भाषा",
+        eyebrow: "पूँजी और विचार",
+        title: "फैक्टरी को फंड या लॉन्च करने का रास्ता चुनें।",
+        lead: "निवेशक जांचे-परखे फैक्टरी प्रोजेक्ट देखते हैं; संस्थापक ROI, डेक और पूँजी की जरूरतों के साथ अपने प्रोजेक्ट प्रकाशित करें।",
+        invTag: "निवेशकों के लिए",
+        invTitle: "फैक्टरी प्रोजेक्ट खोजें",
+        invBody: "बिज़नेस प्लान, ROI, सेक्टर, देश, और निवेश राशि देखें। डेक डाउनलोड करें और रजिस्ट्रेशन के बाद मीटिंग मांगें।",
+        invCta: "इन्वेस्टर व्यू पर जाएं →",
+        fndTag: "संस्थापकों के लिए",
+        fndTitle: "अपनी फैक्टरी कैंपेन प्रकाशित करें",
+        fndBody: "फैक्टरी नाम, फोकस, ROI और डेक लिंक साझा करें। सैंपल डेक्स और प्रॉम्प्ट्स देखें।",
+        fndCta: "फाउंडर व्यू पर जाएं →"
+      },
+      ru: {
+        back: "← Назад на главную",
+        language: "Язык",
+        eyebrow: "Капитал и идеи",
+        title: "Выберите путь: финансировать или запускать завод.",
+        lead: "Инвесторы просматривают проверенные проекты; основатели публикуют проекты с ROI, презентациями и потребностью в капитале.",
+        invTag: "Для инвесторов",
+        invTitle: "Найдите проекты заводов",
+        invBody: "Смотрите бизнес-планы, ROI, отрасли, страны и требуемые суммы. Скачивайте презентации и запрашивайте встречи после регистрации.",
+        invCta: "Перейти к виду инвестора →",
+        fndTag: "Для основателей",
+        fndTitle: "Опубликуйте кампанию завода",
+        fndBody: "Делитесь названием, фокусом, ROI и ссылками на презентации. Доступны примеры и подсказки для материалов.",
+        fndCta: "Перейти к виду основателя →"
+      }
+    };
+
+    const langSelect = document.getElementById("langSelect");
+    const transEls = document.querySelectorAll("[data-i18n]");
+    function applyTranslations(lang) {
+      const dict = translations[lang] || translations.en;
+      transEls.forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) el.textContent = dict[key];
+      });
+      document.documentElement.lang = lang;
+      document.documentElement.dir = ["ar", "ur"].includes(lang) ? "rtl" : "ltr";
+      langSelect.value = lang;
+    }
+    langSelect.addEventListener("change", () => applyTranslations(langSelect.value));
+    applyTranslations("en");
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+</body>
+</html>

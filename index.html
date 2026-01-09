@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdLink Hub — MENA Manufacturing Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d6361;
+      --primary-2: #3f7f7c;
+      --ink: #0d1b1a;
+      --muted: #4f6664;
+      --panel: rgba(255,255,255,0.86);
+      --line: rgba(45,99,97,0.18);
+      --glow: 0 24px 64px rgba(45,99,97,0.18);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 15% 15%, rgba(45,99,97,0.12) 0, transparent 28%), radial-gradient(circle at 80% 0%, rgba(63,127,124,0.16) 0, transparent 32%), #eef2f1;
+      color: var(--ink);
+      padding: 32px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .shell {
+      max-width: 1200px;
+      flex: 1;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1f4745, #2d6361 40%, #1f4745 80%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow);
+    }
+    .lang-switch {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.14);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.24);
+    }
+    .lang-switch label { font-weight: 600; font-size: 13px; color: #e9f1ef; }
+    .lang-switch select {
+      border: none;
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.92);
+      color: #1f4745;
+      font-weight: 700;
+      outline: none;
+    }
+    .hero::after, .hero::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(63,127,124,0.26), transparent 65%);
+      right: -60px;
+      top: -40px;
+      filter: blur(8px);
+    }
+    .hero::before {
+      left: -80px;
+      top: auto;
+      bottom: -60px;
+      background: radial-gradient(circle, rgba(45,99,97,0.28), transparent 65%);
+    }
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-weight: 700;
+      letter-spacing: 0.15px;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 12px 0 8px;
+      font-size: 34px;
+      letter-spacing: -0.4px;
+    }
+    .lead {
+      margin: 0;
+      max-width: 800px;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      position: relative;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--glow);
+      display: grid;
+      gap: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(45,99,97,0.18); }
+    .card h3 { margin: 0; font-size: 20px; letter-spacing: -0.2px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(45,99,97,0.12);
+      color: var(--primary-2);
+      font-weight: 700;
+      font-size: 12px;
+      border: 1px solid rgba(45,99,97,0.2);
+    }
+    .link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .link:hover { text-decoration: underline; }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn.primary { background: #ffffff; color: #1f4745; }
+    .btn.ghost { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); color: #ffffff; }
+    @media (max-width: 700px) {
+      body { padding: 20px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="mf-topbar">
+    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <nav class="mf-topnav">
+      <a href="index.html">Home</a>
+      <a href="catalogue.html">Marketplace</a>
+      <a href="investor.html">Investors</a>
+      <a href="founder.html">Founders</a>
+      <a href="profile.html">Profile</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="mf-top-actions">
+      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="lang-switch">
+        <label data-i18n="language">Language</label>
+        <select id="langSelect">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="ur">اردو</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+      <div class="eyebrow" data-i18n="eyebrow">ProdLink Hub · GCC + MENA</div>
+      <h1 data-i18n="heroTitle">Explore manufacturing intelligence in three focused spaces.</h1>
+      <p class="lead" data-i18n="heroLead">Jump into our latest newsletter, search the MENA manufacturers catalogue, or launch a crowdfunding campaign for new factories.</p>
+      <div class="hero-actions">
+        <a class="btn ghost" href="login.html">Sign in to continue</a>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Main destinations">
+      <article class="card">
+        <span class="tag" data-i18n="tag1">Latest stories</span>
+        <h3 data-i18n="card1Title">TechMENA Newsletter</h3>
+        <p data-i18n="card1Body">Success stories across MENA manufacturing, factory launches, and frontier production wins—curated weekly.</p>
+        <a class="link" href="newsletter.html" data-i18n="card1Cta">Read the newsletter →</a>
+      </article>
+
+      <article class="card">
+        <span class="tag" data-i18n="tag2">Live search</span>
+        <h3 data-i18n="card2Title">MENA Manufacturers Catalogue</h3>
+        <p data-i18n="card2Body">Search, filter, and browse merged manufacturer data with multilingual support and file uploads.</p>
+        <a class="link" href="catalogue.html" data-i18n="card2Cta">Open the catalogue →</a>
+      </article>
+
+      <article class="card">
+        <span class="tag" data-i18n="tag3">Capital & ideas</span>
+        <h3 data-i18n="card3Title">Crowdfunding Platform</h3>
+        <p data-i18n="card3Body">Investors discover factory projects; founders share their deck, ROI, and production plans to raise capital.</p>
+        <a class="link" href="crowdfunding.html" data-i18n="card3Cta">Start funding →</a>
+      </article>
+    </section>
+  </main>
+  <script>
+    const translations = {
+      en: {
+        eyebrow: "ProdLink Hub · GCC + MENA",
+        tag1: "Latest stories",
+        tag2: "Live search",
+        tag3: "Capital & ideas",
+        language: "Language",
+        heroTitle: "Explore manufacturing intelligence in three focused spaces.",
+        heroLead: "Jump into our latest newsletter, search the MENA manufacturers catalogue, or launch a crowdfunding campaign for new factories.",
+        card1Title: "TechMENA Newsletter",
+        card1Body: "Success stories across MENA manufacturing, factory launches, and frontier production wins—curated weekly.",
+        card1Cta: "Read the newsletter →",
+        card2Title: "MENA Manufacturers Catalogue",
+        card2Body: "Search, filter, and browse merged manufacturer data with multilingual support and file uploads.",
+        card2Cta: "Open the catalogue →",
+        card3Title: "Crowdfunding Platform",
+        card3Body: "Investors discover factory projects; founders share their deck, ROI, and production plans to raise capital.",
+        card3Cta: "Start funding →"
+      },
+      ar: {
+        eyebrow: "بودلينك هب · الخليج والشرق الأوسط",
+        tag1: "أحدث القصص",
+        tag2: "بحث مباشر",
+        tag3: "رأس المال والأفكار",
+        language: "اللغة",
+        heroTitle: "استكشف معلومات التصنيع عبر ثلاث مساحات مركزة.",
+        heroLead: "انتقل إلى أحدث نشرتنا، ابحث في كتالوج المصنّعين، أو أطلق حملة تمويل مصنع جديد.",
+        card1Title: "نشرة تك-مينا",
+        card1Body: "قصص نجاح التصنيع وإطلاق المصانع وإنجازات الإنتاج في المنطقة، باختيار أسبوعي.",
+        card1Cta: "اقرأ النشرة →",
+        card2Title: "كتالوج مصنّعي مينا",
+        card2Body: "ابحث وفلتر وتصفح بيانات المصانع المدمجة مع دعم لغات متعددة وتحميل ملفات.",
+        card2Cta: "افتح الكتالوج →",
+        card3Title: "منصة التمويل الجماعي",
+        card3Body: "المستثمرون يكتشفون مشاريع المصانع؛ المؤسسون يشاركون العرض وخطة العائد لجمع التمويل.",
+        card3Cta: "ابدأ التمويل →"
+      },
+      fr: {
+        eyebrow: "ProdLink Hub · CCG + MENA",
+        tag1: "Dernières histoires",
+        tag2: "Recherche en direct",
+        tag3: "Capital & idées",
+        language: "Langue",
+        heroTitle: "Explorez l’intelligence industrielle dans trois espaces dédiés.",
+        heroLead: "Lisez notre dernière newsletter, cherchez dans le catalogue des fabricants MENA, ou lancez une campagne de financement d’usine.",
+        card1Title: "Newsletter TechMENA",
+        card1Body: "Histoires de succès industriel, lancements d’usines et victoires de production, sélection hebdomadaire.",
+        card1Cta: "Lire la newsletter →",
+        card2Title: "Catalogue des fabricants MENA",
+        card2Body: "Recherchez, filtrez et parcourez les données fusionnées avec support multilingue et import de fichiers.",
+        card2Cta: "Ouvrir le catalogue →",
+        card3Title: "Plateforme de financement",
+        card3Body: "Les investisseurs découvrent des projets d’usines ; les fondateurs partagent deck et ROI pour lever des fonds.",
+        card3Cta: "Commencer le financement →"
+      },
+      ur: {
+        eyebrow: "پروڈلنک ہب · خلیج اور مشرق وسطیٰ",
+        tag1: "تازہ ترین کہانیاں",
+        tag2: "لائیو تلاش",
+        tag3: "سرمایہ اور خیالات",
+        language: "زبان",
+        heroTitle: "تین منتخب حصوں میں صنعتی بصیرت دریافت کریں۔",
+        heroLead: "نئی نیوز لیٹر دیکھیں، مینوفیکچررز کیٹلاگ میں تلاش کریں، یا نئی فیکٹری کے لیے کراؤڈفنڈنگ شروع کریں۔",
+        card1Title: "ٹیک مینا نیوزلیٹر",
+        card1Body: "مینوفیکچرنگ کی کامیابیاں، فیکٹری لانچز، اور پیداواری فتوحات—ہفتہ وار انتخاب۔",
+        card1Cta: "نیوزلیٹر پڑھیں →",
+        card2Title: "مینا مینوفیکچررز کیٹلاگ",
+        card2Body: "مرج شدہ ڈیٹا تلاش کریں، فلٹر کریں، اور بہ کثیر زبان فائل اپلوڈ کے ساتھ براؤز کریں۔",
+        card2Cta: "کیٹلاگ کھولیں →",
+        card3Title: "کراؤڈفنڈنگ پلیٹ فارم",
+        card3Body: "سرمایہ کار فیکٹری منصوبے دریافت کرتے ہیں؛ بانیان ROI اور منصوبہ شیئر کرکے سرمایہ اکٹھا کرتے ہیں۔",
+        card3Cta: "فنڈنگ شروع کریں →"
+      },
+      hi: {
+        eyebrow: "प्रोडलिंक हब · जीसीसी + मिडिल ईस्ट",
+        tag1: "ताज़ा कहानियाँ",
+        tag2: "लाइव खोज",
+        tag3: "पूँजी और विचार",
+        language: "भाषा",
+        heroTitle: "तीन केंद्रित स्पेसेज़ में मैन्युफैक्चरिंग इनसाइट्स खोजें।",
+        heroLead: "हमारा नया न्यूज़लेटर पढ़ें, MENA निर्माता कैटलॉग खोजें, या नई फैक्टरी के लिए क्राउडफंडिंग शुरू करें।",
+        card1Title: "TechMENA न्यूज़लेटर",
+        card1Body: "मैन्युफैक्चरिंग सफलताएँ, फैक्टरी लॉन्च और उत्पादन जीतें—साप्ताहिक क्यूरेटेड।",
+        card1Cta: "न्यूज़लेटर पढ़ें →",
+        card2Title: "MENA निर्माता कैटलॉग",
+        card2Body: "मर्ज डेटा खोजें, फ़िल्टर करें और बहुभाषी समर्थन व फ़ाइल अपलोड के साथ ब्राउज़ करें।",
+        card2Cta: "कैटलॉग खोलें →",
+        card3Title: "क्राउडफंडिंग प्लेटफ़ॉर्म",
+        card3Body: "निवेशक फैक्टरी प्रोजेक्ट्स खोजते हैं; संस्थापक ROI और योजना साझा कर पूंजी जुटाते हैं।",
+        card3Cta: "फंडिंग शुरू करें →"
+      },
+      ru: {
+        eyebrow: "ProdLink Hub · GCC + MENA",
+        tag1: "Свежие истории",
+        tag2: "Живой поиск",
+        tag3: "Капитал и идеи",
+        language: "Язык",
+        heroTitle: "Исследуйте производственные решения в трех направлениях.",
+        heroLead: "Перейдите к свежей рассылке, ищите в каталоге производителей MENA или запустите краудфандинг завода.",
+        card1Title: "Рассылка TechMENA",
+        card1Body: "Истории успеха производства, запуск заводов и победы в отрасли — еженедельный дайджест.",
+        card1Cta: "Читать рассылку →",
+        card2Title: "Каталог производителей MENA",
+        card2Body: "Ищите, фильтруйте и просматривайте объединенные данные с поддержкой языков и загрузкой файлов.",
+        card2Cta: "Открыть каталог →",
+        card3Title: "Платформа краудфандинга",
+        card3Body: "Инвесторы находят заводские проекты; основатели делятся презентацией и ROI, чтобы привлечь капитал.",
+        card3Cta: "Начать финансирование →"
+      }
+    };
+
+    const langSelect = document.getElementById("langSelect");
+    const transEls = document.querySelectorAll("[data-i18n]");
+    function applyTranslations(lang) {
+      const dict = translations[lang] || translations.en;
+      transEls.forEach(el => {
+        const key = el.dataset.i18n;
+        const target = el.dataset.i18nTarget || "text";
+        const val = dict[key];
+        if (!val) return;
+        if (target === "placeholder") el.placeholder = val;
+        else el.textContent = val;
+      });
+      document.documentElement.lang = lang;
+      document.documentElement.dir = ["ar", "ur"].includes(lang) ? "rtl" : "ltr";
+      langSelect.value = lang;
+    }
+    langSelect.addEventListener("change", () => applyTranslations(langSelect.value));
+    applyTranslations("en");
+  </script>
+
+  <!-- Global Footer -->
+  <footer class="mf-footer">
+    <div class="mf-footer-shell">
+      <div class="mf-footer-grid">
+        <nav aria-labelledby="footer-about">
+          <h4 id="footer-about">About</h4>
+          <ul>
+            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
+            <li><a href="partners.html">Partners & Alliances</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press & Media</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-legal">
+          <h4 id="footer-legal">About the Website</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="cookies.html">Cookies & Data Usage</a></li>
+            <li><a href="security.html">Security & Compliance Statement</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-quick">
+          <h4 id="footer-quick">Quick Links</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="support.html">Support Center</a></li>
+            <li><a href="investor-learning.html">Investor Learning Center</a></li>
+            <li><a href="founders-learning-center.html">Founder Learning Center</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="accessibility.html">Accessibility Statement</a></li>
+          </ul>
+        </nav>
+
+        <div aria-labelledby="footer-support">
+          <div class="mf-brand">
+            <div class="mf-logo" aria-hidden="true">MF</div>
+            <div class="mf-brand-text">
+              <strong>MENAFactory</strong>
+              <span>Industrial capital & marketplace</span>
+            </div>
+          </div>
+          <h4 id="footer-support">Support & Contact</h4>
+          <ul class="mf-support">
+            <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
+          </ul>
+          <div class="muted">Support available 7 days a week</div>
+        </div>
+      </div>
+
+      <div class="mf-footer-bottom">
+        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-social">
+          <span>Follow us on</span>
+          <a href="https://facebook.com" aria-label="Facebook">Fb</a>
+          <a href="https://instagram.com" aria-label="Instagram">Ig</a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">Li</a>
+          <a href="https://twitter.com" aria-label="X (Twitter)">X</a>
+          <a href="https://youtube.com" aria-label="YouTube">Yt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
+    .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
+    .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer .muted { color:#4f6664; font-size:13px; }
+    .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
+    .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
+    .mf-icon { width:18px; display:inline-block; }
+    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-social a { font-weight:700; }
+    @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
+
+    .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-topnav{display:flex;gap:14px;align-items:center;}
+    .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
+    .mf-topnav a:hover{text-decoration:underline;}
+    .mf-top-actions{display:flex;align-items:center;gap:8px;}
+    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .btn.small{padding:8px 12px;border-radius:14px;}
+    .font-large{font-size:110%;}
+    .theme-dark{background:#0f1f1e;color:#f5f7f6;}
+    .theme-dark .card,.theme-dark .panel,.theme-dark .hero{background:rgba(15,31,30,0.9);color:#f5f7f6;border-color:rgba(255,255,255,0.1);}
+    .theme-dark a{color:#8dd5cd;}
+    .theme-dark .muted{color:#c8d3d1;}
+    .theme-dark input,.theme-dark select,.theme-dark textarea{background:#1c2b2a;color:#f5f7f6;border:1px solid rgba(255,255,255,0.2);}
+  </style>
+  <script>
+    (function(){
+      const el = document.querySelector(".mf-date");
+      if (el) {
+        const now = new Date();
+        el.textContent = now.toLocaleString();
+      }
+    })();
+
+    // simple font size + theme toggles
+    const fontBtn = document.getElementById("fontToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    if (fontBtn) fontBtn.addEventListener("click", ()=> document.documentElement.classList.toggle("font-large"));
+    if (themeBtn) themeBtn.addEventListener("click", ()=> document.body.classList.toggle("theme-dark"));
+  </script>
+</body>
+</html>
