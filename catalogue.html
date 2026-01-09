@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProdLink Atlas — GCC & MENA Manufacturers</title>
+  <title>ProdLink Atlas — UAE Manufacturers (MITU)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,18 +13,18 @@
       --ink: #0e1c1b;
       --muted: #4f6664;
       --panel: rgba(255, 255, 255, 0.82);
-      --line: rgba(45, 99, 97, 0.18);
-      --primary: #2d6361;
-      --primary-strong: #1f4745;
-      --primary-soft: #3f7f7c;
-      --glow: 0 25px 80px rgba(45, 99, 97, 0.18);
+      --line: rgba(211, 94, 14, 0.18);
+      --primary: #D35E0E;
+      --primary-strong: #CF911D;
+      --primary-soft: #C74D0C;
+      --glow: 0 25px 80px rgba(211, 94, 14, 0.18);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Space Grotesk', 'Noto Sans Arabic', 'Noto Sans', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 12% 20%, rgba(45, 99, 97, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(63, 127, 124, 0.18) 0, transparent 32%), #eef2f1;
+      background: radial-gradient(circle at 12% 20%, rgba(211, 94, 14, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(199, 77, 12, 0.18) 0, transparent 32%), #E4C786;
       color: var(--ink);
       padding: 32px;
       min-height: 100vh;
@@ -39,7 +39,7 @@
       width: 100%;
     }
     .hero {
-      background: linear-gradient(140deg, #1f4745, #2d6361 35%, #1f4745 70%);
+      background: linear-gradient(140deg, #CF911D, #D35E0E 35%, #CF911D 70%);
       color: #fff;
       border-radius: 20px;
       padding: 32px;
@@ -92,7 +92,7 @@
       width: 240px;
       height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(63,127,124,0.28), transparent 60%);
+      background: radial-gradient(circle, rgba(199,77,12,0.28), transparent 60%);
       top: -40px;
       right: -60px;
       filter: blur(10px);
@@ -100,7 +100,7 @@
     .hero::before {
       width: 220px;
       height: 220px;
-      background: radial-gradient(circle, rgba(45,99,97,0.32), transparent 70%);
+      background: radial-gradient(circle, rgba(211,94,14,0.32), transparent 70%);
       top: auto;
       bottom: -60px;
       left: -80px;
@@ -139,28 +139,25 @@
       margin-top: 18px;
     }
     .lang-switch {
-      position: absolute;
-      top: 18px;
-      right: 18px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.14);
-      padding: 8px 10px;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      border: 1px solid rgba(211,94,14,0.2);
     }
     .lang-switch label {
       font-weight: 600;
-      font-size: 13px;
-      color: #e9f1ef;
+      font-size: 12px;
+      color: #0d1b1a;
     }
     .lang-switch select {
       border: none;
       border-radius: 10px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.92);
-      color: var(--primary-strong);
+      padding: 6px 8px;
+      background: #fff;
+      color: #C74D0C;
       font-weight: 700;
       outline: none;
     }
@@ -176,8 +173,8 @@
       align-items: center;
       gap: 8px;
     }
-    .pill.soft { background: rgba(63,127,124,0.16); border-color: rgba(63,127,124,0.35); }
-    .pill.orange { background: rgba(45,99,97,0.2); border-color: rgba(45,99,97,0.4); }
+    .pill.soft { background: rgba(199,77,12,0.16); border-color: rgba(199,77,12,0.35); }
+    .pill.orange { background: rgba(211,94,14,0.2); border-color: rgba(211,94,14,0.4); }
     .wrap {
       display: grid;
       grid-template-columns: 1fr;
@@ -231,7 +228,7 @@
       outline: none;
       transition: border-color 0.18s ease, box-shadow 0.18s ease;
     }
-    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.22); }
+    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(211,94,14,0.22); }
     .upload {
       display: flex;
       align-items: center;
@@ -279,8 +276,8 @@
     .stat {
       padding: 14px;
       border-radius: 12px;
-      border: 1px solid var(--line);
-      background: #fff;
+      border: 1px solid rgba(211,94,14,0.2);
+      background: rgba(228,199,134,0.45);
       box-shadow: inset 0 0 0 1px rgba(12,26,56,0.02);
     }
     .stat span { display: block; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
@@ -298,7 +295,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 14px 16px;
-      background: linear-gradient(120deg, rgba(31,71,69,0.95), rgba(45,99,97,0.7));
+      background: linear-gradient(120deg, #C74D0C, #D35E0E);
       color: #fff;
     }
     .table-header .subtitle { color: rgba(255,255,255,0.76); margin: 4px 0 0; font-size: 13px; }
@@ -324,16 +321,26 @@
 </head>
 <body>
   <header class="mf-topbar">
-    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <a class="mf-logo-link" href="index.html">MITU</a>
     <nav class="mf-topnav">
       <a href="index.html">Home</a>
       <a href="catalogue.html">Marketplace</a>
       <a href="investor.html">Investors</a>
       <a href="founder.html">Founders</a>
-      <a href="support.html">Support</a>
+      
     </nav>
     <div class="mf-top-actions">
       <button class="icon-btn" aria-label="Search">🔍</button>
+      <div class="lang-switch">
+        <label data-i18n="languageLabel">Language</label>
+        <select id="langSelect">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="ur">اردو</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+      </div>
       <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
       <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
       <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
@@ -349,19 +356,9 @@
         <div class="orb one"></div>
         <div class="orb two"></div>
       </div>
-      <div class="lang-switch">
-        <label data-i18n="languageLabel">Language</label>
-        <select id="langSelect">
-          <option value="en">English</option>
-          <option value="ar">العربية</option>
-          <option value="fr">Français</option>
-          <option value="ur">اردو</option>
-          <option value="hi">हिन्दी</option>
-        </select>
-      </div>
-      <div class="eyebrow" data-i18n="heroEyebrow">GCC + MENA manufacturing intelligence</div>
-      <h1 data-i18n="heroTitle">Find manufacturers of MENA.</h1>
-      <p class="lead" data-i18n="heroLead">MENA, GCC, Saudi, Oman, and more). Search instantly, filter by country or city, or upload a fresh file.</p>
+      <div class="eyebrow" data-i18n="heroEyebrow">MITU (Made in the UAE) manufacturing intelligence</div>
+      <h1 data-i18n="heroTitle">Find UAE manufacturers.</h1>
+      <p class="lead" data-i18n="heroLead">UAE factories and production partners. Search by emirate or city, or upload a fresh file.</p>
       <div class="hero-actions">
         <div class="pill orange" data-i18n="pillAuto">Auto-merging local data sources</div>
         <div class="pill soft" id="loadedStatus">Initializing…</div>
@@ -373,9 +370,9 @@
       <section class="panel">
         <div class="panel-head">
           <div>
-            <p class="eyebrow" style="color:#0f172a;background:rgba(45,99,97,0.12);border-color:rgba(45,99,97,0.24);" data-i18n="searchFilters">Search & filters</p>
+            <p class="eyebrow" style="color:#0f172a;background:rgba(211,94,14,0.12);border-color:rgba(211,94,14,0.24);" data-i18n="searchFilters">Search & filters</p>
             <h2 data-i18n="filtersTitle">Zero in on the right factory</h2>
-            <p class="hint"><span data-i18n="scopePrefix">Scope:</span> <span id="scopeLabel">All available sources</span></p>
+            <p class="hint"><span data-i18n="scopePrefix">Scope:</span> <span id="scopeLabel">UAE catalog</span></p>
           </div>
         </div>
         <div class="filters-grid">
@@ -386,12 +383,6 @@
           <label class="field">
             <span data-i18n="productLabel">Type of production</span>
             <input type="text" id="productFilter" placeholder="e.g. plastics, metals, food..." data-i18n="productPlaceholder" data-i18n-target="placeholder" />
-          </label>
-          <label class="field">
-            <span data-i18n="countryLabel">Country</span>
-            <select id="countryFilter">
-              <option value="" data-i18n="countryAll">All countries</option>
-            </select>
           </label>
           <label class="field">
             <span data-i18n="cityLabel">City / Location</span>
@@ -415,14 +406,14 @@
             <div style="font-weight:700;" data-i18n="tableTitle">Manufacturers table</div>
             <div class="subtitle" id="status">Loading data sources…</div>
           </div>
-          <div class="subtitle" id="scopePill">All sources</div>
+          <div class="subtitle" id="scopePill">UAE catalog</div>
         </div>
         <div class="table-wrap">
           <table id="table" style="display:none;">
             <thead>
               <tr>
                 <th data-i18n="colCompany">Company Name</th>
-                <th data-i18n="colCountry">Country</th>
+                <th data-i18n="colCountry">UAE</th>
                 <th data-i18n="colCity">City / Location</th>
                 <th data-i18n="colWebsite">Website</th>
                 <th data-i18n="colProducts">Types of Products</th>
@@ -441,7 +432,7 @@
           <strong id="statCount">—</strong>
         </div>
         <div class="stat">
-          <span data-i18n="statsCountriesTitle">Countries represented</span>
+          <span data-i18n="statsCountriesTitle">Emirates represented</span>
           <strong id="statCountries">—</strong>
         </div>
         <div class="stat">
@@ -453,11 +444,11 @@
       <section class="panel">
         <div class="panel-head">
           <div>
-            <p class="eyebrow" style="color:#0f172a;background:rgba(63,127,124,0.12);border-color:rgba(63,127,124,0.24);" data-i18n="dataSourcesEyebrow">Data sources</p>
+            <p class="eyebrow" style="color:#0f172a;background:rgba(199,77,12,0.12);border-color:rgba(199,77,12,0.24);" data-i18n="dataSourcesEyebrow">Data sources</p>
             <h2 data-i18n="dataSourcesTitle">Auto-loaded files</h2>
             <p class="hint" data-i18n="dataSourcesHint">Click “View” to focus on a single file or stay on “All sources” to use the merged dataset.</p>
           </div>
-          <button class="btn ghost" id="viewAll" type="button" data-i18n="viewAllButton">View: All sources</button>
+          <button class="btn ghost" id="viewAll" type="button" data-i18n="viewAllButton">View: UAE catalog</button>
         </div>
         <ul class="source-list" id="sourceList"></ul>
       </section>
@@ -466,50 +457,43 @@
 
   <script>
     const SOURCE_FILES = [
-      { file: "merged_all.csv", label: "Merged catalog" },
-      { file: "mena_manufacturers.csv", label: "MENA manufacturers" },
-      { file: "gcc_manufacturers.csv", label: "GCC manufacturers" },
-      { file: "arab_manufacturers.csv", label: "Arab manufacturers" },
-      { file: "saudi_factories.csv", label: "Saudi factories" },
-      { file: "oman_local_manufacturers.csv", label: "Oman manufacturers" },
-      { file: "opendata.csv", label: "Open data" },
-      { file: "industries.csv", label: "Industries lookup" },
+      { file: "merged_all.csv", label: "UAE factory catalog (filtered)" }
     ];
 
     const translations = {
       en: {
         languageLabel: "Language",
-        heroEyebrow: "GCC + MENA manufacturing intelligence",
-        heroTitle: "Find manufacturers across all MENA.",
-        heroLead: "MENA, GCC, Saudi, Oman, and more). Search instantly, filter by country or city.",
-        pillAuto: "Auto-merging online/offline data sources",
+        heroEyebrow: "MITU (Made in the UAE) manufacturing intelligence",
+        heroTitle: "Find UAE manufacturers.",
+        heroLead: "UAE factories and production partners. Search by emirate or city, or upload a fresh file.",
+        pillAuto: "Auto-loading UAE data sources",
         pillLive: "Update in real-time",
         searchFilters: "Search & filters",
         filtersTitle: "Zero in on the right factory",
         scopePrefix: "Scope:",
-        allSources: "All available sources",
+        allSources: "UAE catalog",
         searchLabel: "Search everything",
         searchPlaceholder: "Company, city, product, note…",
         productLabel: "Type of production",
         productPlaceholder: "e.g. plastics, metals, food...",
-        countryLabel: "Country",
-        countryAll: "All countries",
+        countryLabel: "Emirate",
+        countryAll: "All emirates",
         cityLabel: "City / Location",
         cityAll: "All cities",
         uploadLabel: "Upload a file",
-        resetButton: "Reset to all sources",
+        resetButton: "Reset to UAE catalog",
         tableTitle: "Manufacturers table",
         statsManufacturersTitle: "Manufacturers shown",
-        statsCountriesTitle: "Countries represented",
+        statsCountriesTitle: "Emirates represented",
         statsCitiesTitle: "Cities represented",
         dataSourcesEyebrow: "Data sources",
         dataSourcesTitle: "Auto-loaded files",
-        dataSourcesHint: "Click “View” to focus on a single file or stay on “All sources” to use the merged dataset.",
+        dataSourcesHint: "Click “View” to focus on a single file or stay on “UAE catalog” to use the filtered dataset.",
         sourceLabel: "Source",
-        viewAllButton: "View: All sources",
+        viewAllButton: "View: UAE catalog",
         colCompany: "Company Name",
-        colCountry: "Country",
-        colCity: "City / Location",
+        colCountry: "UAE",
+        colCity: "Emirate / City",
         colWebsite: "Website",
         colProducts: "Types of Products",
         colAdditional: "Additional Information",
@@ -531,37 +515,37 @@
       },
       ar: {
         languageLabel: "اللغة",
-        heroEyebrow: "ذكاء صناعي لمنطقة الخليج والشرق الأوسط",
-        heroTitle: "اعثر على المصانع عبر جميع الملفات.",
-        heroLead: "نقوم بتحميل ودمج كل ملفات المصانع في هذا المجلد (merged_all و MENA و GCC والسعودية وعُمان وغيرها). ابحث فورًا وفلتر حسب الدولة أو المدينة أو ارفع ملفًا جديدًا.",
-        pillAuto: "دمج تلقائي للمصادر المحلية",
+        heroEyebrow: "ذكاء صناعي لميتو (صنع في الإمارات)",
+        heroTitle: "اعثر على مصانع الإمارات.",
+        heroLead: "مصانع وشركاء إنتاج في الإمارات. ابحث حسب الإمارة أو المدينة أو ارفع ملفًا جديدًا.",
+        pillAuto: "تحميل تلقائي لمصادر بيانات الإمارات",
         pillLive: "التصفية في الوقت الفعلي",
         searchFilters: "البحث والفلاتر",
         filtersTitle: "حدد المصنع المناسب",
         scopePrefix: "النطاق:",
-        allSources: "كل المصادر المتاحة",
+        allSources: "كتالوج الإمارات",
         searchLabel: "ابحث في كل شيء",
         searchPlaceholder: "شركة، مدينة، منتج، ملاحظة…",
         productLabel: "نوع الإنتاج",
         productPlaceholder: "مثال: بلاستيك، معادن، أغذية...",
-        countryLabel: "الدولة",
-        countryAll: "كل الدول",
+        countryLabel: "الإمارة",
+        countryAll: "كل الإمارات",
         cityLabel: "المدينة / الموقع",
         cityAll: "كل المدن",
         uploadLabel: "تحميل ملف",
-        resetButton: "الرجوع إلى كل المصادر",
+        resetButton: "الرجوع إلى كتالوج الإمارات",
         tableTitle: "جدول المصانع",
         statsManufacturersTitle: "عدد المصانع المعروضة",
-        statsCountriesTitle: "عدد الدول",
+        statsCountriesTitle: "عدد الإمارات",
         statsCitiesTitle: "عدد المدن",
         dataSourcesEyebrow: "مصادر البيانات",
         dataSourcesTitle: "الملفات المحمّلة تلقائيًا",
-        dataSourcesHint: "اضغط \"عرض\" للتركيز على ملف واحد أو ابق على \"كل المصادر\" لاستخدام البيانات المدمجة.",
+        dataSourcesHint: "اضغط \"عرض\" للتركيز على ملف واحد أو ابق على \"كتالوج الإمارات\" لاستخدام البيانات المفلترة.",
         sourceLabel: "المصدر",
-        viewAllButton: "عرض: كل المصادر",
+        viewAllButton: "عرض: كتالوج الإمارات",
         colCompany: "اسم الشركة",
-        colCountry: "الدولة",
-        colCity: "المدينة / الموقع",
+        colCountry: "الإمارات",
+        colCity: "الإمارة / المدينة",
         colWebsite: "الموقع الإلكتروني",
         colProducts: "أنواع المنتجات",
         colAdditional: "معلومات إضافية",
@@ -583,37 +567,37 @@
       },
       fr: {
         languageLabel: "Langue",
-        heroEyebrow: "Veille industrielle CCG + MENA",
-        heroTitle: "Trouvez des fabricants dans tous vos fichiers.",
-        heroLead: "Nous chargeons et fusionnons automatiquement chaque fichier fabricant de ce dossier (merged_all, MENA, GCC, Arabie, Oman…). Recherchez instantanément, filtrez par pays ou ville, ou importez un nouveau fichier.",
-        pillAuto: "Fusion automatique des sources locales",
+        heroEyebrow: "Veille industrielle MITU (Fabriqué aux EAU)",
+        heroTitle: "Trouvez des fabricants aux EAU.",
+        heroLead: "Usines et partenaires de production aux EAU. Recherchez par émirat ou ville, ou importez un nouveau fichier.",
+        pillAuto: "Chargement automatique des sources EAU",
         pillLive: "Filtres en temps réel",
         searchFilters: "Recherche et filtres",
         filtersTitle: "Ciblez le bon fabricant",
         scopePrefix: "Portée :",
-        allSources: "Toutes les sources disponibles",
+        allSources: "Catalogue EAU",
         searchLabel: "Rechercher partout",
         searchPlaceholder: "Entreprise, ville, produit, note…",
         productLabel: "Type de production",
         productPlaceholder: "ex. plastiques, métaux, agro...",
-        countryLabel: "Pays",
-        countryAll: "Tous les pays",
+        countryLabel: "Émirat",
+        countryAll: "Tous les émirats",
         cityLabel: "Ville / Localisation",
         cityAll: "Toutes les villes",
         uploadLabel: "Importer un fichier",
-        resetButton: "Revenir à toutes les sources",
+        resetButton: "Revenir au catalogue EAU",
         tableTitle: "Tableau des fabricants",
         statsManufacturersTitle: "Fabricants affichés",
-        statsCountriesTitle: "Pays représentés",
+        statsCountriesTitle: "Émirats représentés",
         statsCitiesTitle: "Villes représentées",
         dataSourcesEyebrow: "Sources de données",
         dataSourcesTitle: "Fichiers chargés automatiquement",
-        dataSourcesHint: "Cliquez sur « Afficher » pour cibler un fichier ou restez sur « Toutes les sources » pour utiliser l'ensemble fusionné.",
+        dataSourcesHint: "Cliquez sur « Afficher » pour cibler un fichier ou restez sur « Catalogue EAU » pour utiliser l'ensemble filtré.",
         sourceLabel: "Source",
-        viewAllButton: "Voir : Toutes les sources",
+        viewAllButton: "Voir : Catalogue EAU",
         colCompany: "Nom de l'entreprise",
-        colCountry: "Pays",
-        colCity: "Ville / Localisation",
+        colCountry: "EAU",
+        colCity: "Émirat / Ville",
         colWebsite: "Site web",
         colProducts: "Types de produits",
         colAdditional: "Informations complémentaires",
@@ -635,37 +619,37 @@
       },
       ur: {
         languageLabel: "زبان",
-        heroEyebrow: "جی سی سی اور مشرق وسطیٰ کی صنعتی معلومات",
-        heroTitle: "اپنی تمام فائلوں میں مینوفیکچررز تلاش کریں۔",
-        heroLead: "ہم اس فولڈر کی تمام مینوفیکچرر فائلیں خودکار طور پر لوڈ اور مرج کرتے ہیں (merged_all، MENA، GCC، سعودی، عمان وغیرہ)۔ فوراً تلاش کریں، ملک یا شہر سے فلٹر کریں، یا نیا فائل اپلوڈ کریں۔",
-        pillAuto: "مقامی ذرائع خودکار طریقے سے ضم",
+        heroEyebrow: "MITU (میڈ اِن یو اے ای) صنعتی معلومات",
+        heroTitle: "یو اے ای مینوفیکچررز تلاش کریں۔",
+        heroLead: "یو اے ای فیکٹریاں اور پروڈکشن پارٹنرز۔ امارت یا شہر کے حساب سے تلاش کریں، یا نئی فائل اپلوڈ کریں۔",
+        pillAuto: "یو اے ای ڈیٹا ذرائع خودکار لوڈ",
         pillLive: "فلٹرز فوری اپڈیٹ ہوتے ہیں",
         searchFilters: "تلاش اور فلٹرز",
         filtersTitle: "درست فیکٹری تک پہنچیں",
         scopePrefix: "دائرہ کار:",
-        allSources: "تمام دستیاب ذرائع",
+        allSources: "یو اے ای کیٹلاگ",
         searchLabel: "ہر چیز میں تلاش کریں",
         searchPlaceholder: "کمپنی، شہر، پروڈکٹ، نوٹ…",
         productLabel: "پیداوار کی قسم",
         productPlaceholder: "مثلاً پلاسٹک، دھاتیں، خوراک...",
-        countryLabel: "ملک",
-        countryAll: "تمام ممالک",
+        countryLabel: "امارت",
+        countryAll: "تمام امارات",
         cityLabel: "شہر / مقام",
         cityAll: "تمام شہر",
         uploadLabel: "فائل اپلوڈ کریں",
-        resetButton: "تمام ذرائع پر واپس جائیں",
+        resetButton: "یو اے ای کیٹلاگ پر واپس جائیں",
         tableTitle: "مینوفیکچررز ٹیبل",
         statsManufacturersTitle: "ظاہر شدہ مینوفیکچررز",
-        statsCountriesTitle: "ممالک کی تعداد",
+        statsCountriesTitle: "امارات کی تعداد",
         statsCitiesTitle: "شہروں کی تعداد",
         dataSourcesEyebrow: "ڈیٹا ذرائع",
         dataSourcesTitle: "خودکار لوڈ کی گئی فائلیں",
-        dataSourcesHint: "صرف ایک فائل پر توجہ دینے کے لیے \"دیکھیں\" دبائیں یا مرج شدہ ڈیٹا کے لیے \"تمام ذرائع\" پر رہیں۔",
+        dataSourcesHint: "صرف ایک فائل پر توجہ دینے کے لیے \"دیکھیں\" دبائیں یا فلٹر شدہ ڈیٹا کے لیے \"یو اے ای کیٹلاگ\" پر رہیں۔",
         sourceLabel: "ماخذ",
-        viewAllButton: "دیکھیں: تمام ذرائع",
+        viewAllButton: "دیکھیں: یو اے ای کیٹلاگ",
         colCompany: "کمپنی کا نام",
-        colCountry: "ملک",
-        colCity: "شہر / مقام",
+        colCountry: "یو اے ای",
+        colCity: "امارت / شہر",
         colWebsite: "ویب سائٹ",
         colProducts: "پروڈکٹس کی اقسام",
         colAdditional: "اضافی معلومات",
@@ -687,37 +671,37 @@
       },
       hi: {
         languageLabel: "भाषा",
-        heroEyebrow: "जीसीसी + मिडिल ईस्ट विनिर्माण इंटेलिजेंस",
-        heroTitle: "अपनी सभी फ़ाइलों में निर्माताओं को खोजें।",
-        heroLead: "हम इस फ़ोल्डर की हर निर्माता फ़ाइल (merged_all, MENA, GCC, सऊदी, ओमान आदि) को लोड और मर्ज करते हैं। तुरंत खोजें, देश या शहर से फ़िल्टर करें, या नई फ़ाइल अपलोड करें।",
-        pillAuto: "स्थानीय स्रोत अपने-आप मर्ज",
+        heroEyebrow: "MITU (मेड इन यूएई) विनिर्माण इंटेलिजेंस",
+        heroTitle: "UAE निर्माताओं को खोजें।",
+        heroLead: "UAE फैक्ट्रियां और उत्पादन पार्टनर्स। अमीरात या शहर से फ़िल्टर करें, या नई फ़ाइल अपलोड करें।",
+        pillAuto: "UAE डेटा स्रोत अपने-आप लोड",
         pillLive: "फ़िल्टर तुरंत अपडेट होते हैं",
         searchFilters: "खोज और फ़िल्टर",
         filtersTitle: "सही फ़ैक्टरी चुनें",
         scopePrefix: "स्कोप:",
-        allSources: "सभी उपलब्ध स्रोत",
+        allSources: "UAE कैटलॉग",
         searchLabel: "सबकुछ खोजें",
         searchPlaceholder: "कंपनी, शहर, उत्पाद, नोट…",
         productLabel: "उत्पादन का प्रकार",
         productPlaceholder: "जैसे प्लास्टिक, धातु, खाद्य...",
-        countryLabel: "देश",
-        countryAll: "सभी देश",
+        countryLabel: "अमीरात",
+        countryAll: "सभी अमीरात",
         cityLabel: "शहर / स्थान",
         cityAll: "सभी शहर",
         uploadLabel: "फ़ाइल अपलोड करें",
-        resetButton: "सभी स्रोतों पर लौटें",
+        resetButton: "UAE कैटलॉग पर लौटें",
         tableTitle: "निर्माताओं की तालिका",
         statsManufacturersTitle: "दिखाए गए निर्माता",
-        statsCountriesTitle: "शामिल देश",
+        statsCountriesTitle: "शामिल अमीरात",
         statsCitiesTitle: "शामिल शहर",
         dataSourcesEyebrow: "डेटा स्रोत",
         dataSourcesTitle: "स्वतः लोड की गई फ़ाइलें",
-        dataSourcesHint: "\"देखें\" दबाएँ एक फ़ाइल पर फोकस करने के लिए या \"सभी स्रोत\" पर रहें मर्ज डेटा के लिए।",
+        dataSourcesHint: "\"देखें\" दबाएँ एक फ़ाइल पर फोकस करने के लिए या \"UAE कैटलॉग\" पर रहें फ़िल्टर डेटा के लिए।",
         sourceLabel: "स्रोत",
-        viewAllButton: "देखें: सभी स्रोत",
+        viewAllButton: "देखें: UAE कैटलॉग",
         colCompany: "कंपनी का नाम",
-        colCountry: "देश",
-        colCity: "शहर / स्थान",
+        colCountry: "UAE",
+        colCity: "अमीरात / शहर",
         colWebsite: "वेबसाइट",
         colProducts: "उत्पादों के प्रकार",
         colAdditional: "अतिरिक्त जानकारी",
@@ -748,6 +732,25 @@
       "Additional Information"
     ];
 
+    const UAE_COUNTRY_ALIASES = [
+      "uae",
+      "u.a.e.",
+      "u a e",
+      "united arab emirates",
+      "united arab emirate",
+      "emirates"
+    ];
+
+    const EMIRATE_KEYWORDS = [
+      { emirate: "Abu Dhabi", tokens: ["abu dhabi", "abudhabi", "al ain", "al-ain", "al dhafra", "madinat zayed"] },
+      { emirate: "Dubai", tokens: ["dubai", "jebel ali", "jebel-ali", "jafza"] },
+      { emirate: "Sharjah", tokens: ["sharjah", "khor fakkan", "kalba", "dibba", "al hamriyah"] },
+      { emirate: "Ajman", tokens: ["ajman"] },
+      { emirate: "Ras Al Khaimah", tokens: ["ras al khaimah", "ras al-khaimah", "rak"] },
+      { emirate: "Fujairah", tokens: ["fujairah"] },
+      { emirate: "Umm Al Quwain", tokens: ["umm al quwain", "umm al-quwain", "uaq"] }
+    ];
+
     const state = {
       sources: [],
       activeSource: "__all__",
@@ -761,7 +764,6 @@
     const uploadEl = document.getElementById("upload");
     const searchEl = document.getElementById("search");
     const productEl = document.getElementById("productFilter");
-    const countryEl = document.getElementById("countryFilter");
     const cityEl = document.getElementById("cityFilter");
     const statusEl = document.getElementById("status");
     const tableEl = document.getElementById("table");
@@ -843,7 +845,6 @@
 
     searchEl.addEventListener("input", applyFilters);
     productEl.addEventListener("input", applyFilters);
-    countryEl.addEventListener("change", applyFilters);
     cityEl.addEventListener("change", applyFilters);
     viewAllBtn.addEventListener("click", () => setScope("__all__"));
     resetScopeBtn.addEventListener("click", () => setScope("__all__"));
@@ -932,9 +933,12 @@
           originLabel ? `${t("sourceLabel")}: ${originLabel}` : ""
         ]).join(" • ");
 
+        const normalizedCountry = normalizeUaeCountry(country, city);
+        if (!normalizedCountry) return;
+
         const record = {
           "Company Name": company || t("unknownCompany"),
-          "Country": country,
+          "Country": normalizedCountry,
           "City/Location": city,
           "Website": website,
           "Types of Products": products,
@@ -960,6 +964,24 @@
 
     function compact(arr) {
       return arr.filter(Boolean);
+    }
+
+    function getEmirateFromCity(cityValue) {
+      const city = safe(cityValue).toLowerCase();
+      if (!city) return "";
+      for (const entry of EMIRATE_KEYWORDS) {
+        if (entry.tokens.some(token => city.includes(token))) return entry.emirate;
+      }
+      return "";
+    }
+
+    function normalizeUaeCountry(rawCountry, rawCity) {
+      const country = safe(rawCountry).toLowerCase();
+      const city = safe(rawCity);
+      const isUaeCountry = UAE_COUNTRY_ALIASES.some(alias => country === alias || country.includes(alias));
+      const isUaeCity = !!getEmirateFromCity(city);
+      if (isUaeCountry || (!country && isUaeCity)) return "United Arab Emirates";
+      return "";
     }
 
     function getActiveLabel() {
@@ -1003,13 +1025,11 @@
 
     function applyFilters() {
       const query = searchEl.value.trim().toLowerCase();
-      const country = countryEl.value;
       const city = cityEl.value;
       const product = productEl.value.trim().toLowerCase();
       const activeRows = getActiveRows();
 
       state.filtered = activeRows.filter(row => {
-        if (country && row.Country !== country) return false;
         if (city && row["City/Location"] !== city) return false;
         if (product && !(row["Types of Products"] || "").toString().toLowerCase().includes(product)) return false;
         if (!query) return true;
@@ -1025,13 +1045,10 @@
     }
 
     function populateFilters(rows) {
-      const countries = new Set();
       const cities = new Set();
       rows.forEach(row => {
-        if (row.Country) countries.add(row.Country.trim());
         if (row["City/Location"]) cities.add(row["City/Location"].trim());
       });
-      rebuildOptions(countryEl, countries, t("countryAll"));
       rebuildOptions(cityEl, cities, t("cityAll"));
     }
 
@@ -1081,14 +1098,15 @@
     }
 
     function updateStats() {
-      const countries = new Set();
+      const emirates = new Set();
       const cities = new Set();
       state.filtered.forEach(row => {
-        if (row.Country) countries.add(row.Country);
+        const emirate = getEmirateFromCity(row["City/Location"]);
+        if (emirate) emirates.add(emirate);
         if (row["City/Location"]) cities.add(row["City/Location"]);
       });
       statCountEl.textContent = state.filtered.length || "0";
-      statCountriesEl.textContent = countries.size || "0";
+      statCountriesEl.textContent = emirates.size || "0";
       statCitiesEl.textContent = cities.size || "0";
     }
 
@@ -1149,7 +1167,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -1186,7 +1204,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -1194,7 +1212,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -1202,7 +1220,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -1216,32 +1234,32 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
 
     .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
-    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#D35E0E;text-decoration:none;}
     .mf-topnav{display:flex;gap:14px;align-items:center;}
     .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
     .mf-topnav a:hover{text-decoration:underline;}
     .mf-top-actions{display:flex;align-items:center;gap:8px;}
-    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .icon-btn{border:1px solid rgba(211,94,14,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .btn.small{padding:8px 12px;border-radius:14px;}
     .font-large{font-size:110%;}
     .theme-dark{background:#0f1f1e;color:#f5f7f6;}

@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MENAFactory — Publish your factory campaign</title>
+  <title>MITU — Publish your factory campaign</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --primary:#2d6361; --primary-2:#3f7f7c; --ink:#0d1b1a; --muted:#4f6664; --line:rgba(45,99,97,0.18); --panel:#fff; --glow:0 24px 64px rgba(45,99,97,0.14); }
+    :root { --primary:#D35E0E; --primary-2:#C74D0C; --ink:#0d1b1a; --muted:#4f6664; --line:rgba(211,94,14,0.18); --panel:#fff; --glow:0 24px 64px rgba(211,94,14,0.14); }
     *{box-sizing:border-box;}
     html,body{height:100%;}
-    body{margin:0;font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 15% 15%,rgba(45,99,97,0.12) 0,transparent 30%),#eef2f1;color:var(--ink);padding:28px;min-height:100vh;display:flex;flex-direction:column;}
+    body{margin:0;font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 15% 15%,rgba(211,94,14,0.12) 0,transparent 30%),#E4C786;color:var(--ink);padding:28px;min-height:100vh;display:flex;flex-direction:column;}
     .shell{max-width:1200px;margin:0 auto;flex:1;width:100%;}
     a.back{color:var(--primary);font-weight:700;text-decoration:none;} a.back:hover{text-decoration:underline;}
-    .hero{padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f4745,#2d6361);color:#fff;box-shadow:var(--glow);position:relative;overflow:hidden;margin:10px 0 16px;}
-    .lang-switch{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.14);padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.24);}
-    .lang-switch label{font-weight:600;font-size:13px;color:#e9f1ef;}
-    .lang-switch select{border:none;border-radius:10px;padding:8px 10px;background:rgba(255,255,255,0.92);color:#1f4745;font-weight:700;outline:none;}
+    .hero{padding:22px;border-radius:18px;background:linear-gradient(135deg,#CF911D,#D35E0E);color:#fff;box-shadow:var(--glow);position:relative;overflow:hidden;margin:10px 0 16px;}
+    .lang-switch{display:flex;align-items:center;gap:6px;background:#fff;padding:6px 8px;border-radius:12px;border:1px solid rgba(211,94,14,0.2);}
+    .lang-switch label{font-weight:600;font-size:12px;color:#0d1b1a;}
+    .lang-switch select{border:none;border-radius:10px;padding:6px 8px;background:#fff;color:#C74D0C;font-weight:700;outline:none;}
     h1{margin:6px 0 4px;letter-spacing:-0.3px;}
     .lead{margin:0;color:rgba(255,255,255,0.85);max-width:880px;}
     .grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;align-items:start;}
@@ -27,14 +27,14 @@
     input, select, textarea{padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:#f5f7f6;font-family:inherit;}
     textarea{min-height:110px;resize:vertical;}
     .muted { color: var(--muted); font-size: 13px; }
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;background:var(--primary);color:#fff;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(45,99,97,0.18);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;background:var(--primary);color:#fff;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(211,94,14,0.18);}
     .btn.ghost{background:#f5f7f6;color:var(--primary);border:1px solid var(--line);box-shadow:none;}
-    .pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(45,99,97,0.12);color:var(--primary-2);font-weight:700;font-size:12px;border:1px solid rgba(45,99,97,0.2);}
+    .pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(211,94,14,0.12);color:var(--primary-2);font-weight:700;font-size:12px;border:1px solid rgba(211,94,14,0.2);}
     .helper{font-size:12px;color:var(--muted);margin-top:-4px;margin-bottom:6px;}
     .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;align-items:center;}
     .upload-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#f5f7f6;border:1px dashed var(--line);cursor:pointer;font-weight:700;}
     .error{color:#a62323;font-weight:700;font-size:12px;margin-top:-2px;margin-bottom:8px;}
-    .success{background:#f0fbf7;border:1px solid rgba(45,99,97,0.3);color:#0c3f32;padding:10px 12px;border-radius:12px;font-weight:700;margin-top:8px;}
+    .success{background:#E4C786;border:1px solid rgba(211,94,14,0.3);color:#C74D0C;padding:10px 12px;border-radius:12px;font-weight:700;margin-top:8px;}
     .learning{border:1px dashed var(--line);border-radius:14px;padding:14px;background:#f7faf9;margin-bottom:14px;}
     .list{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
     .stack{display:grid;gap:12px;}
@@ -44,12 +44,12 @@
     .modal{max-width:620px;width:100%;background:#fff;border-radius:16px;padding:18px;border:1px solid var(--line);box-shadow:var(--glow);position:relative;}
     .close-btn{position:absolute;top:10px;right:10px;background:#f3f6f5;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer;}
     .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
-    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#D35E0E;text-decoration:none;}
     .mf-topnav{display:flex;gap:14px;align-items:center;}
     .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
     .mf-topnav a:hover{text-decoration:underline;}
     .mf-top-actions{display:flex;align-items:center;gap:8px;}
-    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .icon-btn{border:1px solid rgba(211,94,14,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .btn.small{padding:8px 12px;border-radius:14px;}
     .font-large{font-size:110%;}
     .theme-dark{background:#0f1f1e;color:#f5f7f6;}
@@ -61,16 +61,22 @@
 </head>
 <body>
   <header class="mf-topbar">
-    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <a class="mf-logo-link" href="index.html">MITU</a>
     <nav class="mf-topnav">
       <a href="index.html">Home</a>
       <a href="catalogue.html">Marketplace</a>
       <a href="investor.html">Investors</a>
       <a href="founder.html">Founders</a>
-      <a href="support.html">Support</a>
+      
     </nav>
     <div class="mf-top-actions">
       <button class="icon-btn" aria-label="Search">🔍</button>
+      <div class="lang-switch">
+        <label>Language</label>
+        <select id="langSelect">
+          <option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="ru">Русский</option>
+        </select>
+      </div>
       <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
       <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
       <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
@@ -79,12 +85,6 @@
   <div class="shell">
     <a class="back" href="crowdfunding.html">← Back to capital hub</a>
     <section class="hero">
-      <div class="lang-switch">
-        <label>Language</label>
-        <select id="langSelect">
-          <option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option><option value="ur">اردو</option><option value="hi">हिन्दी</option><option value="ru">Русский</option>
-        </select>
-      </div>
       <div class="pill">For Founders</div>
       <h1>Publish your factory campaign</h1>
       <p class="lead">Share your factory focus, ROI highlights, decks, and capital needs. Get guidance and sample decks to craft a winning raise.</p>
@@ -338,7 +338,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -375,7 +375,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -383,7 +383,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -391,7 +391,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -405,21 +405,21 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }

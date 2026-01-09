@@ -13,9 +13,9 @@
       --muted: #516461;
       --panel: #f7f9f8;
       --line: rgba(45, 99, 97, 0.2);
-      --primary: #2d6361;
-      --primary-strong: #1f4745;
-      --primary-soft: #3f7f7c;
+      --primary: #D35E0E;
+      --primary-strong: #CF911D;
+      --primary-soft: #C74D0C;
       --accent: #ffb454;
       --glow: 0 25px 80px rgba(45, 99, 97, 0.18);
     }
@@ -24,7 +24,7 @@
     body {
       margin: 0;
       font-family: 'Space Grotesk', 'Noto Sans', system-ui, sans-serif;
-      background: radial-gradient(circle at 12% 20%, rgba(45, 99, 97, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(63, 127, 124, 0.18) 0, transparent 32%), #eef2f1;
+      background: radial-gradient(circle at 12% 20%, rgba(45, 99, 97, 0.14) 0, transparent 30%), radial-gradient(circle at 82% 0%, rgba(63, 127, 124, 0.18) 0, transparent 32%), #E4C786;
       color: var(--ink);
       padding: 32px;
       min-height: 100vh;
@@ -36,7 +36,7 @@
     .top-nav a { color: var(--primary); font-weight: 700; text-decoration: none; }
     .top-nav a:hover { text-decoration: underline; }
     .hero {
-      background: linear-gradient(135deg, #1f4745, #2d6361 40%, #1f4745);
+      background: linear-gradient(135deg, #CF911D, #D35E0E 40%, #CF911D);
       color: #fff;
       border-radius: 18px;
       padding: 26px;
@@ -56,7 +56,7 @@
     }
     .hero::before {
       bottom: -60px; left: -80px; top: auto;
-      background: radial-gradient(circle, rgba(63,127,124,0.22), transparent 62%);
+      background: radial-gradient(circle, rgba(199,77,12,0.22), transparent 62%);
     }
     h1 { margin: 6px 0 10px; font-size: 32px; letter-spacing: -0.5px; }
     .eyebrow {
@@ -97,7 +97,7 @@
     }
     .product-head { display:flex; justify-content: space-between; gap: 8px; align-items: center; }
     .product-head h3 { margin: 0; font-size: 18px; }
-    .badge { padding: 6px 10px; border-radius: 10px; background: rgba(45,99,97,0.12); color: var(--primary-strong); font-weight: 700; font-size: 13px; }
+    .badge { padding: 6px 10px; border-radius: 10px; background: rgba(211,94,14,0.12); color: var(--primary-strong); font-weight: 700; font-size: 13px; }
     .specs { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
     .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 8px; }
     .price-pill {
@@ -118,7 +118,7 @@
       background: var(--primary);
       color: #fff;
       transition: transform 0.08s ease, box-shadow 0.1s ease;
-      box-shadow: 0 10px 30px rgba(45,99,97,0.25);
+      box-shadow: 0 10px 30px rgba(211,94,14,0.25);
     }
     .btn.ghost { background: #fff; color: var(--primary-strong); border: 1px solid var(--line); box-shadow: none; }
     .btn:active { transform: translateY(1px); box-shadow: none; }
@@ -132,7 +132,7 @@
       font-family: inherit;
       outline: none;
     }
-    input:focus, textarea:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.18); }
+    input:focus, textarea:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(211,94,14,0.18); }
     textarea { resize: vertical; min-height: 90px; }
     .form-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
     .cart { margin-top: 12px; display: grid; gap: 8px; }
@@ -150,7 +150,7 @@
     }
     .chat-log { max-height: 160px; overflow: auto; display: grid; gap: 6px; margin-top: 8px; }
     .chat-msg { background: #eef5f4; padding: 8px 10px; border-radius: 10px; }
-    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 12px; background: rgba(45,99,97,0.12); font-weight: 700; color: var(--primary-strong); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 12px; background: rgba(211,94,14,0.12); font-weight: 700; color: var(--primary-strong); }
     .lineup {
       margin-top: 14px;
       padding: 14px;
@@ -181,7 +181,7 @@
       font-size: 14px;
       outline: none;
     }
-    .lineup-controls input:focus, .lineup-controls select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,99,97,0.14); }
+    .lineup-controls input:focus, .lineup-controls select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(211,94,14,0.14); }
     .lineup-table-wrap { overflow: auto; }
     .lineup table { width: 100%; border-collapse: collapse; min-width: 720px; }
     .lineup th, .lineup td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); }
@@ -197,13 +197,13 @@
 </head>
 <body>
   <header class="mf-topbar">
-    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <a class="mf-logo-link" href="index.html">MITU</a>
     <nav class="mf-topnav">
       <a href="index.html">Home</a>
       <a href="catalogue.html">Marketplace</a>
       <a href="investor.html">Investors</a>
       <a href="founder.html">Founders</a>
-      <a href="support.html">Support</a>
+      
     </nav>
     <div class="mf-top-actions">
       <button class="icon-btn" aria-label="Search">🔍</button>
@@ -646,7 +646,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -683,7 +683,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -691,7 +691,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -699,7 +699,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -713,32 +713,32 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
 
     .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
-    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#D35E0E;text-decoration:none;}
     .mf-topnav{display:flex;gap:14px;align-items:center;}
     .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
     .mf-topnav a:hover{text-decoration:underline;}
     .mf-top-actions{display:flex;align-items:center;gap:8px;}
-    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .icon-btn{border:1px solid rgba(211,94,14,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .btn.small{padding:8px 12px;border-radius:14px;}
     .font-large{font-size:110%;}
     .theme-dark{background:#0f1f1e;color:#f5f7f6;}

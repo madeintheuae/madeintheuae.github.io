@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TechMENA — MENA Manufacturing Wins</title>
+  <title>MITUtech — GCC Manufacturing Wins</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2d6361;
+      --primary: #D35E0E;
       --ink: #0d1b1a;
       --muted: #4f6664;
-      --line: rgba(45,99,97,0.18);
+      --line: rgba(211,94,14,0.18);
       --panel: #fff;
-      --glow: 0 24px 64px rgba(45,99,97,0.14);
+      --glow: 0 24px 64px rgba(211,94,14,0.14);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 15% 15%, rgba(45,99,97,0.12) 0, transparent 30%), #eef2f1;
+      background: radial-gradient(circle at 15% 15%, rgba(211,94,14,0.12) 0, transparent 30%), #E4C786;
       color: var(--ink);
       padding: 28px;
       min-height: 100vh;
@@ -58,34 +58,45 @@
       text-decoration: none;
     }
     .social svg { width: 18px; height: 18px; }
+    .header-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-btn {
+      border: 1px solid rgba(211,94,14,0.24);
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary);
+    }
     .hero {
       padding: 20px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #1f4745, #2d6361);
+      background: linear-gradient(135deg, #CF911D, #D35E0E);
       color: #fff;
       box-shadow: var(--glow);
       position: relative;
       overflow: hidden;
     }
     .lang-switch {
-      position: absolute;
-      top: 12px;
-      right: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.14);
-      padding: 8px 10px;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.24);
+      border: 1px solid rgba(211,94,14,0.2);
     }
-    .lang-switch label { font-weight: 600; font-size: 13px; color: #e9f1ef; }
+    .lang-switch label { font-weight: 600; font-size: 12px; color: #0d1b1a; }
     .lang-switch select {
       border: none;
       border-radius: 10px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.92);
-      color: #1f4745;
+      padding: 6px 8px;
+      background: #fff;
+      color: #C74D0C;
       font-weight: 700;
       outline: none;
     }
@@ -169,7 +180,7 @@
       background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.26), transparent 55%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.18), transparent 60%);
       mix-blend-mode: screen;
     }
-    .tag { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(45,99,97,0.12); color: var(--primary); font-weight: 700; font-size: 12px; }
+    .tag { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(211,94,14,0.12); color: var(--primary); font-weight: 700; font-size: 12px; }
     h3 { margin: 0; letter-spacing: -0.2px; }
     p { margin: 0; color: var(--muted); line-height: 1.5; }
     .meta { font-weight: 700; color: var(--primary); }
@@ -207,24 +218,27 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M13.3 20.5v-6h2.1l.3-2.3h-2.4v-1.5c0-.67.22-1.15 1.2-1.15h1.3V7.2c-.23-.03-.99-.1-1.9-.1-1.87 0-3.16 1.15-3.16 3.25v1.86H8.8v2.3h1.95v6h2.55Z" fill="currentColor"/></svg>
         </a>
       </div>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search">🔍</button>
+        <div class="lang-switch">
+          <label data-i18n="language">Language</label>
+          <select id="langSelect">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="fr">Français</option>
+            <option value="ur">اردو</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+      </div>
       <div class="meta" data-i18n="meta">ProdLink Dispatch · Week of Innovation</div>
     </header>
 
     <section class="hero">
-      <div class="lang-switch">
-        <label data-i18n="language">Language</label>
-        <select id="langSelect">
-          <option value="en">English</option>
-          <option value="ar">العربية</option>
-          <option value="fr">Français</option>
-          <option value="ur">اردو</option>
-          <option value="hi">हिन्दी</option>
-          <option value="ru">Русский</option>
-        </select>
-      </div>
       <div class="tag" data-i18n="tag">Newsletter</div>
-      <h1 data-i18n="title">TechMENA — MENA Manufacturing Momentum</h1>
-      <p class="lead" data-i18n="lead">Highlights of technology, production wins, and factory launches across the region.</p>
+      <h1 data-i18n="title">MITUtech — GCC Manufacturing Momentum</h1>
+      <p class="lead" data-i18n="lead">Highlights of technology, production wins, and factory launches across GCC countries and cities with a UAE anchor.</p>
     </section>
 
     <section class="news-layout" aria-label="Newsletter stories">
@@ -235,19 +249,19 @@
         </div>
         <div class="story-grid">
           <article class="card feature">
-            <div class="thumb" style="--c1:#3f7f7c;--c2:#7bcfbe;"></div>
+            <div class="thumb" style="--c1:#C74D0C;--c2:#7bcfbe;"></div>
             <span class="tag" data-i18n="story2Tag">UAE</span>
             <h3 data-i18n="story2Title">Sharjah foodtech park ships its 10 millionth pack</h3>
             <p data-i18n="story2Body">Cold-chain ready meals from GulfFresh now export to 12 countries after a rapid expansion supported by AI-driven demand planning.</p>
           </article>
           <article class="card feature">
-            <div class="thumb" style="--c1:#2d6361;--c2:#c7efe6;"></div>
+            <div class="thumb" style="--c1:#D35E0E;--c2:#c7efe6;"></div>
             <span class="tag">UAE</span>
-            <h3>MENAFactory backs Nepal founder with AED 15M to launch UAE bronze homeware line</h3>
-            <p>MENAFactory helped raise 15 million dirhams for a Nepalese founder to build the UAE's first bronze utensils factory for premium home production. The project creates skilled roles, revives artisan metallurgy, and shows how inclusive capital can spark new industries across the Emirates.</p>
+            <h3>MITU backs an Al Ain founder with AED 15M to launch a UAE bronze homeware line</h3>
+            <p>MITU helped raise 15 million dirhams for an Al Ain founder to build the UAE’s first bronze utensils factory for premium home production. The project creates skilled roles, revives artisan metallurgy, and keeps advanced homeware production in the Emirates.</p>
           </article>
           <article class="card feature">
-            <div class="thumb" style="--c1:#1f4745;--c2:#f1b24a;"></div>
+            <div class="thumb" style="--c1:#CF911D;--c2:#CF911D;"></div>
             <span class="tag">UAE</span>
             <h3>P&amp;G opens solar powered advanced chemistry plant with zero harmful waste</h3>
             <p>The new UAE branch of P&amp;G uses AI guided reactors, solar energy, and closed loop purification to cut hazardous byproducts to zero. This is a clear call for global manufacturers: move high value chemistry to the UAE and scale cleaner production for the world.</p>
@@ -263,14 +277,14 @@
         <div class="story-grid">
           <article class="card feature">
             <div class="thumb" style="--c1:#336e8a;--c2:#a3cfff;"></div>
-            <span class="tag" data-i18n="story4Tag">Morocco</span>
-            <h3 data-i18n="story4Title">Casablanca textiles lab wins EU sustainability award</h3>
-            <p data-i18n="story4Body">The lab’s closed-loop dyeing process cuts water use by 60%, unlocking premium contracts with two global apparel brands.</p>
+            <span class="tag" data-i18n="story4Tag">Qatar</span>
+            <h3 data-i18n="story4Title">Doha precision polymers hub expands export capacity</h3>
+            <p data-i18n="story4Body">The new line boosts specialty polymer output by 40%, supporting medical and aerospace customers across the GCC.</p>
           </article>
           <article class="card feature">
             <div class="thumb" style="--c1:#2d5778;--c2:#8bc2ff;"></div>
-            <span class="tag" data-i18n="story5Tag">Egypt</span>
-            <h3 data-i18n="story5Title">Alexandria pharma campus launches sterile line</h3>
+            <span class="tag" data-i18n="story5Tag">Kuwait</span>
+            <h3 data-i18n="story5Title">Kuwait City pharma campus launches sterile line</h3>
             <p data-i18n="story5Body">New fill-finish capacity doubles output for injectable therapies, with a GMP audit completed in record time.</p>
           </article>
         </div>
@@ -283,7 +297,7 @@
         </div>
         <div class="bar-grid">
           <article class="card bar">
-            <div class="thumb" style="--c1:#2d6361;--c2:#56a89c;"></div>
+            <div class="thumb" style="--c1:#D35E0E;--c2:#56a89c;"></div>
             <div>
               <span class="tag" data-i18n="story1Tag">Saudi Arabia</span>
               <h3 data-i18n="story1Title">Riyadh composites plant scales to 24/7 automation</h3>
@@ -291,7 +305,7 @@
             </div>
           </article>
           <article class="card bar">
-            <div class="thumb" style="--c1:#2d6361;--c2:#b8e4db;"></div>
+            <div class="thumb" style="--c1:#D35E0E;--c2:#b8e4db;"></div>
             <div>
               <span class="tag" data-i18n="story3Tag">Oman</span>
               <h3 data-i18n="story3Title">Sohar metals hub lights up green smelter</h3>
@@ -303,7 +317,7 @@
             <div>
               <span class="tag" data-i18n="story6Tag">Bahrain</span>
               <h3 data-i18n="story6Title">Manama advanced packaging fab goes live</h3>
-              <p data-i18n="story6Body">The fab’s first production run hits 95% yield, supplying IoT device makers across the GCC and North Africa.</p>
+              <p data-i18n="story6Body">The fab’s first production run hits 95% yield, supplying IoT device makers across the GCC.</p>
             </div>
           </article>
         </div>
@@ -317,8 +331,8 @@
         meta: "ProdLink Dispatch · Week of Innovation",
         language: "Language",
         tag: "Newsletter",
-        title: "TechMENA — MENA Manufacturing Momentum",
-        lead: "Highlights of technology, production wins, and factory launches across the region.",
+        title: "MITUtech — GCC Manufacturing Momentum",
+        lead: "Highlights of technology, production wins, and factory launches across GCC countries and cities with a UAE anchor.",
         worldTitle: "World News",
         worldLead: "Global factories, sustainability wins, and cross-border production moves.",
         gccTitle: "GCC Countries",
@@ -334,23 +348,23 @@
         story3Tag: "Oman",
         story3Title: "Sohar metals hub lights up green smelter",
         story3Body: "A new electric-arc line reduces emissions by 35%, enabling certified low-carbon steel for regional construction megaprojects.",
-        story4Tag: "Morocco",
-        story4Title: "Casablanca textiles lab wins EU sustainability award",
-        story4Body: "The lab’s closed-loop dyeing process cuts water use by 60%, unlocking premium contracts with two global apparel brands.",
-        story5Tag: "Egypt",
-        story5Title: "Alexandria pharma campus launches sterile line",
+        story4Tag: "Qatar",
+        story4Title: "Doha precision polymers hub expands export capacity",
+        story4Body: "The new line boosts specialty polymer output by 40%, supporting medical and aerospace customers across the GCC.",
+        story5Tag: "Kuwait",
+        story5Title: "Kuwait City pharma campus launches sterile line",
         story5Body: "New fill-finish capacity doubles output for injectable therapies, with a GMP audit completed in record time.",
         story6Tag: "Bahrain",
         story6Title: "Manama advanced packaging fab goes live",
-        story6Body: "The fab’s first production run hits 95% yield, supplying IoT device makers across the GCC and North Africa."
+        story6Body: "The fab’s first production run hits 95% yield, supplying IoT device makers across the GCC."
       },
       ar: {
         back: "← العودة إلى الصفحة الرئيسية",
         meta: "نشرة برودلينك · أسبوع الابتكار",
         language: "اللغة",
         tag: "النشرة",
-        title: "تك-مينا — زخم التصنيع في المنطقة",
-        lead: "أبرز أخبار التقنية، إنجازات الإنتاج، وافتتاح المصانع في أنحاء المنطقة.",
+        title: "تك-ميتو — زخم التصنيع في دول الخليج",
+        lead: "أبرز أخبار التقنية، إنجازات الإنتاج، وافتتاح المصانع عبر دول ومدن الخليج مع تركيز على الإمارات.",
         worldTitle: "أخبار العالم",
         worldLead: "مصانع عالمية، إنجازات الاستدامة، وتحركات الإنتاج عبر الحدود.",
         gccTitle: "دول مجلس التعاون",
@@ -366,27 +380,27 @@
         story3Tag: "عُمان",
         story3Title: "مركز معادن صحار يشغّل مصهراً أخضر",
         story3Body: "خط القوس الكهربائي الجديد يخفض الانبعاثات 35٪، ويتيح فولاذاً منخفض الكربون لمشاريع البناء الكبرى.",
-        story4Tag: "المغرب",
-        story4Title: "مختبر منسوجات الدار البيضاء يفوز بجائزة استدامة أوروبية",
-        story4Body: "عملية الصبغ الدائرية تقلل استهلاك المياه 60٪، وتفتح عقوداً مميزة مع علامتين عالميتين.",
-        story5Tag: "مصر",
-        story5Title: "حرم الإسكندرية الدوائي يطلق خط التعقيم",
+        story4Tag: "قطر",
+        story4Title: "مركز البوليمرات الدقيقة في الدوحة يوسع القدرة التصديرية",
+        story4Body: "خط جديد يرفع إنتاج البوليمرات المتخصصة بنسبة 40٪ لدعم عملاء طبيين وفضائيين في دول الخليج.",
+        story5Tag: "الكويت",
+        story5Title: "مجمع الأدوية في مدينة الكويت يطلق خط التعقيم",
         story5Body: "الطاقة الإنتاجية الجديدة تضاعف إنتاج الحقن، مع اجتياز تدقيق GMP في وقت قياسي.",
         story6Tag: "البحرين",
         story6Title: "تشغيل مصنع التغليف المتقدم في المنامة",
-        story6Body: "أول تشغيل يحقق 95٪ نسبة نجاح، لتزويد مصنعي أجهزة إنترنت الأشياء في الخليج وشمال أفريقيا."
+        story6Body: "أول تشغيل يحقق 95٪ نسبة نجاح، لتزويد مصنعي أجهزة إنترنت الأشياء في الخليج."
       },
       fr: {
         back: "← Retour au hub principal",
         meta: "Dispatch ProdLink · Semaine de l'innovation",
         language: "Langue",
         tag: "Newsletter",
-        title: "TechMENA — Dynamique industrielle MENA",
-        lead: "Temps forts tech, succès industriels et lancements d'usines dans la région.",
-        worldTitle: "Actualites mondiales",
-        worldLead: "Usines globales, victoires durables et mouvements de production transfrontaliers.",
+        title: "MITUtech — Dynamique industrielle GCC",
+        lead: "Temps forts tech, succès industriels et lancements d'usines dans les pays et villes du GCC, avec un ancrage EAU.",
+        worldTitle: "Actualités mondiales",
+        worldLead: "Usines mondiales, succès durables et mouvements de production transfrontaliers.",
         gccTitle: "Pays du CCG",
-        gccLead: "Montées en puissance regionales, automatisation et expansion des chaines logistiques GCC.",
+        gccLead: "Montées en puissance régionales, automatisation et expansion des chaînes logistiques GCC.",
         uaeTitle: "Actualites des EAU",
         uaeLead: "Lancements locaux, elan a l'export et capacites foodtech.",
         story1Tag: "Arabie saoudite",
@@ -398,23 +412,23 @@
         story3Tag: "Oman",
         story3Title: "Le hub métallurgique de Sohar lance un haut-fourneau vert",
         story3Body: "Une nouvelle ligne à arc électrique réduit les émissions de 35 %, fournissant de l'acier bas carbone pour les mégaprojets.",
-        story4Tag: "Maroc",
-        story4Title: "Le labo textile de Casablanca remporte un prix européen",
-        story4Body: "Le procédé de teinture en circuit fermé réduit l'eau de 60 %, ouvrant des contrats premium avec deux marques mondiales.",
-        story5Tag: "Égypte",
-        story5Title: "Campus pharma d'Alexandrie lance une ligne stérile",
+        story4Tag: "Qatar",
+        story4Title: "Le hub polymères de Doha augmente la capacité export",
+        story4Body: "La nouvelle ligne augmente de 40 % la production de polymères spécialisés pour le médical et l’aéronautique GCC.",
+        story5Tag: "Koweït",
+        story5Title: "Le campus pharma de Koweït City lance une ligne stérile",
         story5Body: "La nouvelle capacité double la production injectable, avec un audit BPF réussi en un temps record.",
         story6Tag: "Bahreïn",
         story6Title: "La fab d'emballage avancé de Manama démarre",
-        story6Body: "La première série atteint 95 % de rendement, alimentant les fabricants d'IoT dans le CCG et l'Afrique du Nord."
+        story6Body: "La première série atteint 95 % de rendement, alimentant les fabricants d'IoT dans le GCC."
       },
       ur: {
         back: "← مرکزی صفحے پر واپس جائیں",
         meta: "پروڈلنک ڈسپیچ · ہفتۂ اختراع",
         language: "زبان",
         tag: "نیوزلیٹر",
-        title: "ٹیک مینا — مینوفیکچرنگ کی رفتار",
-        lead: "ٹیکنالوجی کی جھلکیاں، پیداواری کامیابیاں، اور فیکٹری لانچز۔",
+        title: "MITUtech — جی سی سی میں مینوفیکچرنگ کی رفتار",
+        lead: "جی سی سی ممالک اور شہروں میں ٹیک ہائی لائٹس، پیداواری کامیابیاں، اور فیکٹری لانچز، یو اے ای فوکس کے ساتھ۔",
         worldTitle: "عالمی خبریں",
         worldLead: "عالمی فیکٹریاں، پائیداری کی کامیابیاں، اور سرحد پار پیداوار کی نقل و حرکت۔",
         gccTitle: "جی سی سی ممالک",
@@ -430,23 +444,23 @@
         story3Tag: "عمان",
         story3Title: "صحار میٹلز ہب سبز اسمیلٹر چلاتا ہے",
         story3Body: "نئی الیکٹرک آرک لائن 35٪ اخراج کم کرتی ہے اور کم کاربن اسٹیل فراہم کرتی ہے۔",
-        story4Tag: "مراکش",
-        story4Title: "کاسابلانکا ٹیکسٹائل لیب یورپی پائیداری ایوارڈ جیتتی ہے",
-        story4Body: "بند لوپ رنگائی سے پانی کا استعمال 60٪ کم، دو عالمی برانڈز کے ساتھ معاہدے۔",
-        story5Tag: "مصر",
-        story5Title: "اسکندریہ فارما کیمپس سٹرلائن لائن شروع کرتا ہے",
+        story4Tag: "قطر",
+        story4Title: "دوحہ پولیمر ہب ایکسپورٹ صلاحیت بڑھاتا ہے",
+        story4Body: "نئی لائن سے خصوصی پولیمر آؤٹ پٹ 40٪ بڑھا، جی سی سی میں میڈیکل اور ایرو اسپیس کسٹمرز کے لیے۔",
+        story5Tag: "کویت",
+        story5Title: "کویت سٹی فارما کیمپس سٹرل لائن شروع کرتا ہے",
         story5Body: "نئی فل فنش صلاحیت انجیکٹ ایبل آؤٹ پٹ دوگنا کرتی ہے، ریکارڈ وقت میں جی ایم پی آڈٹ مکمل۔",
         story6Tag: "بحرین",
         story6Title: "منامہ ایڈوانسڈ پیکیجنگ فاب چل پڑی",
-        story6Body: "پہلا رن 95٪ ییلڈ حاصل کرتا ہے، جی سی سی اور شمالی افریقہ کے آئی او ٹی مینوفیکچررز کو سپلائی۔"
+        story6Body: "پہلا رن 95٪ ییلڈ حاصل کرتا ہے، جی سی سی کے آئی او ٹی مینوفیکچررز کو سپلائی۔"
       },
       hi: {
         back: "← मुख्य पेज पर वापस",
         meta: "प्रोडलिंक डिस्पैच · नवाचार सप्ताह",
         language: "भाषा",
         tag: "न्यूज़लेटर",
-        title: "टेकMENA — विनिर्माण में रफ़्तार",
-        lead: "टेक हाइलाइट्स, उत्पादन सफलताएँ, और फैक्टरी लॉन्च की झलकियाँ।",
+        title: "MITUtech — GCC विनिर्माण में रफ़्तार",
+        lead: "GCC देशों और शहरों में टेक हाइलाइट्स, उत्पादन सफलताएँ, और फैक्टरी लॉन्च की झलकियाँ, UAE फोकस के साथ।",
         worldTitle: "विश्व समाचार",
         worldLead: "वैश्विक फैक्ट्रियां, सततता की जीतें, और सीमापार उत्पादन।",
         gccTitle: "GCC देश",
@@ -462,23 +476,23 @@
         story3Tag: "ओमान",
         story3Title: "सोहार मेटल्स हब ने ग्रीन स्मेल्टर चालू किया",
         story3Body: "नई इलेक्ट्रिक-आर्क लाइन 35% उत्सर्जन कम करती है और लो-कार्बन स्टील उपलब्ध कराती है।",
-        story4Tag: "मोरक्को",
-        story4Title: "कासाब्लांका टेक्सटाइल लैब ने EU स्थिरता पुरस्कार जीता",
-        story4Body: "क्लोज़्ड-लूप डाईंग से पानी की खपत 60% घटती है, दो वैश्विक ब्रांड्स से प्रीमियम अनुबंध मिलते हैं।",
-        story5Tag: "मिस्र",
-        story5Title: "एलेक्ज़ेंड्रिया फार्मा कैंपस ने स्टेराइल लाइन शुरू की",
+        story4Tag: "क़तर",
+        story4Title: "दोहा पॉलिमर हब ने एक्सपोर्ट क्षमता बढ़ाई",
+        story4Body: "नई लाइन से स्पेशलिटी पॉलिमर आउटपुट 40% बढ़ा, GCC में मेडिकल और एयरोस्पेस ग्राहकों के लिए।",
+        story5Tag: "कुवैत",
+        story5Title: "कुवैत सिटी फार्मा कैंपस ने स्टेराइल लाइन शुरू की",
         story5Body: "नई फिल-फिनिश क्षमता इंजेक्टेबल उत्पादन दोगुना करती है, रिकॉर्ड समय में GMP ऑडिट पास।",
         story6Tag: "बहरीन",
         story6Title: "मनामा एडवांस्ड पैकेजिंग फेब शुरू",
-        story6Body: "पहला रन 95% यील्ड प्राप्त करता है, GCC और उत्तरी अफ्रीका में IoT निर्माताओं को आपूर्ति।"
+        story6Body: "पहला रन 95% यील्ड प्राप्त करता है, GCC में IoT निर्माताओं को आपूर्ति।"
       },
       ru: {
         back: "← Назад на главную",
         meta: "Рассылка ProdLink · Неделя инноваций",
         language: "Язык",
         tag: "Рассылка",
-        title: "TechMENA — импульс производства в MENA",
-        lead: "Главные tech-новости, производственные успехи и запуск заводов по региону.",
+        title: "MITUtech — импульс производства в GCC",
+        lead: "Главные tech-новости, производственные успехи и запуск заводов в странах и городах GCC с фокусом на ОАЭ.",
         worldTitle: "Мировые новости",
         worldLead: "Глобальные заводы, победы в устойчивости и трансграничные производственные шаги.",
         gccTitle: "Страны GCC",
@@ -494,15 +508,15 @@
         story3Tag: "Оман",
         story3Title: "Металлургический хаб Сухар запускает зелёный плавильный цех",
         story3Body: "Новая дуговая линия снижает выбросы на 35%, обеспечивая низкоуглеродистую сталь для мегапроектов.",
-        story4Tag: "Марокко",
-        story4Title: "Текстильная лаборатория Касабланки получила европейскую награду",
-        story4Body: "Замкнутый цикл окраски сокращает расход воды на 60% и приносит премиальные контракты с двумя мировыми брендами.",
-        story5Tag: "Египет",
-        story5Title: "Фармакампус Александрии запускает стерильную линию",
+        story4Tag: "Катар",
+        story4Title: "Полимерный хаб Дохи расширяет экспортные мощности",
+        story4Body: "Новая линия увеличивает выпуск спецполимеров на 40% для медицинских и аэрокосмических клиентов GCC.",
+        story5Tag: "Кувейт",
+        story5Title: "Фармкластер Кувейт-Сити запускает стерильную линию",
         story5Body: "Новая fill-finish мощность удваивает выпуск инъекционных препаратов, аудит GMP пройден рекордно быстро.",
         story6Tag: "Бахрейн",
         story6Title: "Запущен завод продвинутой упаковки в Манаме",
-        story6Body: "Первый запуск дал 95% выхода, поставляя производителям IoT в GCC и Северной Африке."
+        story6Body: "Первый запуск дал 95% выхода, поставляя производителям IoT в GCC."
       }
     };
 
@@ -531,7 +545,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -568,7 +582,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -576,7 +590,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -584,7 +598,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -598,21 +612,21 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }

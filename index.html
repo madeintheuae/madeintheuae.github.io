@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProdLink Hub — MENA Manufacturing Suite</title>
+  <title>ProdLink Hub — MITU (Made in the UAE) Manufacturing Suite</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2d6361;
-      --primary-2: #3f7f7c;
+      --primary: #D35E0E;
+      --primary-2: #C74D0C;
       --ink: #0d1b1a;
       --muted: #4f6664;
       --panel: rgba(255,255,255,0.86);
-      --line: rgba(45,99,97,0.18);
-      --glow: 0 24px 64px rgba(45,99,97,0.18);
+      --line: rgba(211,94,14,0.18);
+      --glow: 0 24px 64px rgba(211,94,14,0.18);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 15% 15%, rgba(45,99,97,0.12) 0, transparent 28%), radial-gradient(circle at 80% 0%, rgba(63,127,124,0.16) 0, transparent 32%), #eef2f1;
+      background: radial-gradient(circle at 15% 15%, rgba(211,94,14,0.12) 0, transparent 28%), radial-gradient(circle at 80% 0%, rgba(199,77,12,0.16) 0, transparent 32%), #E4C786;
       color: var(--ink);
       padding: 32px;
       min-height: 100vh;
@@ -36,7 +36,7 @@
       margin: 0 auto;
     }
     .hero {
-      background: linear-gradient(135deg, #1f4745, #2d6361 40%, #1f4745 80%);
+      background: linear-gradient(135deg, #CF911D, #D35E0E 40%, #CF911D 80%);
       color: #fff;
       border-radius: 22px;
       padding: 32px;
@@ -45,24 +45,21 @@
       box-shadow: var(--glow);
     }
     .lang-switch {
-      position: absolute;
-      top: 16px;
-      right: 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.14);
-      padding: 8px 10px;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.24);
+      border: 1px solid rgba(211,94,14,0.2);
     }
-    .lang-switch label { font-weight: 600; font-size: 13px; color: #e9f1ef; }
+    .lang-switch label { font-weight: 600; font-size: 12px; color: #0d1b1a; }
     .lang-switch select {
       border: none;
       border-radius: 10px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.92);
-      color: #1f4745;
+      padding: 6px 8px;
+      background: #fff;
+      color: #C74D0C;
       font-weight: 700;
       outline: none;
     }
@@ -72,7 +69,7 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(63,127,124,0.26), transparent 65%);
+      background: radial-gradient(circle, rgba(199,77,12,0.26), transparent 65%);
       right: -60px;
       top: -40px;
       filter: blur(8px);
@@ -81,7 +78,7 @@
       left: -80px;
       top: auto;
       bottom: -60px;
-      background: radial-gradient(circle, rgba(45,99,97,0.28), transparent 65%);
+      background: radial-gradient(circle, rgba(211,94,14,0.28), transparent 65%);
     }
     .eyebrow {
       display: inline-flex;
@@ -122,18 +119,18 @@
       gap: 10px;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(45,99,97,0.18); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(211,94,14,0.18); }
     .card h3 { margin: 0; font-size: 20px; letter-spacing: -0.2px; }
     .card p { margin: 0; color: var(--muted); line-height: 1.5; }
     .tag {
       display: inline-flex;
       padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(45,99,97,0.12);
+      background: rgba(211,94,14,0.12);
       color: var(--primary-2);
       font-weight: 700;
       font-size: 12px;
-      border: 1px solid rgba(45,99,97,0.2);
+      border: 1px solid rgba(211,94,14,0.2);
     }
     .link {
       display: inline-flex;
@@ -162,7 +159,7 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .btn.primary { background: #ffffff; color: #1f4745; }
+    .btn.primary { background: #ffffff; color: #CF911D; }
     .btn.ghost { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); color: #ffffff; }
     @media (max-width: 700px) {
       body { padding: 20px; }
@@ -172,24 +169,17 @@
 </head>
 <body>
   <header class="mf-topbar">
-    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <a class="mf-logo-link" href="index.html">MITU</a>
     <nav class="mf-topnav">
       <a href="index.html">Home</a>
       <a href="catalogue.html">Marketplace</a>
       <a href="investor.html">Investors</a>
       <a href="founder.html">Founders</a>
       <a href="profile.html">Profile</a>
-      <a href="support.html">Support</a>
+      
     </nav>
     <div class="mf-top-actions">
       <button class="icon-btn" aria-label="Search">🔍</button>
-      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
-      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
-    </div>
-  </header>
-  <main class="shell">
-    <section class="hero">
       <div class="lang-switch">
         <label data-i18n="language">Language</label>
         <select id="langSelect">
@@ -201,9 +191,16 @@
           <option value="ru">Русский</option>
         </select>
       </div>
-      <div class="eyebrow" data-i18n="eyebrow">ProdLink Hub · GCC + MENA</div>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow" data-i18n="eyebrow">ProdLink Hub · MITU (Made in the UAE)</div>
       <h1 data-i18n="heroTitle">Explore manufacturing intelligence in three focused spaces.</h1>
-      <p class="lead" data-i18n="heroLead">Jump into our latest newsletter, search the MENA manufacturers catalogue, or launch a crowdfunding campaign for new factories.</p>
+      <p class="lead" data-i18n="heroLead">Jump into our latest GCC newsletter, search the UAE manufacturers catalogue, or launch a crowdfunding campaign for new UAE factories.</p>
       <div class="hero-actions">
         <a class="btn ghost" href="login.html">Sign in to continue</a>
       </div>
@@ -212,14 +209,14 @@
     <section class="grid" aria-label="Main destinations">
       <article class="card">
         <span class="tag" data-i18n="tag1">Latest stories</span>
-        <h3 data-i18n="card1Title">TechMENA Newsletter</h3>
-        <p data-i18n="card1Body">Success stories across MENA manufacturing, factory launches, and frontier production wins—curated weekly.</p>
+        <h3 data-i18n="card1Title">MITUtech Newsletter</h3>
+        <p data-i18n="card1Body">Success stories from GCC countries and cities with a strong UAE manufacturing focus—curated weekly.</p>
         <a class="link" href="newsletter.html" data-i18n="card1Cta">Read the newsletter →</a>
       </article>
 
       <article class="card">
         <span class="tag" data-i18n="tag2">Live search</span>
-        <h3 data-i18n="card2Title">MENA Manufacturers Catalogue</h3>
+        <h3 data-i18n="card2Title">UAE Manufacturers Catalogue</h3>
         <p data-i18n="card2Body">Search, filter, and browse merged manufacturer data with multilingual support and file uploads.</p>
         <a class="link" href="catalogue.html" data-i18n="card2Cta">Open the catalogue →</a>
       </article>
@@ -235,17 +232,17 @@
   <script>
     const translations = {
       en: {
-        eyebrow: "ProdLink Hub · GCC + MENA",
+        eyebrow: "ProdLink Hub · MITU (Made in the UAE)",
         tag1: "Latest stories",
         tag2: "Live search",
         tag3: "Capital & ideas",
         language: "Language",
         heroTitle: "Explore manufacturing intelligence in three focused spaces.",
-        heroLead: "Jump into our latest newsletter, search the MENA manufacturers catalogue, or launch a crowdfunding campaign for new factories.",
-        card1Title: "TechMENA Newsletter",
-        card1Body: "Success stories across MENA manufacturing, factory launches, and frontier production wins—curated weekly.",
+        heroLead: "Jump into our latest GCC newsletter, search the UAE manufacturers catalogue, or launch a crowdfunding campaign for new UAE factories.",
+        card1Title: "MITUtech Newsletter",
+        card1Body: "Success stories from GCC countries and cities with a strong UAE manufacturing focus—curated weekly.",
         card1Cta: "Read the newsletter →",
-        card2Title: "MENA Manufacturers Catalogue",
+        card2Title: "UAE Manufacturers Catalogue",
         card2Body: "Search, filter, and browse merged manufacturer data with multilingual support and file uploads.",
         card2Cta: "Open the catalogue →",
         card3Title: "Crowdfunding Platform",
@@ -253,17 +250,17 @@
         card3Cta: "Start funding →"
       },
       ar: {
-        eyebrow: "بودلينك هب · الخليج والشرق الأوسط",
+        eyebrow: "بودلينك هب · MITU (صنع في الإمارات)",
         tag1: "أحدث القصص",
         tag2: "بحث مباشر",
         tag3: "رأس المال والأفكار",
         language: "اللغة",
         heroTitle: "استكشف معلومات التصنيع عبر ثلاث مساحات مركزة.",
         heroLead: "انتقل إلى أحدث نشرتنا، ابحث في كتالوج المصنّعين، أو أطلق حملة تمويل مصنع جديد.",
-        card1Title: "نشرة تك-مينا",
-        card1Body: "قصص نجاح التصنيع وإطلاق المصانع وإنجازات الإنتاج في المنطقة، باختيار أسبوعي.",
+        card1Title: "نشرة MITUtech",
+        card1Body: "قصص نجاح من دول الخليج ومدنها مع تركيز على تصنيع الإمارات—باختيار أسبوعي.",
         card1Cta: "اقرأ النشرة →",
-        card2Title: "كتالوج مصنّعي مينا",
+        card2Title: "كتالوج مصنّعي الإمارات",
         card2Body: "ابحث وفلتر وتصفح بيانات المصانع المدمجة مع دعم لغات متعددة وتحميل ملفات.",
         card2Cta: "افتح الكتالوج →",
         card3Title: "منصة التمويل الجماعي",
@@ -271,17 +268,17 @@
         card3Cta: "ابدأ التمويل →"
       },
       fr: {
-        eyebrow: "ProdLink Hub · CCG + MENA",
+        eyebrow: "ProdLink Hub · MITU (Fabriqué aux Émirats)",
         tag1: "Dernières histoires",
         tag2: "Recherche en direct",
         tag3: "Capital & idées",
         language: "Langue",
         heroTitle: "Explorez l’intelligence industrielle dans trois espaces dédiés.",
-        heroLead: "Lisez notre dernière newsletter, cherchez dans le catalogue des fabricants MENA, ou lancez une campagne de financement d’usine.",
-        card1Title: "Newsletter TechMENA",
+        heroLead: "Lisez notre newsletter GCC, cherchez dans le catalogue des fabricants des Émirats, ou lancez une campagne pour de nouvelles usines aux Émirats.",
+        card1Title: "Newsletter MITUtech",
         card1Body: "Histoires de succès industriel, lancements d’usines et victoires de production, sélection hebdomadaire.",
         card1Cta: "Lire la newsletter →",
-        card2Title: "Catalogue des fabricants MENA",
+        card2Title: "Catalogue des fabricants des Émirats",
         card2Body: "Recherchez, filtrez et parcourez les données fusionnées avec support multilingue et import de fichiers.",
         card2Cta: "Ouvrir le catalogue →",
         card3Title: "Plateforme de financement",
@@ -289,17 +286,17 @@
         card3Cta: "Commencer le financement →"
       },
       ur: {
-        eyebrow: "پروڈلنک ہب · خلیج اور مشرق وسطیٰ",
+        eyebrow: "پروڈلنک ہب · ایم آئی ٹی یو (میڈ اِن دی یو اے ای)",
         tag1: "تازہ ترین کہانیاں",
         tag2: "لائیو تلاش",
         tag3: "سرمایہ اور خیالات",
         language: "زبان",
         heroTitle: "تین منتخب حصوں میں صنعتی بصیرت دریافت کریں۔",
-        heroLead: "نئی نیوز لیٹر دیکھیں، مینوفیکچررز کیٹلاگ میں تلاش کریں، یا نئی فیکٹری کے لیے کراؤڈفنڈنگ شروع کریں۔",
-        card1Title: "ٹیک مینا نیوزلیٹر",
-        card1Body: "مینوفیکچرنگ کی کامیابیاں، فیکٹری لانچز، اور پیداواری فتوحات—ہفتہ وار انتخاب۔",
+        heroLead: "جی سی سی نیوز لیٹر دیکھیں، یو اے ای مینوفیکچررز کیٹلاگ میں تلاش کریں، یا نئی یو اے ای فیکٹری کے لیے کراؤڈفنڈنگ شروع کریں۔",
+        card1Title: "MITUtech نیوزلیٹر",
+        card1Body: "جی سی سی میں مینوفیکچرنگ کی کامیابیاں اور فیکٹری لانچز، یو اے ای فوکس کے ساتھ—ہفتہ وار انتخاب۔",
         card1Cta: "نیوزلیٹر پڑھیں →",
-        card2Title: "مینا مینوفیکچررز کیٹلاگ",
+        card2Title: "یو اے ای مینوفیکچررز کیٹلاگ",
         card2Body: "مرج شدہ ڈیٹا تلاش کریں، فلٹر کریں، اور بہ کثیر زبان فائل اپلوڈ کے ساتھ براؤز کریں۔",
         card2Cta: "کیٹلاگ کھولیں →",
         card3Title: "کراؤڈفنڈنگ پلیٹ فارم",
@@ -307,17 +304,17 @@
         card3Cta: "فنڈنگ شروع کریں →"
       },
       hi: {
-        eyebrow: "प्रोडलिंक हब · जीसीसी + मिडिल ईस्ट",
+        eyebrow: "प्रोडलिंक हब · MITU (मेड इन यूएई)",
         tag1: "ताज़ा कहानियाँ",
         tag2: "लाइव खोज",
         tag3: "पूँजी और विचार",
         language: "भाषा",
         heroTitle: "तीन केंद्रित स्पेसेज़ में मैन्युफैक्चरिंग इनसाइट्स खोजें।",
-        heroLead: "हमारा नया न्यूज़लेटर पढ़ें, MENA निर्माता कैटलॉग खोजें, या नई फैक्टरी के लिए क्राउडफंडिंग शुरू करें।",
-        card1Title: "TechMENA न्यूज़लेटर",
+        heroLead: "हमारा GCC न्यूज़लेटर पढ़ें, UAE निर्माता कैटलॉग खोजें, या नई UAE फैक्टरी के लिए क्राउडफंडिंग शुरू करें।",
+        card1Title: "MITUtech न्यूज़लेटर",
         card1Body: "मैन्युफैक्चरिंग सफलताएँ, फैक्टरी लॉन्च और उत्पादन जीतें—साप्ताहिक क्यूरेटेड।",
         card1Cta: "न्यूज़लेटर पढ़ें →",
-        card2Title: "MENA निर्माता कैटलॉग",
+        card2Title: "UAE निर्माता कैटलॉग",
         card2Body: "मर्ज डेटा खोजें, फ़िल्टर करें और बहुभाषी समर्थन व फ़ाइल अपलोड के साथ ब्राउज़ करें।",
         card2Cta: "कैटलॉग खोलें →",
         card3Title: "क्राउडफंडिंग प्लेटफ़ॉर्म",
@@ -325,17 +322,17 @@
         card3Cta: "फंडिंग शुरू करें →"
       },
       ru: {
-        eyebrow: "ProdLink Hub · GCC + MENA",
+        eyebrow: "ProdLink Hub · MITU (Made in the UAE)",
         tag1: "Свежие истории",
         tag2: "Живой поиск",
         tag3: "Капитал и идеи",
         language: "Язык",
         heroTitle: "Исследуйте производственные решения в трех направлениях.",
-        heroLead: "Перейдите к свежей рассылке, ищите в каталоге производителей MENA или запустите краудфандинг завода.",
-        card1Title: "Рассылка TechMENA",
+        heroLead: "Читайте GCC-рассылку, ищите в каталоге производителей ОАЭ или запустите краудфандинг нового завода в ОАЭ.",
+        card1Title: "Рассылка MITUtech",
         card1Body: "Истории успеха производства, запуск заводов и победы в отрасли — еженедельный дайджест.",
         card1Cta: "Читать рассылку →",
-        card2Title: "Каталог производителей MENA",
+        card2Title: "Каталог производителей ОАЭ",
         card2Body: "Ищите, фильтруйте и просматривайте объединенные данные с поддержкой языков и загрузкой файлов.",
         card2Cta: "Открыть каталог →",
         card3Title: "Платформа краудфандинга",
@@ -371,7 +368,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -408,7 +405,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -416,7 +413,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -424,7 +421,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -438,32 +435,32 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
 
     .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
-    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#D35E0E;text-decoration:none;}
     .mf-topnav{display:flex;gap:14px;align-items:center;}
     .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
     .mf-topnav a:hover{text-decoration:underline;}
     .mf-top-actions{display:flex;align-items:center;gap:8px;}
-    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .icon-btn{border:1px solid rgba(211,94,14,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .btn.small{padding:8px 12px;border-radius:14px;}
     .font-large{font-size:110%;}
     .theme-dark{background:#0f1f1e;color:#f5f7f6;}

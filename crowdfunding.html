@@ -9,20 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2d6361;
-      --primary-2: #3f7f7c;
+      --primary: #D35E0E;
+      --primary-2: #C74D0C;
       --ink: #0d1b1a;
       --muted: #4f6664;
-      --line: rgba(45,99,97,0.18);
+      --line: rgba(211,94,14,0.18);
       --panel: rgba(255,255,255,0.9);
-      --glow: 0 24px 64px rgba(45,99,97,0.18);
+      --glow: 0 24px 64px rgba(211,94,14,0.18);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 15% 15%, rgba(45,99,97,0.12) 0, transparent 30%), #eef2f1;
+      background: radial-gradient(circle at 15% 15%, rgba(211,94,14,0.12) 0, transparent 30%), #E4C786;
       color: var(--ink);
       padding: 28px;
       min-height: 100vh;
@@ -33,31 +33,28 @@
     .hero {
       padding: 22px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #1f4745, #2d6361);
+      background: linear-gradient(135deg, #CF911D, #D35E0E);
       color: #fff;
       box-shadow: var(--glow);
       position: relative;
       overflow: hidden;
     }
     .lang-switch {
-      position: absolute;
-      top: 12px;
-      right: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.14);
-      padding: 8px 10px;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.24);
+      border: 1px solid rgba(211,94,14,0.2);
     }
-    .lang-switch label { font-weight: 600; font-size: 13px; color: #e9f1ef; }
+    .lang-switch label { font-weight: 600; font-size: 12px; color: #0d1b1a; }
     .lang-switch select {
       border: none;
       border-radius: 10px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.92);
-      color: #1f4745;
+      padding: 6px 8px;
+      background: #fff;
+      color: #C74D0C;
       font-weight: 700;
       outline: none;
     }
@@ -96,17 +93,17 @@
       box-shadow: var(--glow);
     }
     .btn.ghost { background: #f5f7f6; color: var(--primary); border: 1px solid var(--line); }
-    .tag { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: rgba(45,99,97,0.12); color: var(--primary-2); font-weight: 700; font-size: 12px; border: 1px solid rgba(45,99,97,0.2); }
+    .tag { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: rgba(211,94,14,0.12); color: var(--primary-2); font-weight: 700; font-size: 12px; border: 1px solid rgba(211,94,14,0.2); }
     a.back { color: var(--primary); font-weight: 700; text-decoration: none; display:inline-flex; margin-bottom:10px; }
     a.back:hover { text-decoration: underline; }
 
     .mf-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:12px;}
-    .mf-logo-link{font-weight:800;font-size:18px;color:#2d6361;text-decoration:none;}
+    .mf-logo-link{font-weight:800;font-size:18px;color:#D35E0E;text-decoration:none;}
     .mf-topnav{display:flex;gap:14px;align-items:center;}
     .mf-topnav a{color:#0d1b1a;font-weight:700;text-decoration:none;font-size:14px;}
     .mf-topnav a:hover{text-decoration:underline;}
     .mf-top-actions{display:flex;align-items:center;gap:8px;}
-    .icon-btn{border:1px solid rgba(45,99,97,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+    .icon-btn{border:1px solid rgba(211,94,14,0.24);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .btn.small{padding:8px 12px;border-radius:14px;}
     .font-large{font-size:110%;}
     .theme-dark{background:#0f1f1e;color:#f5f7f6;}
@@ -118,24 +115,16 @@
 </head>
 <body>
   <header class="mf-topbar">
-    <a class="mf-logo-link" href="index.html">MENAFactory</a>
+    <a class="mf-logo-link" href="index.html">MITU</a>
     <nav class="mf-topnav">
       <a href="index.html">Home</a>
       <a href="catalogue.html">Marketplace</a>
       <a href="investor.html">Investors</a>
       <a href="founder.html">Founders</a>
-      <a href="support.html">Support</a>
+      
     </nav>
     <div class="mf-top-actions">
       <button class="icon-btn" aria-label="Search">🔍</button>
-      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
-      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
-    </div>
-  </header>
-  <div class="shell">
-    <a class="back" href="index.html" data-i18n="back">← Back to main hub</a>
-    <section class="hero">
       <div class="lang-switch">
         <label data-i18n="language">Language</label>
         <select id="langSelect">
@@ -147,9 +136,17 @@
           <option value="ru">Русский</option>
         </select>
       </div>
+      <button class="icon-btn" id="fontToggle" aria-label="Toggle font size">AA</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="btn small" onclick="window.location.href='login.html'">Sign in</button>
+    </div>
+  </header>
+  <div class="shell">
+    <a class="back" href="index.html" data-i18n="back">← Back to main hub</a>
+    <section class="hero">
       <div class="tag" data-i18n="eyebrow">Capital & ideas</div>
-      <h1 data-i18n="title">Choose your path to fund or launch a factory.</h1>
-      <p class="lead" data-i18n="lead">Investors can browse vetted factory projects; founders can publish their projects with ROI highlights, decks, and capital needs.</p>
+      <h1 data-i18n="title">Choose your path to fund or launch a UAE factory.</h1>
+      <p class="lead" data-i18n="lead">Investors can browse vetted UAE factory projects across Abu Dhabi, Dubai, Sharjah, Al Ain, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain.</p>
     </section>
 
     <section class="grid" aria-label="Capital paths">
@@ -178,86 +175,86 @@
         lead: "Investors can browse vetted factory projects; founders can publish their projects with ROI highlights, decks, and capital needs.",
         invTag: "For Investors",
         invTitle: "Discover factory projects",
-        invBody: "Browse business plans, ROIs, sectors, countries, and required investment. Download decks and request meetings after registering.",
+        invBody: "Browse UAE factory business plans, ROIs, sectors, and required investment. Download decks and request meetings after registering.",
         invCta: "Go to investor view →",
         fndTag: "For Founders",
         fndTitle: "Publish your factory campaign",
-        fndBody: "Share factory name, focus, ROI highlights, and deck links. Access sample pitch decks and prompts to build your materials.",
+        fndBody: "Share your UAE factory name, focus, ROI highlights, and deck links. Access sample pitch decks and prompts to build your materials.",
         fndCta: "Go to founder view →"
       },
       ar: {
         back: "← العودة إلى الصفحة الرئيسية",
         language: "اللغة",
         eyebrow: "رأس المال والأفكار",
-        title: "اختر مسارك لتمويل أو إطلاق مصنع.",
-        lead: "يمكن للمستثمرين تصفح مشاريع المصانع؛ يمكن للمؤسسين نشر مشاريعهم مع أبرز العائدات والعروض التقديمية واحتياجات رأس المال.",
+        title: "اختر مسارك لتمويل أو إطلاق مصنع في الإمارات.",
+        lead: "يمكن للمستثمرين تصفح مشاريع مصانع الإمارات في أبوظبي ودبي والشارقة والعين وعجمان ورأس الخيمة والفجيرة وأم القيوين.",
         invTag: "للمستثمرين",
         invTitle: "اكتشف مشاريع المصانع",
-        invBody: "تصفح خطط الأعمال، العائدات، القطاعات، الدول، والمبالغ المطلوبة. حمّل العروض واطلب اجتماعاً بعد التسجيل.",
+        invBody: "تصفح خطط أعمال مصانع الإمارات، العائدات، القطاعات، والمبالغ المطلوبة. حمّل العروض واطلب اجتماعاً بعد التسجيل.",
         invCta: "اذهب لواجهة المستثمر →",
         fndTag: "للمؤسسين",
         fndTitle: "انشر حملة مصنعك",
-        fndBody: "شارك اسم المصنع، التركيز، أبرز العائدات، وروابط العروض. اطّلع على نماذج عروض ونصائح لبناء موادك.",
+        fndBody: "شارك اسم مصنعك في الإمارات، التركيز، أبرز العائدات، وروابط العروض. اطّلع على نماذج عروض ونصائح لبناء موادك.",
         fndCta: "اذهب لواجهة المؤسس →"
       },
       fr: {
         back: "← Retour au hub principal",
         language: "Langue",
         eyebrow: "Capital & idées",
-        title: "Choisissez votre parcours pour financer ou lancer une usine.",
-        lead: "Les investisseurs parcourent des projets d’usines validés ; les fondateurs publient leurs projets avec ROI, decks et besoins en capital.",
+        title: "Choisissez votre parcours pour financer ou lancer une usine aux Émirats.",
+        lead: "Les investisseurs parcourent des projets d’usines aux Émirats à Abou Dhabi, Dubaï, Sharjah, Al Ain, Ajman, Ras Al Khaimah, Fujairah et Umm Al Quwain.",
         invTag: "Pour les investisseurs",
         invTitle: "Découvrir des projets d’usines",
-        invBody: "Parcourez business plans, ROI, secteurs, pays et montants requis. Téléchargez les decks et demandez un rendez-vous après inscription.",
+        invBody: "Parcourez les business plans, ROI, secteurs et montants requis des usines aux Émirats. Téléchargez les decks et demandez un rendez-vous après inscription.",
         invCta: "Aller à l’espace investisseur →",
         fndTag: "Pour les fondateurs",
         fndTitle: "Publiez votre campagne d’usine",
-        fndBody: "Partagez nom, focus, ROI et liens de decks. Accédez à des exemples et des prompts pour créer vos supports.",
+        fndBody: "Partagez le nom de votre usine aux Émirats, le focus, le ROI et les liens de decks. Accédez à des exemples et des prompts pour créer vos supports.",
         fndCta: "Aller à l’espace fondateur →"
       },
       ur: {
         back: "← مرکزی صفحے پر واپس جائیں",
         language: "زبان",
         eyebrow: "سرمایہ اور خیالات",
-        title: "کارخانہ فنڈ یا لانچ کرنے کے لیے اپنا راستہ چنیں۔",
-        lead: "سرمایہ کار تصدیق شدہ فیکٹری منصوبے دیکھ سکتے ہیں؛ بانیان ROI، ڈیکس اور سرمائے کی ضروریات کے ساتھ منصوبے شائع کریں۔",
+        title: "یو اے ای میں فیکٹری فنڈ یا لانچ کرنے کے لیے اپنا راستہ چنیں۔",
+        lead: "سرمایہ کار ابو ظہبی، دبئی، شارجہ، العین، عجمان، رأس الخیمہ، فجیرہ اور ام القیوین میں یو اے ای فیکٹری منصوبے دیکھ سکتے ہیں۔",
         invTag: "سرمایہ کاروں کے لیے",
         invTitle: "فیکٹری منصوبے دریافت کریں",
-        invBody: "بزنس پلان، ROI، شعبے، ملک، اور مطلوب سرمایہ دیکھیں۔ ڈیک ڈاؤنلوڈ کریں اور رجسٹریشن کے بعد ملاقات کی درخواست دیں۔",
+        invBody: "یو اے ای فیکٹری بزنس پلان، ROI، شعبے، اور مطلوب سرمایہ دیکھیں۔ ڈیک ڈاؤنلوڈ کریں اور رجسٹریشن کے بعد ملاقات کی درخواست دیں۔",
         invCta: "سرمایہ کار منظر میں جائیں →",
         fndTag: "بانیوں کے لیے",
         fndTitle: "اپنی فیکٹری مہم شائع کریں",
-        fndBody: "فیکٹری نام، فوکس، ROI اور ڈیک لنکس شیئر کریں۔ نمونہ ڈیکس اور پرامپٹس تک رسائی حاصل کریں۔",
+        fndBody: "اپنے یو اے ای فیکٹری نام، فوکس، ROI اور ڈیک لنکس شیئر کریں۔ نمونہ ڈیکس اور پرامپٹس تک رسائی حاصل کریں۔",
         fndCta: "بانی منظر میں جائیں →"
       },
       hi: {
         back: "← मुख्य पेज पर वापस",
         language: "भाषा",
         eyebrow: "पूँजी और विचार",
-        title: "फैक्टरी को फंड या लॉन्च करने का रास्ता चुनें।",
-        lead: "निवेशक जांचे-परखे फैक्टरी प्रोजेक्ट देखते हैं; संस्थापक ROI, डेक और पूँजी की जरूरतों के साथ अपने प्रोजेक्ट प्रकाशित करें।",
+        title: "UAE में फैक्टरी को फंड या लॉन्च करने का रास्ता चुनें।",
+        lead: "निवेशक अबू धाबी, दुबई, शारजाह, अल ऐन, अजमान, रास अल खैमाह, फुजैराह और उम्म अल क्वैन में UAE फैक्टरी प्रोजेक्ट देखते हैं।",
         invTag: "निवेशकों के लिए",
         invTitle: "फैक्टरी प्रोजेक्ट खोजें",
-        invBody: "बिज़नेस प्लान, ROI, सेक्टर, देश, और निवेश राशि देखें। डेक डाउनलोड करें और रजिस्ट्रेशन के बाद मीटिंग मांगें।",
+        invBody: "UAE फैक्टरी के बिज़नेस प्लान, ROI, सेक्टर, और निवेश राशि देखें। डेक डाउनलोड करें और रजिस्ट्रेशन के बाद मीटिंग मांगें।",
         invCta: "इन्वेस्टर व्यू पर जाएं →",
         fndTag: "संस्थापकों के लिए",
         fndTitle: "अपनी फैक्टरी कैंपेन प्रकाशित करें",
-        fndBody: "फैक्टरी नाम, फोकस, ROI और डेक लिंक साझा करें। सैंपल डेक्स और प्रॉम्प्ट्स देखें।",
+        fndBody: "अपने UAE फैक्टरी नाम, फोकस, ROI और डेक लिंक साझा करें। सैंपल डेक्स और प्रॉम्प्ट्स देखें।",
         fndCta: "फाउंडर व्यू पर जाएं →"
       },
       ru: {
         back: "← Назад на главную",
         language: "Язык",
         eyebrow: "Капитал и идеи",
-        title: "Выберите путь: финансировать или запускать завод.",
-        lead: "Инвесторы просматривают проверенные проекты; основатели публикуют проекты с ROI, презентациями и потребностью в капитале.",
+        title: "Выберите путь: финансировать или запускать завод в ОАЭ.",
+        lead: "Инвесторы смотрят проекты заводов в Абу-Даби, Дубае, Шардже, Аль-Айне, Аджмане, Рас-эль-Хайме, Фуджейре и Умм-эль-Кайвайне.",
         invTag: "Для инвесторов",
         invTitle: "Найдите проекты заводов",
-        invBody: "Смотрите бизнес-планы, ROI, отрасли, страны и требуемые суммы. Скачивайте презентации и запрашивайте встречи после регистрации.",
+        invBody: "Смотрите бизнес-планы заводов ОАЭ, ROI, отрасли и требуемые суммы. Скачивайте презентации и запрашивайте встречи после регистрации.",
         invCta: "Перейти к виду инвестора →",
         fndTag: "Для основателей",
         fndTitle: "Опубликуйте кампанию завода",
-        fndBody: "Делитесь названием, фокусом, ROI и ссылками на презентации. Доступны примеры и подсказки для материалов.",
+        fndBody: "Делитесь названием вашего завода в ОАЭ, фокусом, ROI и ссылками на презентации. Доступны примеры и подсказки для материалов.",
         fndCta: "Перейти к виду основателя →"
       }
     };
@@ -285,7 +282,7 @@
         <nav aria-labelledby="footer-about">
           <h4 id="footer-about">About</h4>
           <ul>
-            <li><a href="about.html">What is MENAFactory?</a></li>
+            <li><a href="about.html">What is MITU?</a></li>
             <li><a href="vision.html">Industrial Ecosystem Vision</a></li>
             <li><a href="partners.html">Partners & Alliances</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -322,7 +319,7 @@
           <div class="mf-brand">
             <div class="mf-logo" aria-hidden="true">MF</div>
             <div class="mf-brand-text">
-              <strong>MENAFactory</strong>
+              <strong>MITU</strong>
               <span>Industrial capital & marketplace</span>
             </div>
           </div>
@@ -330,7 +327,7 @@
           <ul class="mf-support">
             <li><span class="mf-icon">📞</span><a href="tel:+9710000000">+971-XXX-XXXX</a></li>
             <li><span class="mf-icon">💬</span><a href="https://wa.me/9710000000">WhatsApp: +971-XXX-XXXX</a></li>
-            <li><span class="mf-icon">✉️</span><a href="mailto:support@menafactory.com">Email us</a></li>
+            <li><span class="mf-icon">✉️</span><a href="mailto:support@mitufactory.com">Email us</a></li>
             <li><span class="mf-icon">🤝</span><a href="/contact">Talk to an advisor</a></li>
           </ul>
           <div class="muted">Support available 7 days a week</div>
@@ -338,7 +335,7 @@
       </div>
 
       <div class="mf-footer-bottom">
-        <div class="mf-legal">© 2025 MENAFactory. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
+        <div class="mf-legal">© 2025 MITU. All rights reserved. Last updated on: <span class="mf-date"></span>.</div>
         <div class="mf-social">
           <span>Follow us on</span>
           <a href="https://facebook.com" aria-label="Facebook">Fb</a>
@@ -352,21 +349,21 @@
   </footer>
 
   <style>
-    .mf-footer { background:#f6f8f7; border-top:1px solid rgba(45,99,97,0.16); margin-top:24px; }
+    .mf-footer { background:#E4C786; border-top:1px solid rgba(211,94,14,0.16); margin-top:24px; }
     .mf-footer-shell { max-width:1200px; margin:0 auto; padding:20px 18px 26px; }
     .mf-footer-grid { display:grid; gap:16px; grid-template-columns:repeat(4,minmax(0,1fr)); }
     .mf-footer h4 { margin:0 0 8px; font-size:15px; letter-spacing:-0.1px; color:#0d1b1a; }
     .mf-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
-    .mf-footer a { color:#2d6361; font-weight:600; text-decoration:none; font-size:14px; }
-    .mf-footer a:hover { text-decoration:underline; color:#1f4745; }
+    .mf-footer a { color:#D35E0E; font-weight:600; text-decoration:none; font-size:14px; }
+    .mf-footer a:hover { text-decoration:underline; color:#CF911D; }
     .mf-footer .muted { color:#4f6664; font-size:13px; }
     .mf-brand { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#1f4745,#2d6361); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .mf-logo { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#CF911D,#D35E0E); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
     .mf-brand-text { display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .mf-support { list-style:none; padding:0; margin:6px 0 8px; display:grid; gap:6px; }
     .mf-icon { width:18px; display:inline-block; }
-    .mf-footer-bottom { border-top:1px solid rgba(45,99,97,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
-    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#2d6361; }
+    .mf-footer-bottom { border-top:1px solid rgba(211,94,14,0.16); margin-top:18px; padding-top:12px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; }
+    .mf-social { display:flex; gap:10px; align-items:center; font-size:14px; color:#D35E0E; }
     .mf-social a { font-weight:700; }
     @media (max-width:900px) { .mf-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) { .mf-footer-grid { grid-template-columns:1fr; } .mf-footer-shell { padding:18px 16px 22px; } .mf-footer-bottom { flex-direction:column; align-items:flex-start; } }
