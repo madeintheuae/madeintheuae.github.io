@@ -35,7 +35,8 @@
     .upload-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:#f5f7f6;border:1px dashed var(--line);cursor:pointer;font-weight:700;}
     .error{color:#a62323;font-weight:700;font-size:12px;margin-top:-2px;margin-bottom:8px;}
     .success{background:#E4C786;border:1px solid rgba(211,94,14,0.3);color:#C74D0C;padding:10px 12px;border-radius:12px;font-weight:700;margin-top:8px;}
-    .learning{border:1px dashed var(--line);border-radius:14px;padding:14px;background:#f7faf9;margin-bottom:14px;}
+    .learning{border:1px dashed var(--line);border-radius:14px;padding:14px;background:#f7faf9;}
+    .learning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:14px;}
     .list{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
     .stack{display:grid;gap:12px;}
     .card.list{padding:16px;}
@@ -90,11 +91,18 @@
       <p class="lead">Share your factory focus, ROI highlights, decks, and capital needs. Get guidance and sample decks to craft a winning raise.</p>
     </section>
 
-    <div class="learning">
-      <h3>New to fundraising for factories?</h3>
-      <p class="muted">Visit the Founders Learning Center to learn how to prepare business plans, structure your pitch decks, and choose between equity, shares, and convertibles for a successful crowdfunding campaign.</p>
-      <button class="btn inline" id="openLearning">Go to founders learning center</button>
-      <span class="info-link" id="openGlossaryLink" style="margin-left:10px;cursor:pointer;color:var(--primary);text-decoration:underline;font-weight:700;">Glossary: shares vs equity vs convertible</span>
+    <div class="learning-grid">
+      <div class="learning">
+        <h3>New to fundraising for factories?</h3>
+        <p class="muted">Visit the Founders Learning Center to learn how to prepare business plans, structure your pitch decks, and choose between equity, shares, and convertibles for a successful crowdfunding campaign.</p>
+        <button class="btn inline" id="openLearning">Go to founders learning center</button>
+        <span class="info-link" id="openGlossaryLink" style="margin-left:10px;cursor:pointer;color:var(--primary);text-decoration:underline;font-weight:700;">Glossary: shares vs equity vs convertible</span>
+      </div>
+      <div class="learning">
+        <h3>Already company and need to be transferred to the UAE?</h3>
+        <p class="muted">Please register and contact the support office to start your UAE factory transfer and setup process.</p>
+        <button class="btn inline" onclick="window.location.href='signup.html'">Register</button>
+      </div>
     </div>
 
     <div class="grid">

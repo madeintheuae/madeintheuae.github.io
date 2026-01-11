@@ -306,8 +306,6 @@
     tbody tr:hover td { background: #f3f5ff; }
     a { color: var(--primary); font-weight: 700; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .company-link { color: var(--primary-strong); text-decoration: none; }
-    .company-link:hover { text-decoration: underline; }
     .muted { color: var(--muted); font-size: 14px; }
     .empty { padding: 28px; text-align: center; color: var(--muted); font-weight: 600; }
     @media (max-width: 720px) {
@@ -415,8 +413,8 @@
                 <th data-i18n="colCompany">Company Name</th>
                 <th data-i18n="colCountry">UAE</th>
                 <th data-i18n="colCity">City / Location</th>
-                <th data-i18n="colWebsite">Website</th>
-                <th data-i18n="colProducts">Types of Products</th>
+                <th data-i18n="colProducts">Products</th>
+                <th data-i18n="colReviews">Reviews</th>
                 <th data-i18n="colAdditional">Additional Information</th>
               </tr>
             </thead>
@@ -494,8 +492,8 @@
         colCompany: "Company Name",
         colCountry: "UAE",
         colCity: "Emirate / City",
-        colWebsite: "Website",
-        colProducts: "Types of Products",
+        colProducts: "Products",
+        colReviews: "Reviews",
         colAdditional: "Additional Information",
         emptyWaiting: "Waiting for data…",
         emptyNoMatch: "No manufacturers match the current filters.",
@@ -546,8 +544,8 @@
         colCompany: "اسم الشركة",
         colCountry: "الإمارات",
         colCity: "الإمارة / المدينة",
-        colWebsite: "الموقع الإلكتروني",
-        colProducts: "أنواع المنتجات",
+        colProducts: "المنتجات",
+        colReviews: "المراجعات",
         colAdditional: "معلومات إضافية",
         emptyWaiting: "بانتظار البيانات…",
         emptyNoMatch: "لا توجد مصانع مطابقة للفلاتر الحالية.",
@@ -598,8 +596,8 @@
         colCompany: "Nom de l'entreprise",
         colCountry: "EAU",
         colCity: "Émirat / Ville",
-        colWebsite: "Site web",
-        colProducts: "Types de produits",
+        colProducts: "Produits",
+        colReviews: "Avis",
         colAdditional: "Informations complémentaires",
         emptyWaiting: "En attente de données…",
         emptyNoMatch: "Aucun fabricant ne correspond aux filtres.",
@@ -650,8 +648,8 @@
         colCompany: "کمپنی کا نام",
         colCountry: "یو اے ای",
         colCity: "امارت / شہر",
-        colWebsite: "ویب سائٹ",
-        colProducts: "پروڈکٹس کی اقسام",
+        colProducts: "پروڈکٹس",
+        colReviews: "جائزے",
         colAdditional: "اضافی معلومات",
         emptyWaiting: "ڈیٹا کا انتظار…",
         emptyNoMatch: "موجودہ فلٹرز کے لیے کوئی مینوفیکچرر نہیں ملا۔",
@@ -702,8 +700,8 @@
         colCompany: "कंपनी का नाम",
         colCountry: "UAE",
         colCity: "अमीरात / शहर",
-        colWebsite: "वेबसाइट",
-        colProducts: "उत्पादों के प्रकार",
+        colProducts: "उत्पाद",
+        colReviews: "समीक्षाएँ",
         colAdditional: "अतिरिक्त जानकारी",
         emptyWaiting: "डेटा की प्रतीक्षा…",
         emptyNoMatch: "वर्तमान फ़िल्टर से कोई निर्माता नहीं मिला।",
@@ -727,7 +725,6 @@
       "Company Name",
       "Country",
       "City/Location",
-      "Website",
       "Types of Products",
       "Additional Information"
     ];
@@ -779,15 +776,6 @@
     const viewAllBtn = document.getElementById("viewAll");
     const resetScopeBtn = document.getElementById("resetScope");
     const langSelect = document.getElementById("langSelect");
-
-    function slugify(str) {
-      return (str || "")
-        .toString()
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-    }
 
     function t(key, vars = {}) {
       const str = (translations[state.lang] && translations[state.lang][key]) || translations.en[key] || key;
@@ -1079,22 +1067,18 @@
       state.filtered.forEach(row => {
         const tr = document.createElement("tr");
         const company = safe(row["Company Name"]);
-        const detailUrl = getCompanyLink(row);
-        const companyCell = detailUrl
-          ? `<a class="company-link" data-slug="${slugify(company)}" href="${detailUrl}">${company}</a>`
-          : `<span class="company-name">${company}</span>`;
+        const companyCell = `<span class="company-name">${company}</span>`;
         tr.innerHTML = `
           <td><strong>${companyCell}</strong></td>
           <td>${safe(row.Country)}</td>
           <td>${safe(row["City/Location"])}</td>
-          <td>${linkify(row.Website)}</td>
-          <td>${safe(row["Types of Products"])}</td>
+          <td><a class="btn ghost" href="signup.html">Unlock</a></td>
+          <td><span class="muted">★★★★★</span></td>
           <td><span class="muted">${safe(row["Additional Information"])}</span></td>
         `;
         tbodyEl.appendChild(tr);
       });
       statusEl.textContent = t("statusShowing", { count: state.filtered.length, s: state.filtered.length === 1 ? "" : "s" });
-      attachCompanyLinkHandlers();
     }
 
     function updateStats() {
@@ -1121,39 +1105,6 @@
 
     function safe(val) {
       return val ? val.toString().trim() : "";
-    }
-
-    function linkify(raw) {
-      const url = safe(raw);
-      if (!url) return "";
-      const normalized = url.startsWith("http") ? url : `https://${url}`;
-      return `<a href="${normalized}" target="_blank" rel="noopener noreferrer">Visit →</a>`;
-    }
-
-    function getCompanyLink(row) {
-      const slug = slugify(row["Company Name"]);
-      if (!slug) return "";
-      return `company.html?id=${encodeURIComponent(slug)}`;
-    }
-
-    function attachCompanyLinkHandlers() {
-      document.querySelectorAll(".company-link").forEach(link => {
-        link.addEventListener("click", () => {
-          const slug = link.dataset.slug;
-          const row = state.filtered.find(r => slugify(r["Company Name"]) === slug);
-          if (row) {
-            sessionStorage.setItem("selectedCompany", JSON.stringify({
-              slug,
-              name: safe(row["Company Name"]),
-              country: safe(row.Country),
-              city: safe(row["City/Location"]),
-              website: safe(row.Website),
-              products: safe(row["Types of Products"]),
-              additional: safe(row["Additional Information"])
-            }));
-          }
-        });
-      });
     }
 
     applyTranslations();

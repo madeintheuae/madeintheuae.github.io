@@ -106,13 +106,13 @@
 
       <aside class="sidebar">
         <div class="card" id="trendsCard">
-          <h3>Investment trends (last 3 months)</h3>
+          <h3>UAE city investment trends</h3>
           <div class="list" id="trendsList"></div>
         </div>
 
         <div class="card" id="registerCard">
-          <h3>Register to unlock contacts</h3>
-          <p class="muted">Get founder contact links, schedule a presentation, and bookmark projects.</p>
+          <h3>Register to onlock the more information about companies.</h3>
+          <p class="muted">Get presentation, pitch-decks and all information about project.</p>
           <form id="registerForm">
             <label>Full name
               <input id="regName" type="text" placeholder="e.g. Sarah Khan" required />
@@ -259,10 +259,10 @@
           <h3>${p.name}</h3>
           <div class="row muted">
             <span>${copy.country}: <strong>${p.country}</strong></span>
-            <span>${copy.sector}: <strong>${p.sector}</strong></span>
+            <span>${copy.sector}: <a class="btn ghost inline" href="#registerCard">Unlock</a></span>
             <span>${copy.roi} <span class="info-link" data-term="roi">(what is ROI?)</span>: <strong>${p.roi}</strong></span>
             <span>${copy.capital} <span class="info-link" data-term="capital">(?)</span>: <strong>${fmtMoney(p.capitalNeeded)}</strong></span>
-            <span>${copy.shares} <span class="info-link" data-term="${p.shareType.toLowerCase().includes("convertible")?"convertible":p.shareType.toLowerCase().includes("revenue")?"revenue":"equity"}">(?)</span>: <strong>${p.shareType}</strong></span>
+            <span>${copy.shares}: <a class="btn ghost inline" href="#registerCard">Unlock</a></span>
           </div>
           <p class="muted">${p.description}</p>
           <div class="progress-wrap">
@@ -276,6 +276,7 @@
             <button class="btn" data-invest="${idx}">${copy.investNow}</button>
             <a class="btn ghost" href="#" aria-label="Download plan">${copy.downloadPlan}</a>
             <a class="btn ghost" href="#" aria-label="Download deck">${copy.downloadDeck}</a>
+            <a class="btn ghost" href="#registerCard" aria-label="Unlock downloads">Unlock downloads</a>
           </div>
           <div class="muted">Contacts and presentations unlock after registration.</div>
         `;
